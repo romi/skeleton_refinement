@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skeleton_refinement"
+version = "0.0.1"
+dependencies = [
+    "numpy",
+    "plyfile",
+    "matplotlib",
+]
+description = ""
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Ayan Chaudhury", email = "ayanchaudhury.cs@gmail.com" },
+    { name = "Christophe Godin", email = "christophe.godin@inria.fr" },
+]
+maintainers = [
+    { name = "Jonathan Legrand", email = "jonathan.legrand@ens-lyon.fr" }
+]
+keywords = [
+    "Robotics for Microfarms",
+    "ROMI",
+    "skeleton",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)"
+]
+
+[project.scripts]
+refine_skeleton = "skeleton_refinement.cli.refine_skeleton:main"
+
+[project.urls]
+Homepage = "https://romi-project.eu/"
+Documentation = "https://docs.romi-project.eu/plant_imager/"
+Repository = "https://github.com/romi/skeleton_refinement"
+Issues = "https://github.com/romi/skeleton_refinement/issues"
+
+[project.optional-dependencies]
+doc = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "pymdown-extensions",
+    "markdown-exec[ansi]",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-section-index",
+]
+test = [
+    "nose2[coverage]",
+    "coverage[toml]",
+]
