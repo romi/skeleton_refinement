@@ -1,0 +1,12 @@
+{% set pyproject = load_file_data('../../pyproject.toml', 'toml', from_recipe_dir=True) %}
+{% set requires-python = pyproject.get('project', {}).get('requires-python') %}
+
+name: skeleton_refinement
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python {{ requires-python }}
+  - numpy
+  - plyfile
+  - matplotlib
