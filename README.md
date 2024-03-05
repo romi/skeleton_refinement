@@ -157,7 +157,7 @@ The official documentation for `conda-render` can be found [here](https://docs.c
 To upload the built package, you need a valid account (here `romi-eu`) on [anaconda.org](www.anaconda.org) & to log ONCE
 with `anaconda login`, then:
 ```shell
-anaconda upload ~/miniconda3/conda-bld/linux-64/romitask*.tar.bz2 --user romi-eu
+anaconda upload ~/miniconda3/conda-bld/linux-64/skeleton_refinement*.tar.bz2 --user romi-eu
 ```
 
 #### Clean builds
