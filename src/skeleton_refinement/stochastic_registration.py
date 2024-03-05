@@ -9,12 +9,12 @@ the transformed point set.
 
 import numpy as np
 
-from skeleton_refinement.deformable_registration import deformable_registration
+from skeleton_refinement.deformable_registration import DeformableRegistration
 from skeleton_refinement.utilities import initialize_sigma2
 
 
 def perform_registration(X, Y):
-    reg = deformable_registration(**{'X': X, 'Y': Y})
+    reg = DeformableRegistration(**{'X': X, 'Y': Y})
     reg.transform_point_cloud()
     if reg.sigma2 is None:
         reg.sigma2 = initialize_sigma2(reg.X, reg.TY)

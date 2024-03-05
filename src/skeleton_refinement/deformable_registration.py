@@ -12,14 +12,14 @@ The library is based on the python implementation of the paper in pycpd package.
 
 import numpy as np
 
-from skeleton_refinement.expectation_maximization_registration import expectation_maximization_registration
+from skeleton_refinement.expectation_maximization_registration import ExpectationMaximizationRegistration
 from skeleton_refinement.utilities import gaussian_kernel
 
 ALPHA = 2  # default value of alpha
 BETA = 2  # default value of beta
 
 
-class deformable_registration(expectation_maximization_registration):
+class DeformableRegistration(ExpectationMaximizationRegistration):
     def __init__(self, alpha=ALPHA, beta=BETA, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.alpha = ALPHA if alpha is None else alpha

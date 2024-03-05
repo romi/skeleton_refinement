@@ -15,7 +15,7 @@ import numpy as np
 from skeleton_refinement.utilities import initialize_sigma2
 
 
-class expectation_maximization_registration(object):
+class ExpectationMaximizationRegistration(object):
     def __init__(self, X, Y, sigma2=None, max_iterations=100, tolerance=0.001, w=0, *args, **kwargs):
         if not isinstance(X, np.ndarray) or X.ndim != 2:
             raise ValueError("The target point cloud (X) must be at a 2D numpy array.")
