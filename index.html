@@ -887,17 +887,20 @@ python<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </spa
 That is, if you make changes to the source code of <code>skeleton_refinement</code> you will not have to <code>pip install</code> it again.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">Link</a></h2>
 <h3 id="example-dataset">Example dataset<a class="headerlink" href="#example-dataset" title="Permanent link">Link</a></h3>
-<p>First download an example dataset to play with:
-<div class="language-shell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>tmp/
-wget<span style="color: #bbbbbb"> </span>https://zenodo.org/records/10379172/files/real_plant_analyzed.zip
-
+<p>First, we download an example dataset from Zenodo, named <code>real_plant_analyzed</code>, to play with:</p>
+<div class="language-shell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>wget<span style="color: #bbbbbb"> </span>https://zenodo.org/records/10379172/files/real_plant_analyzed.zip
 unzip<span style="color: #bbbbbb"> </span>real_plant_analyzed.zip
-</code></pre></div></p>
+</code></pre></div>
+<p>It contains:
+  * a plant point cloud under <code>PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply</code>
+  * a plant skeleton under <code>CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json</code></p>
 <h3 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">Link</a></h3>
-<div class="language-shell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>refine_skeleton<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
-<span style="color: #bbbbbb">  </span>real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
-<span style="color: #bbbbbb">  </span>real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
-<span style="color: #bbbbbb">  </span>real_plant_analyzed/optimized_skeleton.txt
+<p>You may use the <code>refine_skeleton</code> CLI to refine a given skeleton using the original point cloud: </p>
+<div class="language-shell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>real_plant_analyzed
+refine_skeleton<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
+<span style="color: #bbbbbb">  </span>PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
+<span style="color: #bbbbbb">  </span>CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F; font-weight: bold">\</span>
+<span style="color: #bbbbbb">  </span>optimized_skeleton.txt
 </code></pre></div>
 <h3 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">Link</a></h3>
 <p>Here is a minimal example how to use the <code>skeleton_refinement</code> library in Python:</p>
