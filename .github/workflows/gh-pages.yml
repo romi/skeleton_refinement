@@ -1,0 +1,25 @@
+name: "Deploy documentation"
+
+on:
+  - push
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'  # select python version
+          cache: 'pip'  # caching pip dependencies
+      - name: Install library & documentation requirements
+        run: python3 -m pip install .[doc]
+      - name: Build documentation with mkdocs
+        run: mkdocs build
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site

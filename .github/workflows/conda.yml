@@ -1,0 +1,30 @@
+name: Conda packaging
+
+on:
+  # Automatic trigger on release
+  release:
+    types: [ published ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  conda_build:
+    name: Build conda package
+    runs-on: "ubuntu-latest"
+    environment: anaconda
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: "3.10"
+      - name: Conda build
+        run: |
+          conda install conda-build anaconda-client
+          conda config --set anaconda_upload yes
+          conda build conda/recipe/ -c conda-forge --user romi-eu --token ${{ secrets.ANACONDA_TOKEN }}
