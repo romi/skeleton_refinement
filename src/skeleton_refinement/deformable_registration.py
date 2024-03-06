@@ -20,7 +20,31 @@ BETA = 2  # default value of beta
 
 
 class DeformableRegistration(ExpectationMaximizationRegistration):
+    """Implement a deformable registration by Expectation-Maximization.
+
+    Attributes
+    ----------
+    alpha : float
+        ???.
+    beta : float
+        ???.
+    W : numpy.ndarray
+        ???.
+    G : numpy.ndarray
+        ???.
+    """
     def __init__(self, alpha=ALPHA, beta=BETA, *args, **kwargs):
+        """Initialize the deformable registration algorithm.
+
+        Parameters
+        ----------
+        alpha : float, optional
+            ???.
+            Defaults to `ALPHA`.
+        beta : float, optional
+            ???.
+            Defaults to `BETA`.
+        """
         super().__init__(*args, **kwargs)
         self.alpha = ALPHA if alpha is None else alpha
         self.beta = BETA if alpha is None else beta
@@ -28,11 +52,13 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
         self.G = gaussian_kernel(self.Y, self.beta)
 
     def update_transform(self):
+        """???"""
         A = np.dot(np.diag(self.P1), self.G) + self.alpha * self.sigma2 * np.eye(self.M)
         B = np.dot(self.P, self.X) - np.dot(np.diag(self.P1), self.Y)
         self.W = np.linalg.solve(A, B)
 
     def transform_point_cloud(self, Y=None):
+        """???"""
         if Y is None:
             self.TY = self.Y + np.dot(self.G, self.W)
             return
@@ -40,6 +66,7 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
             return Y + np.dot(self.G, self.W)
 
     def update_variance(self):
+        """???"""
         qprev = self.sigma2
 
         xPx = np.dot(np.transpose(self.Pt1), np.sum(np.multiply(self.X, self.X), axis=1))
@@ -53,4 +80,5 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
         self.err = np.abs(self.sigma2 - qprev)
 
     def get_registration_parameters(self):
+        """Retrieve the registration parameters `G` & `W`."""
         return self.G, self.W

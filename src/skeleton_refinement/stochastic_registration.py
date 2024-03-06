@@ -14,6 +14,20 @@ from skeleton_refinement.utilities import initialize_sigma2
 
 
 def perform_registration(X, Y):
+    """Performs the skeleton optimization using stochastic deformation registration.
+
+    Parameters
+    ----------
+    X : numpy.ndarray
+        The input reference point cloud coordinates of shape `(n_points, dim)`, XYZ sorted.
+    Y : numpy.ndarray
+        The input reference skeleton coordinates of shape `(n_points, dim)`, XYZ sorted.
+
+    Returns
+    -------
+    numpy.ndarray
+        The transformed skeleton coordinates of shape `(n_points, 3)`, XYZ sorted.
+    """
     reg = DeformableRegistration(**{'X': X, 'Y': Y})
     reg.transform_point_cloud()
     if reg.sigma2 is None:
@@ -21,4 +35,4 @@ def perform_registration(X, Y):
         reg.q = -reg.err - reg.N * reg.D / 2 * np.log(reg.sigma2)
         while reg.iteration < reg.max_iterations and reg.err > reg.tolerance:
             reg.iterate()
-    return reg.X, reg.TY
+    return reg.TY

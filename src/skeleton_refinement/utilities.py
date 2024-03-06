@@ -72,6 +72,20 @@ def load_json(filename, key=None):
 
 
 def initialize_sigma2(X, Y):
+    """Initialize the standard deviation.
+
+    Parameters
+    ----------
+    X : numpy.ndarray
+        ???
+    Y : numpy.ndarray
+        ???
+
+    Returns
+    -------
+    numpy.ndarray
+        The standard deviation value.
+    """
     (N, D) = X.shape
     (M, _) = Y.shape
     XX = np.reshape(X, (1, N, D))
@@ -84,6 +98,20 @@ def initialize_sigma2(X, Y):
 
 
 def gaussian_kernel(Y, beta):
+    """Gaussian kernel.
+
+    Parameters
+    ----------
+    Y : numpy.ndarray
+        ???
+    beta : float
+        ???
+
+    Returns
+    -------
+    numpy.ndarray
+        ???.
+    """
     (M, D) = Y.shape
     XX = np.reshape(Y, (1, M, D))
     YY = np.reshape(Y, (M, 1, D))
