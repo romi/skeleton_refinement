@@ -735,7 +735,7 @@ the transformed point set.</p>
 
 
 <h2 id="skeleton_refinement.stochastic_registration.perform_registration" class="doc doc-heading">
-          <code class="highlight language-python">perform_registration(X, Y)</code>
+          <code class="highlight language-python">perform_registration(X, Y, <span style="color: #666666">**</span>kwargs)</code>
 
 <a href="#skeleton_refinement.stochastic_registration.perform_registration" class="headerlink" title="Permanent link">Link</a></h2>
 
@@ -790,6 +790,91 @@ the transformed point set.</p>
 
 
 
+  <p><strong>Other Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>alpha</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>???.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>beta</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>???.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>sigma2</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>???
+Defaults to <code>None</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>max_iterations</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum number of iterations before stopping the iterative registration.
+Defaults to <code>100</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>tolerance</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>??? Tolerance for registration.
+Defaults to <code>0.001</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>w</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>???
+Defaults to <code>0</code>.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -836,7 +921,27 @@ the transformed point set.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">perform_registration</span>(X, Y):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">perform_registration</span>(X, Y, <span style="color: #666666">**</span>kwargs):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Performs the skeleton optimization using stochastic deformation registration.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -846,12 +951,32 @@ the transformed point set.</p>
 <span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
 <span style="color: #BA2121; font-style: italic">        The input reference skeleton coordinates of shape `(n_points, dim)`, XYZ sorted.</span>
 
+<span style="color: #BA2121; font-style: italic">    Other Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------------</span>
+<span style="color: #BA2121; font-style: italic">    alpha : float</span>
+<span style="color: #BA2121; font-style: italic">        ???.</span>
+<span style="color: #BA2121; font-style: italic">    beta : float</span>
+<span style="color: #BA2121; font-style: italic">        ???.</span>
+<span style="color: #BA2121; font-style: italic">    sigma2 : numpy.ndarray, optional</span>
+<span style="color: #BA2121; font-style: italic">        ???</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to `None`.</span>
+<span style="color: #BA2121; font-style: italic">    max_iterations : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        The maximum number of iterations before stopping the iterative registration.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to `100`.</span>
+<span style="color: #BA2121; font-style: italic">    tolerance : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        ??? Tolerance for registration.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to `0.001`.</span>
+<span style="color: #BA2121; font-style: italic">    w : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        ???</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to `0`.</span>
+
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
 <span style="color: #BA2121; font-style: italic">        The transformed skeleton coordinates of shape `(n_points, 3)`, XYZ sorted.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    reg <span style="color: #666666">=</span> DeformableRegistration(<span style="color: #666666">**</span>{<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
+    kwargs<span style="color: #666666">.</span>update({<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
+    reg <span style="color: #666666">=</span> DeformableRegistration(<span style="color: #666666">**</span>kwargs)
     reg<span style="color: #666666">.</span>transform_point_cloud()
     <span style="color: #008000; font-weight: bold">if</span> reg<span style="color: #666666">.</span>sigma2 <span style="color: #AA22FF; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span>:
         reg<span style="color: #666666">.</span>sigma2 <span style="color: #666666">=</span> initialize_sigma2(reg<span style="color: #666666">.</span>X, reg<span style="color: #666666">.</span>TY)
