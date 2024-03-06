@@ -52,22 +52,6 @@ python -m pip install -e .  # install the sources
 Note that the `-e` option is to install the `skeleton_refinement` sources in "developer mode".
 That is, if you make changes to the source code of `skeleton_refinement` you will not have to `pip install` it again.
 
-### Tests the library
-First you need to install the tests tools:
-```shell
-python -m pip install -e .[test]
-```
-
-Then, to test the `skeleton_refinement` library:
- - Run all tests with verbose output (from the `skeleton_refinement` root directory):
-    ```shell
-    nose2 -s tests/ -v
-    ```
- - Run all tests with coverage report (from the `skeleton_refinement` root directory):
-    ```shell
-    nose2 -s tests/ --with-coverage
-    ```
-
 
 ## Usage
 
@@ -96,17 +80,17 @@ Here is a minimal example how to use the `skeleton_refinement` library in Python
 from skeleton_refinement.stochastic_registration import perform_registration
 from skeleton_refinement.utilities import load_json, load_ply
 
-X_original_PC = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
-Y_skeleton_PC = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
+pcd = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
+skel = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
 # Perform stochastic optimization
-reg_x, reg_y = perform_registration(X_original_PC, Y_skeleton_PC)
+refined_skel = perform_registration(pcd, skel)
 
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
-ax.scatter(*reg_x.T, marker='.', color='black')
-ax.scatter(*Y_skeleton_PC.T, marker='o', color='r')
-ax.scatter(*reg_y.T, marker='o', color='b')
+ax.scatter(*pcd.T, marker='.', color='black')
+ax.scatter(*skel.T, marker='o', color='r')
+ax.scatter(*refined_skel.T, marker='o', color='b')
 ax.set_aspect('equal')
 plt.show()
 ```
@@ -127,7 +111,7 @@ nose2 -v -C
 
 Notes:
 
-- the configuration file used by `nose2` is `unittests.cfg`
+- the configuratio[mkdocs.yml](mkdocs.yml)n file used by `nose2` is `unittests.cfg`
 - the `-C` option generate a coverage report, as defined by the `.coveragerc` file.
 - this requires the `nose2` & `coverage` packages listed in the `requirements.txt` file.
 
