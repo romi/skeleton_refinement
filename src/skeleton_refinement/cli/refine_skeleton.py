@@ -35,7 +35,7 @@ def parsing():
 def file_loader(fname):
     """Load point cloud or skeleton from a file."""
     fname = Path(fname)
-    if fname.suffix == ".xyz":
+    if fname.suffix in [".xyz", ".txt"]:
         xyz = load_xyz(fname)
     elif fname.suffix == ".json":
         xyz = load_json(fname, "points")
@@ -51,16 +51,12 @@ def main():
     parser = parsing()
     args = parser.parse_args()
 
-    # pointCloudFileName = 'plantPC_cleaned.xyz'
-    # skeletonFileName = 'mtgSkeletonPoints.xyz'
-    # transformedPointCloudFileName = 'refinedSkeleton.xyz'
-
-    X_original_PC = file_loader(args.pcd)
-    Y_skeleton_PC = file_loader(args.skeleton)
+    pcd = file_loader(args.pcd)
+    skel = file_loader(args.skeleton)
     # Perform stochastic optimization
-    reg_x, reg_y = perform_registration(X_original_PC, Y_skeleton_PC)
+    refined_skel = perform_registration(pcd, skel)
     # Save the refined skeleton:
-    np.savetxt(args.out, reg_y, delimiter=' ')
+    np.savetxt(args.out, refined_skel, delimiter=' ')
 
 
 if __name__ == "__main__":

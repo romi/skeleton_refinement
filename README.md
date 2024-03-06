@@ -56,20 +56,29 @@ That is, if you make changes to the source code of `skeleton_refinement` you wil
 ## Usage
 
 ### Example dataset
-First download an example dataset to play with:
-```shell
-cd tmp/
-wget https://zenodo.org/records/10379172/files/real_plant_analyzed.zip
 
+First, we download an example dataset from Zenodo, named `real_plant_analyzed`, to play with:
+
+```shell
+wget https://zenodo.org/records/10379172/files/real_plant_analyzed.zip
 unzip real_plant_analyzed.zip
 ```
 
+It contains:
+  * a plant point cloud under `PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply`
+  * a plant skeleton under `CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json`
+
+
 ### CLI
+
+You may use the `refine_skeleton` CLI to refine a given skeleton using the original point cloud: 
+
 ```shell
+cd real_plant_analyzed
 refine_skeleton \
-  real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply \
-  real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json \
-  real_plant_analyzed/optimized_skeleton.txt
+  PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply \
+  CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json \
+  optimized_skeleton.txt
 ```
 
 ### Python API
