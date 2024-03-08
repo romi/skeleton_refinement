@@ -14,6 +14,8 @@ import numpy as np
 
 from skeleton_refinement.utilities import initialize_sigma2
 
+MAX_ITER = 100
+TOL = 0.0001
 
 class ExpectationMaximizationRegistration(object):
     """Abstract base class for all Expectation-Maximization registration algorithms.
@@ -54,7 +56,7 @@ class ExpectationMaximizationRegistration(object):
         ???
 
     """
-    def __init__(self, X, Y, sigma2=None, max_iterations=100, tolerance=0.001, w=0, *args, **kwargs):
+    def __init__(self, X, Y, sigma2=None, max_iterations=MAX_ITER, tolerance=TOL, w=0, *args, **kwargs):
         """Expectation-Maximization registration algorithms constructor.
 
         Parameters
