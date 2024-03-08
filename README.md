@@ -61,12 +61,13 @@ First, we download an example dataset from Zenodo, named `real_plant_analyzed`, 
 
 ```shell
 wget https://zenodo.org/records/10379172/files/real_plant_analyzed.zip
-unzip real_plant_analyzed.zip
+unzip real_plant_analyzed.zip -d /tmp
 ```
 
 It contains:
   * a plant point cloud under `PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply`
   * a plant skeleton under `CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json`
+  * a plant tree graph under `TreeGraph__False_CurveSkeleton_c304a2cc71/TreeGraph.p`
 
 
 ### CLI
@@ -74,11 +75,11 @@ It contains:
 You may use the `refine_skeleton` CLI to refine a given skeleton using the original point cloud: 
 
 ```shell
-cd real_plant_analyzed
+export DATA_PATH="/tmp/real_plant_analyzed"
 refine_skeleton \
-  PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply \
-  CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json \
-  optimized_skeleton.txt
+  ${DATA_PATH}/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply \
+  ${DATA_PATH}/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json \
+  ${DATA_PATH}/optimized_skeleton.txt
 ```
 
 ### Python API
@@ -89,8 +90,8 @@ Here is a minimal example how to use the `skeleton_refinement` library in Python
 from skeleton_refinement.stochastic_registration import perform_registration
 from skeleton_refinement.io import load_json, load_ply
 
-pcd = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
-skel = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
+pcd = load_ply("/tmp/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
+skel = load_json("/tmp/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
 # Perform stochastic optimization
 refined_skel = perform_registration(pcd, skel)
 
