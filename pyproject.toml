@@ -6,9 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "skeleton_refinement"
 version = "0.0.1"
 dependencies = [
+    "matplotlib",
+    "networkx",
     "numpy",
     "plyfile",
-    "matplotlib",
 ]
 description = ""
 readme = "README.md"

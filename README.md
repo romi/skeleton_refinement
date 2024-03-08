@@ -87,7 +87,7 @@ Here is a minimal example how to use the `skeleton_refinement` library in Python
 
 ```python
 from skeleton_refinement.stochastic_registration import perform_registration
-from skeleton_refinement.utilities import load_json, load_ply
+from skeleton_refinement.io import load_json, load_ply
 
 pcd = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
 skel = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
