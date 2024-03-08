@@ -963,7 +963,8 @@ networkx.minimum_spanning_tree</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666666">=5</span>, knn_algorithm<span style="color: #666666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666666">=5</span>, knn_algorithm<span style="color: #666666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update the skeleton structure with minimum spanning tree on knn-graph with Euclidean distances.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1012,6 +1013,7 @@ networkx.minimum_spanning_tree</p>
     G <span style="color: #666666">=</span> nx<span style="color: #666666">.</span>Graph()
     <span style="color: #3D7B7B; font-style: italic"># -- Add the edges and the weight:</span>
     <span style="color: #008000; font-weight: bold">for</span> row, nodes_idx <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(indices):
+        nodes_idx <span style="color: #666666">=</span> <span style="color: #008000">list</span>(<span style="color: #008000">map</span>(<span style="color: #008000">int</span>, nodes_idx))
         node_idx, nei_idx <span style="color: #666666">=</span> nodes_idx[<span style="color: #666666">0</span>], nodes_idx[<span style="color: #666666">1</span>:]
         [G<span style="color: #666666">.</span>add_edges_from([(node_idx, n_idx, {<span style="color: #BA2121">&quot;weight&quot;</span>: distances[row, col <span style="color: #666666">+</span> <span style="color: #666666">1</span>]})]) <span style="color: #008000; font-weight: bold">for</span> col, n_idx <span style="color: #AA22FF; font-weight: bold">in</span>
          <span style="color: #008000">enumerate</span>(nei_idx)]
