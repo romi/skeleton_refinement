@@ -13,6 +13,8 @@ This library is intended to provide the implementation of a skeleton refinement 
 
 Chaudhury A. and Godin C. (2020) **Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework**. _Front. Plant Sci._ 11:773. doi: [10.3389/fpls.2020.00773](https://doi.org/10.3389/fpls.2020.00773).
 
+![Skeleton refinement result on arabidopsis data.](../arabidopsis_example.png)
+
 
 ## Installation
 
