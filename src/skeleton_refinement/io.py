@@ -107,7 +107,7 @@ def save_json(filename, G, **kwargs):
     """
     import json
     data = {
-        "points": [G.nodes[node]['positions'] for node in G.nodes],
+        "points": [G.nodes[node]['position'] for node in G.nodes],
         "lines": list(G.edges),
     }
     if 'indent' not in kwargs:

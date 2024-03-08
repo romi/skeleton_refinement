@@ -71,15 +71,15 @@ def parsing():
                           help="Update the tree structure with minimum spanning tree on knn-graph.")
     tree_opt.add_argument('--n_nei', type=int, default=5,
                           help="The number of neighbors to search for in `skeleton_points`. "
-                          f"Default is '5'.")
+                          "Default is '5'.")
     tree_opt.add_argument('--knn_algo', type=str, default="kd_tree",
                           choices=['auto', 'ball_tree', 'kd_tree', 'brute'],
                           help="The algorithm to use for computing the kNN distance. "
-                          f"Default is 'kd_tree'.")
+                          "Default is 'kd_tree'.")
     tree_opt.add_argument('--mst_algo', type=str, default="kruskal",
                           choices=['kruskal', 'prim', 'boruvka'],
                           help="The algorithm to use for computing the minimum spanning tree. "
-                          f"Default is 'kruskal'.")
+                          "Default is 'kruskal'.")
 
     return parser
 
