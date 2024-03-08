@@ -118,6 +118,7 @@ def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorit
     G = nx.Graph()
     # -- Add the edges and the weight:
     for row, nodes_idx in enumerate(indices):
+        nodes_idx = list(map(int, nodes_idx))
         node_idx, nei_idx = nodes_idx[0], nodes_idx[1:]
         [G.add_edges_from([(node_idx, n_idx, {"weight": distances[row, col + 1]})]) for col, n_idx in
          enumerate(nei_idx)]
