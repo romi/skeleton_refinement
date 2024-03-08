@@ -18,7 +18,7 @@
         <link rel="prev" href="../deformable_registration/">
       
       
-        <link rel="next" href="../stochastic_registration/">
+        <link rel="next" href="../io/">
       
       
       <link rel="icon" href="../../../assets/images/ROMI_ICON_green.png">
@@ -652,6 +652,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    io
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../stochastic_registration/" class="md-nav__link">
         
   
@@ -891,7 +912,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
 
 
 <h2 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration" class="doc doc-heading">
-            <code class="highlight language-python">ExpectationMaximizationRegistration(X, Y, sigma2<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666666">=100</span>, tolerance<span style="color: #666666">=0.001</span>, w<span style="color: #666666">=0</span>, <span style="color: #666666">*</span>args, <span style="color: #666666">**</span>kwargs)</code>
+            <code class="highlight language-python">ExpectationMaximizationRegistration(X, Y, sigma2<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666666">=</span>MAX_ITER, tolerance<span style="color: #666666">=</span>TOL, w<span style="color: #666666">=0</span>, <span style="color: #666666">*</span>args, <span style="color: #666666">**</span>kwargs)</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration" class="headerlink" title="Permanent link">Link</a></h2>
 
@@ -1164,7 +1185,7 @@ Defaults to <code>100</code>.</p>
             </div>
           </td>
           <td>
-                <code>100</code>
+                <code><span title="skeleton_refinement.expectation_maximization_registration.MAX_ITER">MAX_ITER</span></code>
           </td>
         </tr>
         <tr>
@@ -1179,7 +1200,7 @@ Defaults to <code>0.001</code>.</p>
             </div>
           </td>
           <td>
-                <code>0.001</code>
+                <code><span title="skeleton_refinement.expectation_maximization_registration.TOL">TOL</span></code>
           </td>
         </tr>
         <tr>
@@ -1202,9 +1223,7 @@ Defaults to <code>0</code>.</p>
 
                 <details class="quote">
                   <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-                  <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 57</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 58</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 59</span>
+                  <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 59</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 60</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 61</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 62</span>
@@ -1246,7 +1265,9 @@ Defaults to <code>0</code>.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666666">=100</span>, tolerance<span style="color: #666666">=0.001</span>, w<span style="color: #666666">=0</span>, <span style="color: #666666">*</span>args, <span style="color: #666666">**</span>kwargs):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666666">=</span>MAX_ITER, tolerance<span style="color: #666666">=</span>TOL, w<span style="color: #666666">=0</span>, <span style="color: #666666">*</span>args, <span style="color: #666666">**</span>kwargs):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Expectation-Maximization registration algorithms constructor.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1323,9 +1344,7 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
@@ -1345,7 +1364,9 @@ Defaults to <code>0</code>.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">expectation</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">expectation</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Expectation step, estimates which Gaussian the observed point cloud was sampled from.&quot;&quot;&quot;</span>
     P <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666666">.</span>M, <span style="color: #008000">self</span><span style="color: #666666">.</span>N))
 
@@ -1391,9 +1412,9 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">get_registration_parameters</span>(<span style="color: #008000">self</span>):
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">get_registration_parameters</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;Registration parameters should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
@@ -1419,11 +1440,11 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">iterate</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">iterate</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform one Expectation-Maximization iteration.&quot;&quot;&quot;</span>
     <span style="color: #008000">self</span><span style="color: #666666">.</span>expectation()
     <span style="color: #008000">self</span><span style="color: #666666">.</span>maximization()
@@ -1451,11 +1472,11 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">maximization</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">maximization</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Maximization step, maximizes the negative log-likelihood that the observed points were sampled from the Gaussian Mixture Model (GMM) with respect to the model parameters.&quot;&quot;&quot;</span>
     <span style="color: #008000">self</span><span style="color: #666666">.</span>update_transform()
     <span style="color: #008000">self</span><span style="color: #666666">.</span>transform_point_cloud()
@@ -1513,9 +1534,7 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
@@ -1531,7 +1550,9 @@ Defaults to <code>0</code>.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;???</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1573,9 +1594,9 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">transform_point_cloud</span>(<span style="color: #008000">self</span>):
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">transform_point_cloud</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
@@ -1601,9 +1622,9 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">update_transform</span>(<span style="color: #008000">self</span>):
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">update_transform</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
@@ -1629,9 +1650,9 @@ Defaults to <code>0</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">update_variance</span>(<span style="color: #008000">self</span>):
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">update_variance</span>(<span style="color: #008000">self</span>):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>

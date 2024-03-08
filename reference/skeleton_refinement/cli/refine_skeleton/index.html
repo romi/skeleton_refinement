@@ -510,6 +510,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton.file_writer" class="md-nav__link">
+    <span class="md-ellipsis">
+      file_writer
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -560,6 +569,27 @@
   
   <span class="md-ellipsis">
     expectation_maximization_registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    io
   </span>
   
 
@@ -688,6 +718,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton.file_writer" class="md-nav__link">
+    <span class="md-ellipsis">
+      file_writer
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -752,29 +791,75 @@ INRIA team MOSAIC</p>
 
           <details class="quote">
             <summary>Source code in <code>skeleton_refinement/cli/refine_skeleton.py</code></summary>
-            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">file_loader</span>(fname):
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">87</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">88</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">89</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">90</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">91</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">92</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">93</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">94</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">95</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">96</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">97</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">98</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">99</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">file_loader</span>(fname):
 <span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load point cloud or skeleton from a file.&quot;&quot;&quot;</span>
-    fname <span style="color: #666666">=</span> Path(fname)
     <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666666">.</span>suffix <span style="color: #AA22FF; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
         xyz <span style="color: #666666">=</span> load_xyz(fname)
     <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666666">.</span>suffix <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;.json&quot;</span>:
         xyz <span style="color: #666666">=</span> load_json(fname, <span style="color: #BA2121">&quot;points&quot;</span>)
     <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666666">.</span>suffix <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;.ply&quot;</span>:
         xyz <span style="color: #666666">=</span> load_ply(fname)
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666666">.</span>suffix <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;.p&quot;</span>:
+        xyz <span style="color: #666666">=</span> load_nx(fname)
     <span style="color: #008000; font-weight: bold">else</span>:
-        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">&quot;Unknown file format!&quot;</span>)
+        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f&quot;Unknown input file format &#39;</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&#39; for file &#39;</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&#39;! Choose from </span><span style="color: #A45A77; font-weight: bold">{</span>IN_FMT<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">.&quot;</span>)
     <span style="color: #008000; font-weight: bold">return</span> xyz
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="skeleton_refinement.cli.refine_skeleton.file_writer" class="doc doc-heading">
+          <code class="highlight language-python">file_writer(fname, skel)</code>
+
+<a href="#skeleton_refinement.cli.refine_skeleton.file_writer" class="headerlink" title="Permanent link">Link</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Write skeleton to a file.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>skeleton_refinement/cli/refine_skeleton.py</code></summary>
+            <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">file_writer</span>(fname, skel):
+<span style="color: #bbbbbb">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Write skeleton to a file.&quot;&quot;&quot;</span>
+    <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666666">.</span>suffix <span style="color: #AA22FF; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
+        np<span style="color: #666666">.</span>savetxt(fname, skel, delimiter<span style="color: #666666">=</span><span style="color: #BA2121">&#39; &#39;</span>)
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666666">.</span>suffix <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;.json&quot;</span>:
+        save_json(fname, skel)
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666666">.</span>suffix <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;.p&quot;</span>:
+        save_nx(fname, skel)
+    <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f&quot;Unknown output file format </span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">!&quot;</span>)
+    <span style="color: #008000; font-weight: bold">return</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>

@@ -644,6 +644,27 @@
   
   
     <li class="md-nav__item">
+      <a href="reference/skeleton_refinement/io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    io
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="reference/skeleton_refinement/stochastic_registration/" class="md-nav__link">
         
   
@@ -905,7 +926,7 @@ refine_skeleton<span style="color: #bbbbbb"> </span><span style="color: #AA5D1F;
 <h3 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">Link</a></h3>
 <p>Here is a minimal example how to use the <code>skeleton_refinement</code> library in Python:</p>
 <div class="language-python highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">skeleton_refinement.stochastic_registration</span> <span style="color: #008000; font-weight: bold">import</span> perform_registration
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">skeleton_refinement.utilities</span> <span style="color: #008000; font-weight: bold">import</span> load_json, load_ply
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">skeleton_refinement.io</span> <span style="color: #008000; font-weight: bold">import</span> load_json, load_ply
 
 pcd <span style="color: #666666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
 skel <span style="color: #666666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
@@ -913,6 +934,7 @@ skel <span style="color: #666666">=</span> load_json(<span style="color: #BA2121
 refined_skel <span style="color: #666666">=</span> perform_registration(pcd, skel)
 
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+
 fig <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>figure()
 ax <span style="color: #666666">=</span> fig<span style="color: #666666">.</span>add_subplot(projection<span style="color: #666666">=</span><span style="color: #BA2121">&#39;3d&#39;</span>)
 ax<span style="color: #666666">.</span>scatter(<span style="color: #666666">*</span>pcd<span style="color: #666666">.</span>T, marker<span style="color: #666666">=</span><span style="color: #BA2121">&#39;.&#39;</span>, color<span style="color: #666666">=</span><span style="color: #BA2121">&#39;black&#39;</span>)
