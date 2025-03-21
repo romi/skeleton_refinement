@@ -10,7 +10,7 @@ on:
 jobs:
   conda_build:
     name: Build conda package
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     environment: anaconda
     defaults:
       run:
