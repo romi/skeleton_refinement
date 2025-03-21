@@ -2,57 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://romi.github.io/skeleton_refinement/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/dev/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/SUMMARY/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/deformable_registration/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/expectation_maximization_registration/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/io/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/stochastic_registration/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/utilities/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/cli/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/cli/refine_skeleton/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-03-21</lastmod>
     </url>
 </urlset>
