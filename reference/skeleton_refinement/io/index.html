@@ -837,6 +837,19 @@
 <a id="skeleton_refinement.io"></a>
     <div class="doc doc-contents first">
 
+        <p>3D Skeleton and Point Cloud I/O</p>
+<p>This module provides functions for loading and saving 3D point clouds and skeleton data in various file formats, simplifying data interchange between different tools and libraries.</p>
+
+
+<details class="key-features" open>
+  <summary>Key Features</summary>
+  <ul>
+<li>Load point clouds from XYZ, PLY and JSON formats</li>
+<li>Load skeleton data from NetworkX graph files</li>
+<li>Save tree structures to JSON and NetworkX pickle formats</li>
+<li>Support for various coordinate formats and attribute handling</li>
+</ul>
+</details>
 
 
 
@@ -866,7 +879,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Load a point cloud or skeleton file from a json file.</p>
+        <p>Load a point cloud or skeleton file from a JSON file.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -889,7 +902,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the point cloud or skeleton file to parse.</p>
+                <p>Path to the JSON file to parse.</p>
               </div>
             </td>
             <td>
@@ -905,7 +918,8 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The key of the JSON dictionary containing the point cloud or skeleton coordinates to load.</p>
+                <p>The key of the JSON dictionary containing the point cloud or skeleton
+coordinates to load. If <code>None</code>, the entire JSON content is returned.</p>
               </div>
             </td>
             <td>
@@ -931,7 +945,8 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The XYZ coordinates of the point cloud or skeleton.</p>
+                <p>The XYZ coordinates of the point cloud or skeleton as a NumPy array
+with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p>
               </div>
             </td>
           </tr>
@@ -939,41 +954,84 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_json
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># JSON file with structure: {&quot;points&quot;: [[x1,y1,z1], [x2,y2,z2], ...]}</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&#39;point_cloud.json&#39;</span>, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;points&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
+<span style="color: #717171">(1000, 3)</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># JSON file with direct array: [[x1,y1,z1], [x2,y2,z2], ...]</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&#39;simple_points.json&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
+<span style="color: #717171">(1000, 3)</span>
+</code></pre></div>
+
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_json</span>(filename, key<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud or skeleton file from a json file.</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 88</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 89</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 92</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 93</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 94</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 95</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 96</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 97</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_json</span>(filename, key<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud or skeleton file from a JSON file.</span>
+
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the point cloud or skeleton file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        Path to the JSON file to parse.</span>
 <span style="color: #BA2121; font-style: italic">    key : str, optional</span>
-<span style="color: #BA2121; font-style: italic">        The key of the JSON dictionary containing the point cloud or skeleton coordinates to load.</span>
+<span style="color: #BA2121; font-style: italic">        The key of the JSON dictionary containing the point cloud or skeleton</span>
+<span style="color: #BA2121; font-style: italic">        coordinates to load. If ``None``, the entire JSON content is returned.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton.</span>
+<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton as a NumPy array</span>
+<span style="color: #BA2121; font-style: italic">        with shape ``(n, 3)``, where ``n`` is the number of points.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_json</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # JSON file with structure: {&quot;points&quot;: [[x1,y1,z1], [x2,y2,z2], ...]}</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_json(&#39;point_cloud.json&#39;, key=&#39;points&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # JSON file with direct array: [[x1,y1,z1], [x2,y2,z2], ...]</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_json(&#39;simple_points.json&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">json</span>
     <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">&#39;rb&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
@@ -999,7 +1057,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Load a tree graph from a pickled networkx file.</p>
+        <p>Load a tree graph from a pickled NetworkX file.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1022,11 +1080,28 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the tree graph file to parse.</p>
+                <p>Path to the pickled NetworkX graph file to parse.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>key</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The node attribute key containing the position data.
+Default is 'position'.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;position&#39;</code>
             </td>
           </tr>
       </tbody>
@@ -1048,7 +1123,8 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The XYZ coordinates of the point cloud or skeleton.</p>
+                <p>The XYZ coordinates of the nodes as a NumPy array with shape (n, 3),
+where n is the number of nodes.</p>
               </div>
             </td>
           </tr>
@@ -1056,39 +1132,90 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_nx
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>positions <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(positions<span style="color: #666">.</span>shape)
+<span style="color: #717171">(50, 3)</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Load custom attribute</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>attributes <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;custom_attribute&#39;</span>)
+</code></pre></div>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The NetworkX graph must have nodes with the specified attribute.</p>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">80</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">81</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">82</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">83</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">85</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">86</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">87</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">88</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">89</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">90</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">91</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">92</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">93</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">94</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">95</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a tree graph from a pickled networkx file.</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">157</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a tree graph from a pickled NetworkX file.</span>
+
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the tree graph file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        Path to the pickled NetworkX graph file to parse.</span>
+<span style="color: #BA2121; font-style: italic">    key : str, optional</span>
+<span style="color: #BA2121; font-style: italic">        The node attribute key containing the position data.</span>
+<span style="color: #BA2121; font-style: italic">        Default is &#39;position&#39;.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton.</span>
+<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the nodes as a NumPy array with shape (n, 3),</span>
+<span style="color: #BA2121; font-style: italic">        where n is the number of nodes.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_nx</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; positions = load_nx(&#39;graph.pkl&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(positions.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (50, 3)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Load custom attribute</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; attributes = load_nx(&#39;graph.pkl&#39;, key=&#39;custom_attribute&#39;)</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The NetworkX graph must have nodes with the specified attribute.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">pickle</span>
     <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">&#39;rb&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
@@ -1116,7 +1243,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Load a point cloud coordinates.</p>
+        <p>Load point cloud coordinates from a PLY file.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1139,7 +1266,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the point cloud ofile to parse.</p>
+                <p>Path to the PLY file to parse.</p>
               </div>
             </td>
             <td>
@@ -1161,11 +1288,11 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>The XYZ coordinates of the point cloud as a NumPy array</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The XYZ coordinates of the point cloud or skeleton.</p>
+                <p>with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p>
               </div>
             </td>
           </tr>
@@ -1173,36 +1300,67 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&#39;point_cloud.ply&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
+<span style="color: #717171">(1000, 3)</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points[:<span style="color: #666">2</span>])
+<span style="color: #717171">[[ 1.2  3.4  5.6]</span>
+<span style="color: #717171"> [-0.1  0.2  0.3]]</span>
+</code></pre></div>
+
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">33</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">34</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_ply</span>(filename):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud coordinates.</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">73</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">80</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">81</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">82</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">83</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">85</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_ply</span>(filename):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load point cloud coordinates from a PLY file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the point cloud ofile to parse.</span>
+<span style="color: #BA2121; font-style: italic">        Path to the PLY file to parse.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
-<span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton.</span>
+<span style="color: #BA2121; font-style: italic">    The XYZ coordinates of the point cloud as a NumPy array</span>
+<span style="color: #BA2121; font-style: italic">        with shape ``(n, 3)``, where ``n`` is the number of points.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_ply(&#39;point_cloud.ply&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points[:2])</span>
+<span style="color: #BA2121; font-style: italic">    [[ 1.2  3.4  5.6]</span>
+<span style="color: #BA2121; font-style: italic">     [-0.1  0.2  0.3]]</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">plyfile</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> PlyData
     plydata <span style="color: #666">=</span> PlyData<span style="color: #666">.</span>read(filename)
@@ -1274,7 +1432,8 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The XYZ coordinates of the point cloud or skeleton.</p>
+                <p>The XYZ coordinates of the point cloud or skeleton as a NumPy array
+with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p>
               </div>
             </td>
           </tr>
@@ -1282,24 +1441,20 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_xyz
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_xyz(<span style="color: #BA2121">&#39;point_cloud.xyz&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
+<span style="color: #717171">(1000, 3)</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points[:<span style="color: #666">2</span>])
+<span style="color: #717171">[[ 1.2  3.4  5.6]</span>
+<span style="color: #717171"> [-0.1  0.2  0.3]]</span>
+</code></pre></div>
+
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 6</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 7</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 8</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 9</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">10</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">11</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">12</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">13</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">14</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">15</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">16</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">17</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">18</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">19</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">20</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">22</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">23</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">24</span>
@@ -1308,7 +1463,33 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">27</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">28</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">29</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">30</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_xyz</span>(filename):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">30</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">31</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">32</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">33</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">34</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_xyz</span>(filename):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1319,7 +1500,18 @@
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton.</span>
+<span style="color: #BA2121; font-style: italic">        The XYZ coordinates of the point cloud or skeleton as a NumPy array</span>
+<span style="color: #BA2121; font-style: italic">        with shape ``(n, 3)``, where ``n`` is the number of points.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_xyz</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_xyz(&#39;point_cloud.xyz&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points[:2])</span>
+<span style="color: #BA2121; font-style: italic">    [[ 1.2  3.4  5.6]</span>
+<span style="color: #BA2121; font-style: italic">     [-0.1  0.2  0.3]]</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     f <span style="color: #666">=</span> <span style="color: #008000">open</span>(filename, <span style="color: #BA2121">&quot;r&quot;</span>)
     lines <span style="color: #666">=</span> f<span style="color: #666">.</span>readlines()
@@ -1351,6 +1543,8 @@
     <div class="doc doc-contents ">
 
         <p>Save a tree graph to a JSON file.</p>
+<p>This function exports a NetworkX graph to a JSON file format,
+storing both node positions and edge connections.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1389,47 +1583,131 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Graph to write.</p>
+                <p>Graph to write. Nodes must have a 'position' attribute.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**kwargs</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Additional keyword arguments to pass to <code>json.dumps()</code>.
+If 'indent' is not provided, it defaults to <code>2</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>{}</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">networkx</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">nx</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> save_json
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G <span style="color: #666">=</span> nx<span style="color: #666">.</span>Graph()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">0</span>, position<span style="color: #666">=</span>[<span style="color: #666">0</span>,<span style="color: #666">0</span>,<span style="color: #666">0</span>])
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">1</span>, position<span style="color: #666">=</span>[<span style="color: #666">1</span>,<span style="color: #666">1</span>,<span style="color: #666">1</span>])
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_edge(<span style="color: #666">0</span>, <span style="color: #666">1</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">&#39;graph.json&#39;</span>, G)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># With custom JSON formatting</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">&#39;pretty_graph.json&#39;</span>, G, indent<span style="color: #666">=4</span>, sort_keys<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>)
+</code></pre></div>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The output JSON structure will contain:
+- 'points': list of node positions
+- 'lines': list of edges</p>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_json</span>(filename, G, <span style="color: #666">**</span>kwargs):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">184</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">185</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">197</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">198</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">203</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_json</span>(filename, G, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Save a tree graph to a JSON file.</span>
+
+<span style="color: #BA2121; font-style: italic">    This function exports a NetworkX graph to a JSON file format,</span>
+<span style="color: #BA2121; font-style: italic">    storing both node positions and edge connections.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
 <span style="color: #BA2121; font-style: italic">        Path to the JSON file to write.</span>
 <span style="color: #BA2121; font-style: italic">    G : networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        Graph to write.</span>
+<span style="color: #BA2121; font-style: italic">        Graph to write. Nodes must have a &#39;position&#39; attribute.</span>
+<span style="color: #BA2121; font-style: italic">    **kwargs</span>
+<span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to ``json.dumps()``.</span>
+<span style="color: #BA2121; font-style: italic">        If &#39;indent&#39; is not provided, it defaults to ``2``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; import networkx as nx</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import save_json</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G = nx.Graph()</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(0, position=[0,0,0])</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(1, position=[1,1,1])</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_edge(0, 1)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json(&#39;graph.json&#39;, G)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # With custom JSON formatting</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json(&#39;pretty_graph.json&#39;, G, indent=4, sort_keys=True)</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The output JSON structure will contain:</span>
+<span style="color: #BA2121; font-style: italic">    - &#39;points&#39;: list of node positions</span>
+<span style="color: #BA2121; font-style: italic">    - &#39;lines&#39;: list of edges</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">json</span>
     data <span style="color: #666">=</span> {
@@ -1459,6 +1737,7 @@
     <div class="doc doc-contents ">
 
         <p>Save a tree graph to a pickle file.</p>
+<p>This function saves a NetworkX graph to a pickle file for later retrieval.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1504,31 +1783,90 @@
                 <em>required</em>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**kwargs</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Additional keyword arguments to pass to pickle.dump().
+If 'protocol' is not provided, it defaults to pickle.HIGHEST_PROTOCOL.</p>
+              </div>
+            </td>
+            <td>
+                  <code>{}</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">networkx</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">nx</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> save_nx
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G <span style="color: #666">=</span> nx<span style="color: #666">.</span>Graph()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">0</span>, position<span style="color: #666">=</span>[<span style="color: #666">0</span>,<span style="color: #666">0</span>,<span style="color: #666">0</span>])
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">1</span>, position<span style="color: #666">=</span>[<span style="color: #666">1</span>,<span style="color: #666">1</span>,<span style="color: #666">1</span>])
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_edge(<span style="color: #666">0</span>, <span style="color: #666">1</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>, G)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># With specific protocol</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">&#39;graph_v2.pkl&#39;</span>, G, protocol<span style="color: #666">=2</span>)
+</code></pre></div>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The pickle format is not secure against erroneous or maliciously constructed data.
+Never unpickle data received from untrusted or unauthenticated sources.</p>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_nx</span>(filename, G, <span style="color: #666">**</span>kwargs):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">227</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">228</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">229</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">230</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">231</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">232</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">233</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">234</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">235</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">236</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">237</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">238</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">239</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">240</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">241</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">242</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">243</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">244</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">245</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">246</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">247</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">248</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">249</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">250</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">251</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">252</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_nx</span>(filename, G, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Save a tree graph to a pickle file.</span>
+
+<span style="color: #BA2121; font-style: italic">    This function saves a NetworkX graph to a pickle file for later retrieval.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
@@ -1536,6 +1874,26 @@
 <span style="color: #BA2121; font-style: italic">        Path to the pickle file to write.</span>
 <span style="color: #BA2121; font-style: italic">    G : networkx.Graph</span>
 <span style="color: #BA2121; font-style: italic">        Graph to write.</span>
+<span style="color: #BA2121; font-style: italic">    **kwargs</span>
+<span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to pickle.dump().</span>
+<span style="color: #BA2121; font-style: italic">        If &#39;protocol&#39; is not provided, it defaults to pickle.HIGHEST_PROTOCOL.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; import networkx as nx</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import save_nx</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G = nx.Graph()</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(0, position=[0,0,0])</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(1, position=[1,1,1])</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_edge(0, 1)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx(&#39;graph.pkl&#39;, G)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # With specific protocol</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx(&#39;graph_v2.pkl&#39;, G, protocol=2)</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The pickle format is not secure against erroneous or maliciously constructed data.</span>
+<span style="color: #BA2121; font-style: italic">    Never unpickle data received from untrusted or unauthenticated sources.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">pickle</span>
     <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;protocol&#39;</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> kwargs:
