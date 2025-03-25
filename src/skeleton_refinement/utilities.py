@@ -6,7 +6,7 @@
 This module provides efficient mathematical functions to support point set registration algorithms, particularly for the Coherent Point Drift (CPD) method used in 3D point cloud alignment and deformable registration tasks.
 
 Key Features
------------
+------------
 - Variance initialization for point sets using efficient vectorized operations
 - Gaussian kernel matrix computation for smooth spatial transformations
 - Optimization for large point clouds through NumPy vectorization
