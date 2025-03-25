@@ -1,25 +1,38 @@
-name: "Deploy documentation"
+# GitHub workflow that build and publish the mkdocs documentation when a new commit is pushed.
 
+name: Build & Deploy documentation
+
+# Triggers workflow on any push to the repository
 on:
   - push
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use Ubuntu as the execution environment
     steps:
+      #  Step 1: Clone the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Step 2: Install Python runtime
       - name: Set up Python 3.9
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'  # select python version
-          cache: 'pip'  # caching pip dependencies
+          python-version: '3.9'  # Specify Python version for docs build
+          cache: 'pip'  # Enable caching of pip packages to speed up workflow
+
+      # Step 3: Install the sources with documentation dependencies
       - name: Install library & documentation requirements
+        # Use .[doc] syntax for extras
         run: python3 -m pip install .[doc]
+
+      # Step 4:  Generate static site from markdown docs
       - name: Build documentation with mkdocs
         run: mkdocs build
+
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use auto-generated token for authentication
+          publish_dir: ./site  # Deploy the mkdocs output directory
