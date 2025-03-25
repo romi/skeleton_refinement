@@ -1,7 +1,14 @@
-{% set pyproject = load_file_data('../../pyproject.toml', 'toml', from_recipe_dir=True) %}
-{% set project = pyproject.get('project', {}) %}
-{% set deps = project.get('dependencies', {}) %}
-{% set urls = project.get('urls', {}) %}
+# Template for generating Conda package metadata YAML files
+
+{% set package_path = "../../src/"%}  # Define path to package directory
+{% set pyproject = load_file_data(package_path + '/pyproject.toml', 'toml', from_recipe_dir=True) %}  # Load pyproject.toml content
+{% set project = pyproject.get('project', {}) %}  # Extract project metadata
+{% set deps = project.get('dependencies', []) %}  # Get package dependencies
+{% set urls = project.get('urls', {}) %}  # Get URLs from project metadata
+{% set build_system = pyproject.get('build-system', {}) %}  # Extract build-system info
+{% set build_requires = build_system.get('requires', []) %}  # Get build requirements
+
+# References for conda-build metadata and Jinja context functionality
 # https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#loading-data-from-other-files
 # Source code for Jinja context: https://github.com/conda/conda-build/blob/main/conda_build/jinja_context.py
 # Then search for the `load_file_data` function.
@@ -11,33 +18,33 @@ package:
   version: {{ project.get('version') }}
 
 source:
-  path: ../../  # to build from cloned sources
-#  git_url: https://github.com/romi/romitask.git
-#  git_tag: dev
+  path: {{ package_path }}  # Local path to package source code
 
 build:
-  string: {{ 'py'+ PY_VER.replace('.','') + '_' + environ.get('GIT_DESCRIBE_HASH', 'latest') }}
+  noarch: python  # Build as a platform-independent Python package
   script: python -m pip install .
 
 requirements:
-  build:
-    - setuptools
-    - python  {{ python }}
+  host:
+    {% for req in build_requires %}
+    - {{ req }}  # Build requirements from pyproject.toml
+    {% endfor %}
+    - pip
+    - python  {{ project.get('requires-python') }}  # Minimum Python version requirement from pyproject.toml
   run:
-    - python  {{ python }}
+    - python  {{ project.get('requires-python') }}  # Runtime Python dependency (using minimum version)
     {% for dep in deps %}
-    {% if not dep.startswith('open3d') %}
-    - {{ dep }}
-    {% endif %}
+    - {{ dep }}  # Add all other dependencies
     {% endfor %}
 
+test:
+  imports:
+    - {{ project.get('name') }}  # test the import of the library
+  commands:
+    - refine_skeleton -h
+
 about:
-  home: {{ urls.get('Homepage') }}
-  license: LGPL-3.0-or-later
-  license_file: LICENSE
-  summary: {{ project.get('description') }}
-  description: |
-    The _3D plant phenotyping platform_ of the ROMI project allows to performs a full 3D analysis of plants.
-    It combines an imaging station with a powerful image processing pipeline, to build a 3D representation of plants.
-    This package is intended to act as the central database hosting the data required by the other ROMI libraries.
-  dev_url: {{ urls.get('Repository') }}
+  home: {{ urls.get('homepage', '') }}  # Project homepage
+  summary: {{ project.get('description', '') }}  # Package description
+  dev_url: {{ urls.get('source', '') }}  # Repository URL
+  license: GPL-3.0-or-later  # License type
