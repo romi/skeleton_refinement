@@ -56,14 +56,26 @@ def initialize_sigma2(X, Y):
     >>> print(f"{sigma2:.6f}")
     0.276667
     """
-    (N, D) = X.shape
-    (M, _) = Y.shape
+    # Get dimensions of the point sets
+    (N, D) = X.shape  # N = number of points in X, D = dimensionality of points
+    (M, _) = Y.shape  # M = number of points in Y
+
+    # Reshape X to add a dimension for broadcasting (1×N×D)
     XX = np.reshape(X, (1, N, D))
+    # Reshape Y to add a dimension for broadcasting (M×1×D)
     YY = np.reshape(Y, (M, 1, D))
+    # Replicate XX along M dimension to create matrix of size (M×N×D)
     XX = np.tile(XX, (M, 1, 1))
+    # Replicate YY along N dimension to create matrix of size (M×N×D)
     YY = np.tile(YY, (1, N, 1))
+
+    # Calculate the difference between every pair of points
     diff = XX - YY
+    # Square the differences
     err = np.multiply(diff, diff)
+
+    # Return the mean squared distance between all point pairs
+    # Normalized by dimension D and total number of point pairs (M*N)
     return np.sum(err) / (D * M * N)
 
 
@@ -112,12 +124,24 @@ def gaussian_kernel(Y, beta):
      [0.607 1.    0.368]
      [0.607 0.368 1.   ]]
     """
-    (M, D) = Y.shape
+    # Extract dimensions from input point set
+    (M, D) = Y.shape  # M = number of points, D = dimensions per point
+
+    # Reshape Y into a 3D tensor with shape (1, M, D) for broadcasting
     XX = np.reshape(Y, (1, M, D))
+    # Reshape Y into a 3D tensor with shape (M, 1, D) for broadcasting
     YY = np.reshape(Y, (M, 1, D))
+    # Tile XX to create a tensor of shape (M, M, D) where each "row" is repeated M times
     XX = np.tile(XX, (M, 1, 1))
+    # Tile YY to create a tensor of shape (M, M, D) where each "column" is repeated M times
     YY = np.tile(YY, (1, M, 1))
+
+    # Calculate the element-wise difference between each pair of points
     diff = XX - YY
+    # Square the differences
     diff = np.multiply(diff, diff)
+    # Sum along the dimension axis to get squared Euclidean distances between each pair of points
     diff = np.sum(diff, 2)
+
+    # Apply Gaussian RBF to get the kernel matrix: exp(-||Y[i] - Y[j]||^2 / (2 * beta))
     return np.exp(-diff / (2 * beta))

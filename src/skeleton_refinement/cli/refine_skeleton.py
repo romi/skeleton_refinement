@@ -1,16 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-This program performs refinement of an existing skeleton (in the form of 3D point cloud data)
-of a plant starting from it's initial "coarse" structure. The coarse skeleton is "rectified"
-via a stochastic optimization framework, by "pushing" the skeleton points towards the original
-point cloud data so that they get "aligned" in space. There are two parameters that control
-the quality of alignment, alpha and beta (denoted as 'myAlpha' and 'myBeta' in 'param_settings.py')
+"""Skeleton Refinement Tool
+
+A command-line utility for refining plant skeletons by aligning coarse skeleton structures with 3D point cloud data
+using a stochastic optimization framework. This tool helps improve the quality of plant representation by pushing
+skeleton points toward their proper positions in the original point cloud.
+
+There are two parameters that control the quality of alignment, alpha and beta.
+
+Usage Examples
+--------------
+# Basic usage with default parameters
+$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json
+
+# Advanced usage with custom parameters
+$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json --alpha 0.5 --beta 0.1 --knn_mst --n_nei 8
 
 Author: Ayan Chaudhury
 INRIA team MOSAIC
 """
+
 import argparse
 from pathlib import Path
 
@@ -38,48 +48,59 @@ def parsing():
     parser = argparse.ArgumentParser(
         description='Plant skeleton optimization using stochastic framework on point cloud data.',
         epilog=f"See online documentation for more details: {URL}")
-    parser.add_argument('pcd', type=Path,
-                        help="Path to the point cloud used to build the skeleton. "
-                             f"Allowed extensions are in {IN_FMT}.")
-    parser.add_argument('skeleton', type=Path,
-                        help="Path to the skeleton to refine. "
-                             f"Allowed extensions are in {IN_FMT}.")
-    parser.add_argument('out', type=Path,
-                        help="Path to use to save the refined skeleton."
-                             f"Allowed extensions are in {OUT_FMT}. "
-                             "JSON format export nodes coordinates under 'points' and edges as pairs of node indexes under 'lines'. "
-                             "Pickle format (.p) will save the resulting skeleton as networkx graph. "
-                             "Text formats (.txt or .xyz) will save the skeleton points as space delimited text XYZ coordinates. "
-                        )
+    parser.add_argument(
+        'pcd', type=Path,
+        help="Path to the point cloud used to build the skeleton. "
+             f"Allowed extensions are in {IN_FMT}.")
+    parser.add_argument(
+        'skeleton', type=Path,
+        help="Path to the skeleton to refine. "
+             f"Allowed extensions are in {IN_FMT}.")
+    parser.add_argument(
+        'out', type=Path,
+        help="Path to use to save the refined skeleton."
+             f"Allowed extensions are in {OUT_FMT}. "
+             "JSON format export nodes coordinates under 'points' and edges as pairs of node indexes under 'lines'. "
+             "Pickle format (.p) will save the resulting skeleton as networkx graph. "
+             "Text formats (.txt or .xyz) will save the skeleton points as space delimited text XYZ coordinates. "
+    )
 
     em_opt = parser.add_argument_group("EM algorithm options")
-    em_opt.add_argument('--alpha', type=float, default=ALPHA,
-                        help="Alpha value. "
-                             f"Default is {ALPHA}.")
-    em_opt.add_argument('--beta', type=float, default=BETA,
-                        help="Beta value. "
-                             f"Default is {BETA}.")
-    em_opt.add_argument('--max_iter', type=int, default=MAX_ITER,
-                        help="Maximum number of iterations of the EM algorithm to perform. "
-                             f"Default is '{MAX_ITER}'.")
-    em_opt.add_argument('--tol', type=float, default=TOL,
-                        help="Tolerance to use to stop the iterations of the EM algorithm. "
-                             f"Default is '{TOL}'.")
+    em_opt.add_argument(
+        '--alpha', type=float, default=ALPHA,
+        help="Alpha value. "
+             f"Default is {ALPHA}.")
+    em_opt.add_argument(
+        '--beta', type=float, default=BETA,
+        help="Beta value. "
+             f"Default is {BETA}.")
+    em_opt.add_argument(
+        '--max_iter', type=int, default=MAX_ITER,
+        help="Maximum number of iterations of the EM algorithm to perform. "
+             f"Default is '{MAX_ITER}'.")
+    em_opt.add_argument(
+        '--tol', type=float, default=TOL,
+        help="Tolerance to use to stop the iterations of the EM algorithm. "
+             f"Default is '{TOL}'.")
 
     tree_opt = parser.add_argument_group("tree options")
-    tree_opt.add_argument('--knn_mst', action="store_true",
-                          help="Update the tree structure with minimum spanning tree on knn-graph.")
-    tree_opt.add_argument('--n_nei', type=int, default=5,
-                          help="The number of neighbors to search for in `skeleton_points`. "
-                          "Default is '5'.")
-    tree_opt.add_argument('--knn_algo', type=str, default="kd_tree",
-                          choices=['auto', 'ball_tree', 'kd_tree', 'brute'],
-                          help="The algorithm to use for computing the kNN distance. "
-                          "Default is 'kd_tree'.")
-    tree_opt.add_argument('--mst_algo', type=str, default="kruskal",
-                          choices=['kruskal', 'prim', 'boruvka'],
-                          help="The algorithm to use for computing the minimum spanning tree. "
-                          "Default is 'kruskal'.")
+    tree_opt.add_argument(
+        '--knn_mst', action="store_true",
+        help="Update the tree structure with minimum spanning tree on knn-graph.")
+    tree_opt.add_argument(
+        '--n_nei', type=int, default=5,
+        help="The number of neighbors to search for in `skeleton_points`. "
+             "Default is '5'.")
+    tree_opt.add_argument(
+        '--knn_algo', type=str, default="kd_tree",
+        choices=['auto', 'ball_tree', 'kd_tree', 'brute'],
+        help="The algorithm to use for computing the kNN distance. "
+             "Default is 'kd_tree'.")
+    tree_opt.add_argument(
+        '--mst_algo', type=str, default="kruskal",
+        choices=['kruskal', 'prim', 'boruvka'],
+        help="The algorithm to use for computing the minimum spanning tree. "
+             "Default is 'kruskal'.")
 
     return parser
 
