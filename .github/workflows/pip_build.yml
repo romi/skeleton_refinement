@@ -1,0 +1,68 @@
+# GitHub workflow that build and publish a Python package to PyPI when a new release is created or manually triggered.
+
+name: Build and Publish to PyPI
+
+# https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+
+on:
+  # Automatic trigger on release
+  release:
+    types: [ published ]
+  # Enables manual triggering from the Action tab
+  workflow_dispatch:
+
+jobs:
+  pypi-build:
+    name: Build package distributions
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Step 3: Install Python packages needed for building and publishing
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine  # build for package creation, twine for PyPI upload
+
+      # Step 4: Build the Python package from the client directory
+      - name: Build package
+        run: python -m build
+
+      # Step 5: Save the built package artifacts for the next job
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  pypi-publish:
+    name: Upload release to PyPI
+    # This job depends on successful completion of pypi-build
+    needs: pypi-build
+    runs-on: ubuntu-latest
+    # Use dedicated environment for PyPI credentials
+    environment: pypi
+    permissions:
+      # Required permission for PyPI's trusted publishing mechanism
+      id-token: write
+    steps:
+      # Step 1: Retrieve the package artifacts from the previous job
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      # Step 2: Publish the package to PyPI using trusted publishing
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
