@@ -602,6 +602,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--load-point-cloud-and-skeleton-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load point cloud and skeleton data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--perform-registration-to-align-skeleton-with-point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform registration to align skeleton with point cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--generate-skeleton-graph-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate skeleton graph structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.stochastic_registration.knn_mst" class="md-nav__link">
     <span class="md-ellipsis">
       knn_mst
@@ -720,6 +747,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--load-point-cloud-and-skeleton-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load point cloud and skeleton data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--perform-registration-to-align-skeleton-with-point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform registration to align skeleton with point cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.stochastic_registration--generate-skeleton-graph-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate skeleton graph structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.stochastic_registration.knn_mst" class="md-nav__link">
     <span class="md-ellipsis">
       knn_mst
@@ -765,10 +819,40 @@
 <a id="skeleton_refinement.stochastic_registration"></a>
     <div class="doc doc-contents first">
 
-        <p>This code implements the basic structure of for performing the stochastic
-optimization algorithm. Given two set of discrete points, this code returns
-the transformed point set.</p>
+        <p>Stochastic Point Cloud Registration</p>
+<p>A module for aligning and registering 3D skeleton structures to point clouds using stochastic optimization techniques.
+It enables precise fitting of skeletal models to noisy or dense point cloud data, commonly used in 3D plant structure analysis.</p>
 
+
+<details class="key-features" open>
+  <summary>Key Features</summary>
+  <ul>
+<li>Non-rigid point set registration using Coherent Point Drift (CPD) algorithm</li>
+<li>Optimized skeleton alignment to underlying point cloud structures</li>
+<li>Minimum spanning tree construction from point sets using k-nearest neighbors</li>
+<li>Configurable regularization parameters for controlling deformation smoothness</li>
+<li>Support for handling outliers and varying point densities</li>
+</ul>
+</details>
+
+<details class="usage-examples" open>
+  <summary>Usage Examples</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>from skeleton_refinement.stochastic_registration import perform_registration, knn_mst
+from skeleton_refinement.io import load_ply, load_json</p>
+<h2 id="skeleton_refinement.stochastic_registration--load-point-cloud-and-skeleton-data">Load point cloud and skeleton data<a class="headerlink" href="#skeleton_refinement.stochastic_registration--load-point-cloud-and-skeleton-data" title="Permanent link">Link</a></h2>
+<p>pcd = load_ply("path/to/pointcloud.ply")
+skel = load_json("path/to/skeleton.json", "points")</p>
+<h2 id="skeleton_refinement.stochastic_registration--perform-registration-to-align-skeleton-with-point-cloud">Perform registration to align skeleton with point cloud<a class="headerlink" href="#skeleton_refinement.stochastic_registration--perform-registration-to-align-skeleton-with-point-cloud" title="Permanent link">Link</a></h2>
+<p>refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</p>
+<h2 id="skeleton_refinement.stochastic_registration--generate-skeleton-graph-structure">Generate skeleton graph structure<a class="headerlink" href="#skeleton_refinement.stochastic_registration--generate-skeleton-graph-structure" title="Permanent link">Link</a></h2>
+<p>skel_tree = knn_mst(refined_skel)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
 
 
 
@@ -798,7 +882,11 @@ the transformed point set.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Update the skeleton structure with minimum spanning tree on knn-graph with Euclidean distances.</p>
+        <p>Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</p>
+<p>This function constructs a k-nearest neighbors graph from the input skeleton points
+using Euclidean distances, then computes the minimum spanning tree of this graph.
+The resulting tree represents the skeleton structure as a connected graph with
+minimal total edge weight.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -821,7 +909,8 @@ the transformed point set.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The skeleton coordinates of shape <code>(n_points, 3)</code>, XYZ sorted.</p>
+                <p>The skeleton coordinates of shape <code>(n_points, 3)</code>, with XYZ coordinates.
+Each row represents the 3D position of a skeleton point.</p>
               </div>
             </td>
             <td>
@@ -837,8 +926,8 @@ the transformed point set.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The number of neighbors to search for in <code>skeleton_points</code>.
-Default is <code>5</code>.</p>
+                <p>The number of neighbors to consider for each point when building the
+k-nearest neighbors graph. Default is <code>5</code>.</p>
               </div>
             </td>
             <td>
@@ -850,17 +939,20 @@ Default is <code>5</code>.</p>
                 <code>knn_algorithm</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                  <code>(<span title="auto">auto</span>, <span title="ball_tree">ball_tree</span>, <span title="kd_tree">kd_tree</span>, <span title="brute">brute</span>)</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The algorithm to use for computing the kNN distance.
-Must be one of 'auto', 'ball_tree', 'kd_tree' or 'brute'.
-Defaults to <code>kd_tree</code>.</p>
+                <p>The algorithm to use for computing the k-nearest neighbors.
+- 'kd_tree': KD Tree algorithm, works well for low dimensions.
+- 'ball_tree': Ball Tree algorithm, works well for high dimensions.
+- 'brute': Brute force algorithm, always uses all data points.
+- 'auto': Automatically chooses the most appropriate algorithm.
+Default is <code>'kd_tree'</code>.</p>
               </div>
             </td>
             <td>
-                  <code>&#39;kd_tree&#39;</code>
+                  <code>&#39;auto&#39;</code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -868,13 +960,15 @@ Defaults to <code>kd_tree</code>.</p>
                 <code>mst_algorithm</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                  <code>(<span title="kruskal">kruskal</span>, <span title="prim">prim</span>, <span title="boruvka">boruvka</span>)</code>
             </td>
             <td>
               <div class="doc-md-description">
                 <p>The algorithm to use for computing the minimum spanning tree.
-Must be one of 'kruskal', 'prim' or 'boruvka'.
-Defaults to <code>kruskal</code>.</p>
+- 'kruskal': Kruskal's algorithm, efficient for sparse graphs.
+- 'prim': Prim's algorithm, efficient for dense graphs.
+- 'boruvka': Borůvka's algorithm, another MST algorithm.
+Default is <code>'kruskal'</code>.</p>
               </div>
             </td>
             <td>
@@ -884,12 +978,6 @@ Defaults to <code>kruskal</code>.</p>
       </tbody>
     </table>
 
-
-<details class="see-also" open>
-  <summary>See Also</summary>
-  <p>sklearn.neighbors.NearestNeighbors
-networkx.minimum_spanning_tree</p>
-</details>
 
     <p><span class="doc-section-title">Returns:</span></p>
     <table>
@@ -906,13 +994,30 @@ networkx.minimum_spanning_tree</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The skeleton structure with minimum spanning tree from knn-graph.</p>
+                <p>A NetworkX Graph representing the skeleton structure as a minimum spanning tree.
+- Nodes correspond to skeleton points with their 3D coordinates stored as a 'position' attribute
+- Edges connect points that are part of the minimum spanning tree
+- Edge weights represent Euclidean distances between connected points</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The function first builds a k-nearest neighbors graph where each point is connected
+to its k nearest neighbors. Then it computes the minimum spanning tree of this graph
+to create a connected structure with minimal total edge length.</p>
+<p>The Minkowski distance with <code>p=2</code> is used, which corresponds to the Euclidean distance.</p>
+</details>
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>sklearn.neighbors.NearestNeighbors : For finding nearest neighbors
+networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
+</details>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
@@ -924,12 +1029,456 @@ networkx.minimum_spanning_tree</p>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Compute skeleton tree structure using mst on knn-graph:</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel_tree <span style="color: #666">=</span> knn_mst(refined_skel)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># The output is a NetworkX Graph with nodes representing skeleton points</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of nodes: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_nodes()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of edges: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_edges()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Access node coordinates</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sample_node <span style="color: #666">=</span> <span style="color: #008000">list</span>(skel_tree<span style="color: #666">.</span>nodes())[<span style="color: #666">0</span>]
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Position of node </span><span style="color: #A45A77; font-weight: bold">{</span>sample_node<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>nodes[sample_node][<span style="color: #BA2121">&#39;position&#39;</span>]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
 </code></pre></div>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 72</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">157</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">184</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">185</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">197</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">198</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">203</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
+
+<span style="color: #BA2121; font-style: italic">    This function constructs a k-nearest neighbors graph from the input skeleton points</span>
+<span style="color: #BA2121; font-style: italic">    using Euclidean distances, then computes the minimum spanning tree of this graph.</span>
+<span style="color: #BA2121; font-style: italic">    The resulting tree represents the skeleton structure as a connected graph with</span>
+<span style="color: #BA2121; font-style: italic">    minimal total edge weight.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    skeleton_points : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        The skeleton coordinates of shape ``(n_points, 3)``, with XYZ coordinates.</span>
+<span style="color: #BA2121; font-style: italic">        Each row represents the 3D position of a skeleton point.</span>
+<span style="color: #BA2121; font-style: italic">    n_neighbors : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        The number of neighbors to consider for each point when building the</span>
+<span style="color: #BA2121; font-style: italic">        k-nearest neighbors graph. Default is ``5``.</span>
+<span style="color: #BA2121; font-style: italic">    knn_algorithm : {&#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39;, &#39;brute&#39;}, optional</span>
+<span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the k-nearest neighbors.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;kd_tree&#39;: KD Tree algorithm, works well for low dimensions.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;ball_tree&#39;: Ball Tree algorithm, works well for high dimensions.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;brute&#39;: Brute force algorithm, always uses all data points.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;auto&#39;: Automatically chooses the most appropriate algorithm.</span>
+<span style="color: #BA2121; font-style: italic">        Default is `&#39;kd_tree&#39;`.</span>
+<span style="color: #BA2121; font-style: italic">    mst_algorithm : {&#39;kruskal&#39;, &#39;prim&#39;, &#39;boruvka&#39;}, optional</span>
+<span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the minimum spanning tree.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;kruskal&#39;: Kruskal&#39;s algorithm, efficient for sparse graphs.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;prim&#39;: Prim&#39;s algorithm, efficient for dense graphs.</span>
+<span style="color: #BA2121; font-style: italic">        - &#39;boruvka&#39;: Borůvka&#39;s algorithm, another MST algorithm.</span>
+<span style="color: #BA2121; font-style: italic">        Default is `&#39;kruskal&#39;`.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    networkx.Graph</span>
+<span style="color: #BA2121; font-style: italic">        A NetworkX Graph representing the skeleton structure as a minimum spanning tree.</span>
+<span style="color: #BA2121; font-style: italic">        - Nodes correspond to skeleton points with their 3D coordinates stored as a &#39;position&#39; attribute</span>
+<span style="color: #BA2121; font-style: italic">        - Edges connect points that are part of the minimum spanning tree</span>
+<span style="color: #BA2121; font-style: italic">        - Edge weights represent Euclidean distances between connected points</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The function first builds a k-nearest neighbors graph where each point is connected</span>
+<span style="color: #BA2121; font-style: italic">    to its k nearest neighbors. Then it computes the minimum spanning tree of this graph</span>
+<span style="color: #BA2121; font-style: italic">    to create a connected structure with minimal total edge length.</span>
+
+<span style="color: #BA2121; font-style: italic">    The Minkowski distance with ``p=2`` is used, which corresponds to the Euclidean distance.</span>
+
+<span style="color: #BA2121; font-style: italic">    See Also</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    sklearn.neighbors.NearestNeighbors : For finding nearest neighbors</span>
+<span style="color: #BA2121; font-style: italic">    networkx.minimum_spanning_tree : For computing minimum spanning trees</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import perform_registration</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import knn_mst</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply, load_json</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Perform stochastic optimization</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Compute skeleton tree structure using mst on knn-graph:</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel_tree = knn_mst(refined_skel)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # The output is a NetworkX Graph with nodes representing skeleton points</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of nodes: {skel_tree.number_of_nodes()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of edges: {skel_tree.number_of_edges()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Access node coordinates</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sample_node = list(skel_tree.nodes())[0]</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Position of node {sample_node}: {skel_tree.nodes[sample_node][&#39;position&#39;]}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Initialize nearest neighbors model with Euclidean distance (Minkowski p=2)</span>
+    nbrs <span style="color: #666">=</span> NearestNeighbors(n_neighbors<span style="color: #666">=</span>n_neighbors, algorithm<span style="color: #666">=</span>knn_algorithm, metric<span style="color: #666">=</span><span style="color: #BA2121">&quot;minkowski&quot;</span>, p<span style="color: #666">=2</span>)<span style="color: #666">.</span>fit(
+        skeleton_points)
+    <span style="color: #3D7B7B; font-style: italic"># Find k-nearest neighbors for each point - returns distances and indices matrices</span>
+    distances, indices <span style="color: #666">=</span> nbrs<span style="color: #666">.</span>kneighbors(skeleton_points)
+
+    <span style="color: #3D7B7B; font-style: italic"># Initialize empty undirected graph to build KNN representation</span>
+    G <span style="color: #666">=</span> nx<span style="color: #666">.</span>Graph()
+
+    <span style="color: #3D7B7B; font-style: italic"># Add edges between each point and its k-nearest neighbors</span>
+    <span style="color: #008000; font-weight: bold">for</span> row, nodes_idx <span style="color: #A2F; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(indices):
+        nodes_idx <span style="color: #666">=</span> <span style="color: #008000">list</span>(<span style="color: #008000">map</span>(<span style="color: #008000">int</span>, nodes_idx))
+        node_idx, nei_idx <span style="color: #666">=</span> nodes_idx[<span style="color: #666">0</span>], nodes_idx[<span style="color: #666">1</span>:]  <span style="color: #3D7B7B; font-style: italic"># First index is the point itself</span>
+        <span style="color: #3D7B7B; font-style: italic"># Add edges with Euclidean distances as weights</span>
+        <span style="color: #3D7B7B; font-style: italic"># Skip first neighbor (index 0) as it&#39;s the point itself</span>
+        [G<span style="color: #666">.</span>add_edges_from([(node_idx, n_idx, {<span style="color: #BA2121">&quot;weight&quot;</span>: distances[row, col <span style="color: #666">+</span> <span style="color: #666">1</span>]})]) <span style="color: #008000; font-weight: bold">for</span> col, n_idx <span style="color: #A2F; font-weight: bold">in</span>
+         <span style="color: #008000">enumerate</span>(nei_idx)]
+
+    <span style="color: #3D7B7B; font-style: italic"># Store original 3D coordinates as node attributes</span>
+    <span style="color: #008000; font-weight: bold">for</span> node_id <span style="color: #A2F; font-weight: bold">in</span> G<span style="color: #666">.</span>nodes:
+        G<span style="color: #666">.</span>nodes[node_id][<span style="color: #BA2121">&#39;position&#39;</span>] <span style="color: #666">=</span> skeleton_points[node_id]
+
+    <span style="color: #3D7B7B; font-style: italic"># Compute minimum spanning tree from the KNN graph</span>
+    <span style="color: #3D7B7B; font-style: italic"># This creates optimal connected structure with minimal total edge length</span>
+    T <span style="color: #666">=</span> nx<span style="color: #666">.</span>minimum_spanning_tree(G, algorithm<span style="color: #666">=</span>mst_algorithm)
+
+    <span style="color: #008000; font-weight: bold">return</span> T
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="skeleton_refinement.stochastic_registration.perform_registration" class="doc doc-heading">
+            <code class="highlight language-python">perform_registration(X, Y, <span style="color: #666">**</span>kwargs)</code>
+
+<a href="#skeleton_refinement.stochastic_registration.perform_registration" class="headerlink" title="Permanent link">Link</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Performs stochastic deformation registration to align a skeleton to a point cloud.</p>
+<p>This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid
+registration between a reference point cloud and a skeleton. The algorithm optimizes
+the skeleton's position to better align with the underlying point cloud structure.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>X</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The input reference point cloud coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.
+This represents the fixed point set that the skeleton will be aligned to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The input reference skeleton coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.
+This represents the moving point set that will be transformed.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Other Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>alpha</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Regularization weight that controls the smoothness of deformation.
+Higher values result in smoother, more rigid transformations.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>beta</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Width of the Gaussian kernel used in the non-rigid transformation.
+Controls the influence range of each point in the deformation.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>sigma2</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> or <a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial variance of the Gaussian Mixture Model.
+If None, it will be estimated automatically from the point sets.
+Defaults to <code>None</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>max_iterations</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The maximum number of iterations before stopping the iterative registration.
+Defaults to <code>100</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>tolerance</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Convergence criterion. The algorithm stops when the error falls below this value.
+Defaults to <code>0.001</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>w</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Weight of the uniform distribution in the mixture model.
+Used to account for outliers. Value between 0 and 1.
+Defaults to <code>0</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The transformed skeleton coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.
+This is the optimized skeleton aligned to the input point cloud.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The function internally uses the DeformableRegistration class which implements
+the Coherent Point Drift algorithm. The registration process involves an
+Expectation-Maximization approach to optimize the transformation parameters.</p>
+<p>The parameters alpha and beta are crucial for obtaining good results:
+- Higher alpha values enforce more rigidity in the transformation
+- Beta determines the spatial extent of interaction between points</p>
+</details>
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>skeleton_refinement.deformable_registration.DeformableRegistration : Class that implements the CPD algorithm.
+skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration : Base class for EM-based registration.</p>
+</details>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(refined_skel<span style="color: #666">.</span>shape)
+</code></pre></div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 38</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 39</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 40</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 41</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 42</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 43</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 44</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 45</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 46</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 47</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 48</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 49</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 50</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 51</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 52</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 53</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 54</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 55</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 56</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 57</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 58</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 59</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 60</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 61</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 62</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 63</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 64</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 65</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 66</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 67</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 68</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 69</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 70</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 71</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 72</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 73</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 74</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 75</span>
@@ -984,342 +1533,65 @@ networkx.minimum_spanning_tree</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update the skeleton structure with minimum spanning tree on knn-graph with Euclidean distances.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
 
-<span style="color: #BA2121; font-style: italic">    Parameters</span>
-<span style="color: #BA2121; font-style: italic">    ----------</span>
-<span style="color: #BA2121; font-style: italic">    skeleton_points : numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The skeleton coordinates of shape `(n_points, 3)`, XYZ sorted.</span>
-<span style="color: #BA2121; font-style: italic">    n_neighbors : int, optional</span>
-<span style="color: #BA2121; font-style: italic">        The number of neighbors to search for in `skeleton_points`.</span>
-<span style="color: #BA2121; font-style: italic">        Default is `5`.</span>
-<span style="color: #BA2121; font-style: italic">    knn_algorithm : str, optional</span>
-<span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the kNN distance.</span>
-<span style="color: #BA2121; font-style: italic">        Must be one of &#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39; or &#39;brute&#39;.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `kd_tree`.</span>
-<span style="color: #BA2121; font-style: italic">    mst_algorithm : str, optional</span>
-<span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the minimum spanning tree.</span>
-<span style="color: #BA2121; font-style: italic">        Must be one of &#39;kruskal&#39;, &#39;prim&#39; or &#39;boruvka&#39;.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `kruskal`.</span>
-
-<span style="color: #BA2121; font-style: italic">    See Also</span>
-<span style="color: #BA2121; font-style: italic">    --------</span>
-<span style="color: #BA2121; font-style: italic">    sklearn.neighbors.NearestNeighbors</span>
-<span style="color: #BA2121; font-style: italic">    networkx.minimum_spanning_tree</span>
-
-<span style="color: #BA2121; font-style: italic">    Returns</span>
-<span style="color: #BA2121; font-style: italic">    -------</span>
-<span style="color: #BA2121; font-style: italic">    networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        The skeleton structure with minimum spanning tree from knn-graph.</span>
-
-<span style="color: #BA2121; font-style: italic">    Examples</span>
-<span style="color: #BA2121; font-style: italic">    --------</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import perform_registration</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import knn_mst</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply, load_json</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Perform stochastic optimization</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Compute skeleton tree structure using mst on knn-graph:</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel_tree = knn_mst(refined_skel)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #3D7B7B; font-style: italic"># Find the k-nearest neighbors:</span>
-    nbrs <span style="color: #666">=</span> NearestNeighbors(n_neighbors<span style="color: #666">=</span>n_neighbors, algorithm<span style="color: #666">=</span>knn_algorithm, metric<span style="color: #666">=</span><span style="color: #BA2121">&quot;minkowski&quot;</span>, p<span style="color: #666">=2</span>)<span style="color: #666">.</span>fit(skeleton_points)
-    distances, indices <span style="color: #666">=</span> nbrs<span style="color: #666">.</span>kneighbors(skeleton_points)
-
-    <span style="color: #3D7B7B; font-style: italic"># - Create a k-neighbors graph with paired nodes and Euclidean distances as edge weights:</span>
-    G <span style="color: #666">=</span> nx<span style="color: #666">.</span>Graph()
-    <span style="color: #3D7B7B; font-style: italic"># -- Add the edges and the weight:</span>
-    <span style="color: #008000; font-weight: bold">for</span> row, nodes_idx <span style="color: #A2F; font-weight: bold">in</span> <span style="color: #008000">enumerate</span>(indices):
-        nodes_idx <span style="color: #666">=</span> <span style="color: #008000">list</span>(<span style="color: #008000">map</span>(<span style="color: #008000">int</span>, nodes_idx))
-        node_idx, nei_idx <span style="color: #666">=</span> nodes_idx[<span style="color: #666">0</span>], nodes_idx[<span style="color: #666">1</span>:]
-        [G<span style="color: #666">.</span>add_edges_from([(node_idx, n_idx, {<span style="color: #BA2121">&quot;weight&quot;</span>: distances[row, col <span style="color: #666">+</span> <span style="color: #666">1</span>]})]) <span style="color: #008000; font-weight: bold">for</span> col, n_idx <span style="color: #A2F; font-weight: bold">in</span>
-         <span style="color: #008000">enumerate</span>(nei_idx)]
-    <span style="color: #3D7B7B; font-style: italic"># -- Add the node coordinates:</span>
-    <span style="color: #008000; font-weight: bold">for</span> node_id <span style="color: #A2F; font-weight: bold">in</span> G<span style="color: #666">.</span>nodes:
-        G<span style="color: #666">.</span>nodes[node_id][<span style="color: #BA2121">&#39;position&#39;</span>] <span style="color: #666">=</span> skeleton_points[node_id]
-    <span style="color: #3D7B7B; font-style: italic"># -- Find the minimum spanning tree:</span>
-    T <span style="color: #666">=</span> nx<span style="color: #666">.</span>minimum_spanning_tree(G, algorithm<span style="color: #666">=</span>mst_algorithm)
-
-    <span style="color: #008000; font-weight: bold">return</span> T
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="skeleton_refinement.stochastic_registration.perform_registration" class="doc doc-heading">
-            <code class="highlight language-python">perform_registration(X, Y, <span style="color: #666">**</span>kwargs)</code>
-
-<a href="#skeleton_refinement.stochastic_registration.perform_registration" class="headerlink" title="Permanent link">Link</a></h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Performs the skeleton optimization using stochastic deformation registration.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>X</code>
-            </td>
-            <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The input reference point cloud coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>Y</code>
-            </td>
-            <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The input reference skeleton coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Other Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td><code>alpha</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>???.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code>beta</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>???.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code>sigma2</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>???
-Defaults to <code>None</code>.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code>max_iterations</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The maximum number of iterations before stopping the iterative registration.
-Defaults to <code>100</code>.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code>tolerance</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>??? Tolerance for registration.
-Defaults to <code>0.001</code>.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code>w</code></td>
-            <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>???
-Defaults to <code>0</code>.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The transformed skeleton coordinates of shape <code>(n_points, 3)</code>, XYZ sorted.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Examples:</span></p>
-    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(refined_skel<span style="color: #666">.</span>shape)
-</code></pre></div>
-
-
-            <details class="quote">
-              <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">17</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">18</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">19</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">20</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">22</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">23</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">24</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">25</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">26</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">27</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">28</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">29</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">30</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">31</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">32</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">33</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">34</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Performs the skeleton optimization using stochastic deformation registration.</span>
+<span style="color: #BA2121; font-style: italic">    This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid</span>
+<span style="color: #BA2121; font-style: italic">    registration between a reference point cloud and a skeleton. The algorithm optimizes</span>
+<span style="color: #BA2121; font-style: italic">    the skeleton&#39;s position to better align with the underlying point cloud structure.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    X : numpy.ndarray</span>
 <span style="color: #BA2121; font-style: italic">        The input reference point cloud coordinates of shape `(n_points, dim)`, XYZ sorted.</span>
+<span style="color: #BA2121; font-style: italic">        This represents the fixed point set that the skeleton will be aligned to.</span>
 <span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
 <span style="color: #BA2121; font-style: italic">        The input reference skeleton coordinates of shape `(n_points, dim)`, XYZ sorted.</span>
+<span style="color: #BA2121; font-style: italic">        This represents the moving point set that will be transformed.</span>
 
 <span style="color: #BA2121; font-style: italic">    Other Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------------</span>
 <span style="color: #BA2121; font-style: italic">    alpha : float</span>
-<span style="color: #BA2121; font-style: italic">        ???.</span>
+<span style="color: #BA2121; font-style: italic">        Regularization weight that controls the smoothness of deformation.</span>
+<span style="color: #BA2121; font-style: italic">        Higher values result in smoother, more rigid transformations.</span>
 <span style="color: #BA2121; font-style: italic">    beta : float</span>
-<span style="color: #BA2121; font-style: italic">        ???.</span>
-<span style="color: #BA2121; font-style: italic">    sigma2 : numpy.ndarray, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `None`.</span>
+<span style="color: #BA2121; font-style: italic">        Width of the Gaussian kernel used in the non-rigid transformation.</span>
+<span style="color: #BA2121; font-style: italic">        Controls the influence range of each point in the deformation.</span>
+<span style="color: #BA2121; font-style: italic">    sigma2 : float or numpy.ndarray, optional</span>
+<span style="color: #BA2121; font-style: italic">        Initial variance of the Gaussian Mixture Model.</span>
+<span style="color: #BA2121; font-style: italic">        If None, it will be estimated automatically from the point sets.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``None``.</span>
 <span style="color: #BA2121; font-style: italic">    max_iterations : int, optional</span>
 <span style="color: #BA2121; font-style: italic">        The maximum number of iterations before stopping the iterative registration.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `100`.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``100``.</span>
 <span style="color: #BA2121; font-style: italic">    tolerance : float, optional</span>
-<span style="color: #BA2121; font-style: italic">        ??? Tolerance for registration.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `0.001`.</span>
-<span style="color: #BA2121; font-style: italic">    w : int, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `0`.</span>
+<span style="color: #BA2121; font-style: italic">        Convergence criterion. The algorithm stops when the error falls below this value.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``0.001``.</span>
+<span style="color: #BA2121; font-style: italic">    w : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        Weight of the uniform distribution in the mixture model.</span>
+<span style="color: #BA2121; font-style: italic">        Used to account for outliers. Value between 0 and 1.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``0``.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The transformed skeleton coordinates of shape `(n_points, 3)`, XYZ sorted.</span>
+<span style="color: #BA2121; font-style: italic">        The transformed skeleton coordinates of shape `(n_points, dim)`, XYZ sorted.</span>
+<span style="color: #BA2121; font-style: italic">        This is the optimized skeleton aligned to the input point cloud.</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The function internally uses the DeformableRegistration class which implements</span>
+<span style="color: #BA2121; font-style: italic">    the Coherent Point Drift algorithm. The registration process involves an</span>
+<span style="color: #BA2121; font-style: italic">    Expectation-Maximization approach to optimize the transformation parameters.</span>
+
+<span style="color: #BA2121; font-style: italic">    The parameters alpha and beta are crucial for obtaining good results:</span>
+<span style="color: #BA2121; font-style: italic">    - Higher alpha values enforce more rigidity in the transformation</span>
+<span style="color: #BA2121; font-style: italic">    - Beta determines the spatial extent of interaction between points</span>
+
+<span style="color: #BA2121; font-style: italic">    See Also</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    skeleton_refinement.deformable_registration.DeformableRegistration : Class that implements the CPD algorithm.</span>
+<span style="color: #BA2121; font-style: italic">    skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration : Base class for EM-based registration.</span>
 
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
@@ -1331,14 +1603,25 @@ Defaults to <code>0</code>.</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(refined_skel.shape)</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Add input point sets to kwargs to pass to DeformableRegistration</span>
     kwargs<span style="color: #666">.</span>update({<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
+
+    <span style="color: #3D7B7B; font-style: italic"># Initialize the Coherent Point Drift registration object</span>
     reg <span style="color: #666">=</span> DeformableRegistration(<span style="color: #666">**</span>kwargs)
+    <span style="color: #3D7B7B; font-style: italic"># Perform initial transformation of the point cloud</span>
     reg<span style="color: #666">.</span>transform_point_cloud()
+
+    <span style="color: #3D7B7B; font-style: italic"># If sigma2 (variance of GMM) is not provided, estimate it and run EM iterations</span>
     <span style="color: #008000; font-weight: bold">if</span> reg<span style="color: #666">.</span>sigma2 <span style="color: #A2F; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span>:
+        <span style="color: #3D7B7B; font-style: italic"># Initialize sigma2 based on current point sets</span>
         reg<span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> initialize_sigma2(reg<span style="color: #666">.</span>X, reg<span style="color: #666">.</span>TY)
+        <span style="color: #3D7B7B; font-style: italic"># Update objective function with new sigma2 value</span>
+        <span style="color: #3D7B7B; font-style: italic"># (q is the log-likelihood with regularization terms)</span>
         reg<span style="color: #666">.</span>q <span style="color: #666">=</span> <span style="color: #666">-</span>reg<span style="color: #666">.</span>err <span style="color: #666">-</span> reg<span style="color: #666">.</span>N <span style="color: #666">*</span> reg<span style="color: #666">.</span>D <span style="color: #666">/</span> <span style="color: #666">2</span> <span style="color: #666">*</span> np<span style="color: #666">.</span>log(reg<span style="color: #666">.</span>sigma2)
+        <span style="color: #3D7B7B; font-style: italic"># Iteratively refine transformation until convergence or max iterations reached</span>
         <span style="color: #008000; font-weight: bold">while</span> reg<span style="color: #666">.</span>iteration <span style="color: #666">&lt;</span> reg<span style="color: #666">.</span>max_iterations <span style="color: #A2F; font-weight: bold">and</span> reg<span style="color: #666">.</span>err <span style="color: #666">&gt;</span> reg<span style="color: #666">.</span>tolerance:
-            reg<span style="color: #666">.</span>iterate()
+            reg<span style="color: #666">.</span>iterate()  <span style="color: #3D7B7B; font-style: italic"># Run one EM iteration</span>
+
     <span style="color: #008000; font-weight: bold">return</span> reg<span style="color: #666">.</span>TY
 </code></pre></div></td></tr></table></div>
             </details>

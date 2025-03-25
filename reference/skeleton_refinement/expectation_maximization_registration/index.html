@@ -903,12 +903,31 @@
 <a id="skeleton_refinement.expectation_maximization_registration"></a>
     <div class="doc doc-contents first">
 
-        <p>This is a part of the implementation of the stochastic registration algorithm based
+        <p>Point Cloud Registration using Expectation-Maximization</p>
+<p>This module implements the Expectation-Maximization algorithm for point cloud registration,
+providing a probabilistic approach to align 3D point sets with robust handling of noise and outliers.
+This is an abstract base class that should be implemented by specific registration methods.</p>
+
+
+<details class="key-features" open>
+  <summary>Key Features</summary>
+  <ul>
+<li>Probabilistic point cloud alignment using EM algorithm</li>
+<li>Iterative refinement of transformation parameters</li>
+<li>Automatic variance estimation for noise handling</li>
+<li>Support for rigid and non-rigid transformations</li>
+<li>Convergence control through iteration limits and tolerance settings</li>
+</ul>
+</details>
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>This is a part of the implementation of the stochastic registration algorithm based
 on the following paper:
 Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift", IEEE
 Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.</p>
-<p>The library is based on the python implementation of the paper in pycpd package.</p>
-
+<p>The library is based on the python implementation of the paper in <code>pycpd</code> package.</p>
+</details>
 
 
 
@@ -941,7 +960,15 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
               Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#object">object</a></code></p>
 
 
-        <p>Abstract base class for all Expectation-Maximization registration algorithms.</p>
+        <p>Abstract base class for point cloud registration using Expectation-Maximization algorithm.</p>
+<p>This class implements the core functionality of the Coherent Point Drift (CPD)
+algorithm for point set registration based on Myronenko and Song's paper.
+It uses a probabilistic approach where the alignment of two point sets is
+treated as a Maximum Likelihood (ML) estimation problem with a Gaussian Mixture
+Model (GMM) as the likelihood function.</p>
+<p>The class serves as a base for various CPD registration methods (rigid, affine, etc.),
+providing common EM framework while requiring specific transformation models to be
+implemented in child classes.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -957,44 +984,44 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.X">X</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(N, D)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The reference point cloud coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
+                <p>Reference point cloud coordinates.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.Y">Y</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(M, D)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The initial point cloud coordinates to optimize of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
+                <p>Initial point cloud coordinates to optimize.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.TY">TY</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(M, D)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The optimized point cloud coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
+                <p>Transformed/registered version of Y after optimization.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.sigma2">sigma2</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Variance of the Gaussian Mixture Model (GMM), updated during registration.</p>
               </div>
             </td>
           </tr>
@@ -1005,7 +1032,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The number of reference points.</p>
+                <p>Number of points in reference cloud <code>X</code>.</p>
               </div>
             </td>
           </tr>
@@ -1016,7 +1043,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The number of target points.</p>
+                <p>Number of points in source cloud <code>Y</code>.</p>
               </div>
             </td>
           </tr>
@@ -1027,7 +1054,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The dimensionality of the reference points, <em>i.e.</em> <code>3</code> for 3D point clouds.</p>
+                <p>Dimensionality of the point clouds (e.g., 3 for 3D point clouds).</p>
               </div>
             </td>
           </tr>
@@ -1038,18 +1065,18 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>??? Tolerance for registration.</p>
+                <p>Convergence criterion threshold.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.w">w</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Weight of the uniform distribution component for outlier handling.</p>
               </div>
             </td>
           </tr>
@@ -1060,7 +1087,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The maximum number of iterations before stopping the iterative registration.</p>
+                <p>Maximum number of iterations for the algorithm.</p>
               </div>
             </td>
           </tr>
@@ -1071,7 +1098,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The current iteration number.</p>
+                <p>Current iteration number during registration process.</p>
               </div>
             </td>
           </tr>
@@ -1082,58 +1109,89 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Current registration error/distance between point sets.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.P">P</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(M, N)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Posterior probability matrix of point correspondences.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.Pt1">Pt1</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(N,)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Column-wise sum of posterior probability matrix.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.P1">P1</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(M,)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Row-wise sum of posterior probability matrix.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.Np">Np</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Sum of all elements in the posterior probability matrix.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.q">q</span></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Negative log-likelihood of the current estimate.</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
-        <p>Expectation-Maximization registration algorithms constructor.</p>
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>This is an abstract base class. Child classes must implement:
+- <code>update_transform()</code>: Update transformation parameters
+- <code>transform_point_cloud()</code>: Apply transformation to point cloud
+- <code>update_variance()</code>: Update GMM variance
+- <code>get_registration_parameters()</code>: Return registration parameters</p>
+</details>
+
+<details class="references" open>
+  <summary>References</summary>
+  <p>Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift",
+IEEE Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.</p>
+</details>
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>skeleton_refinement.utilities.initialize_sigma2 : Function to initialize the variance parameter</p>
+</details>
+        <p>Initialize the Expectation-Maximization registration algorithm.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1152,11 +1210,11 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
                 <code>X</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(N, D)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The reference point cloud coordinates of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
+                <p>Reference point cloud (target) of shape (n_points, dimensions).</p>
               </div>
             </td>
             <td>
@@ -1168,11 +1226,11 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
                 <code>Y</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code>numpy.ndarray, shape ``(M, D)``</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The initial point cloud coordinates to optimize of shape <code>(n_points, dim)</code>, XYZ sorted.</p>
+                <p>Point cloud to be aligned (source) of shape (n_points, dimensions).</p>
               </div>
             </td>
             <td>
@@ -1184,12 +1242,13 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
                 <code>sigma2</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> or None</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???
-Defaults to <code>None</code>.</p>
+                <p>Initial variance of the Gaussian Mixture Model (GMM).
+If <code>None</code>, it will be estimated from data.
+Default is <code>None</code>.</p>
               </div>
             </td>
             <td>
@@ -1205,8 +1264,7 @@ Defaults to <code>None</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The maximum number of iterations before stopping the iterative registration.
-Defaults to <code>100</code>.</p>
+                <p>Maximum number of EM iterations. Default is <code>100</code>.</p>
               </div>
             </td>
             <td>
@@ -1222,8 +1280,9 @@ Defaults to <code>100</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>??? Tolerance for registration.
-Defaults to <code>0.001</code>.</p>
+                <p>Convergence threshold for stopping iterations.
+Algorithm stops when change in error falls below this value.
+Default is <code>0.0001</code>.</p>
               </div>
             </td>
             <td>
@@ -1235,16 +1294,41 @@ Defaults to <code>0.001</code>.</p>
                 <code>w</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???
-Defaults to <code>0</code>.</p>
+                <p>Weight of the uniform distribution component (0 &lt;= w &lt; 1).
+Used to account for outliers and noise.
+A value of <code>0</code> means no outlier handling.
+Default is <code>0</code>.</p>
               </div>
             </td>
             <td>
                   <code>0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>X</code> or <code>Y</code> are not 2D numpy arrays, or if their dimensions don't match.</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -1258,71 +1342,87 @@ Defaults to <code>0</code>.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 59</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 61</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 62</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 63</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 64</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 65</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 66</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 67</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 68</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 69</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 70</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 71</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 72</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 73</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 74</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 75</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 77</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 78</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 79</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 80</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 81</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 82</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 83</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 84</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 85</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 86</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 87</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 88</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 89</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 92</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 93</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 94</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 95</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 96</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 97</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span>MAX_ITER, tolerance<span style="color: #666">=</span>TOL, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Expectation-Maximization registration algorithms constructor.</span>
+                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span>MAX_ITER, tolerance<span style="color: #666">=</span>TOL, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the Expectation-Maximization registration algorithm.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
-<span style="color: #BA2121; font-style: italic">    X : numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The reference point cloud coordinates of shape `(n_points, dim)`, XYZ sorted.</span>
-<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
-<span style="color: #BA2121; font-style: italic">        The initial point cloud coordinates to optimize of shape `(n_points, dim)`, XYZ sorted.</span>
-<span style="color: #BA2121; font-style: italic">    sigma2 : numpy.ndarray, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `None`.</span>
+<span style="color: #BA2121; font-style: italic">    X : numpy.ndarray, shape ``(N, D)``</span>
+<span style="color: #BA2121; font-style: italic">        Reference point cloud (target) of shape (n_points, dimensions).</span>
+<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray, shape ``(M, D)``</span>
+<span style="color: #BA2121; font-style: italic">        Point cloud to be aligned (source) of shape (n_points, dimensions).</span>
+<span style="color: #BA2121; font-style: italic">    sigma2 : float or None, optional</span>
+<span style="color: #BA2121; font-style: italic">        Initial variance of the Gaussian Mixture Model (GMM).</span>
+<span style="color: #BA2121; font-style: italic">        If ``None``, it will be estimated from data.</span>
+<span style="color: #BA2121; font-style: italic">        Default is ``None``.</span>
 <span style="color: #BA2121; font-style: italic">    max_iterations : int, optional</span>
-<span style="color: #BA2121; font-style: italic">        The maximum number of iterations before stopping the iterative registration.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `100`.</span>
+<span style="color: #BA2121; font-style: italic">        Maximum number of EM iterations. Default is ``100``.</span>
 <span style="color: #BA2121; font-style: italic">    tolerance : float, optional</span>
-<span style="color: #BA2121; font-style: italic">        ??? Tolerance for registration.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `0.001`.</span>
-<span style="color: #BA2121; font-style: italic">    w : int, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `0`.</span>
+<span style="color: #BA2121; font-style: italic">        Convergence threshold for stopping iterations.</span>
+<span style="color: #BA2121; font-style: italic">        Algorithm stops when change in error falls below this value.</span>
+<span style="color: #BA2121; font-style: italic">        Default is ``0.0001``.</span>
+<span style="color: #BA2121; font-style: italic">    w : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        Weight of the uniform distribution component (0 &lt;= w &lt; 1).</span>
+<span style="color: #BA2121; font-style: italic">        Used to account for outliers and noise.</span>
+<span style="color: #BA2121; font-style: italic">        A value of ``0`` means no outlier handling.</span>
+<span style="color: #BA2121; font-style: italic">        Default is ``0``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Raises</span>
+<span style="color: #BA2121; font-style: italic">    ------</span>
+<span style="color: #BA2121; font-style: italic">    ValueError</span>
+<span style="color: #BA2121; font-style: italic">        If `X` or `Y` are not 2D numpy arrays, or if their dimensions don&#39;t match.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">if</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #008000">isinstance</span>(X, np<span style="color: #666">.</span>ndarray) <span style="color: #A2F; font-weight: bold">or</span> X<span style="color: #666">.</span>ndim <span style="color: #666">!=</span> <span style="color: #666">2</span>:
         <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">ValueError</span>(<span style="color: #BA2121">&quot;The target point cloud (X) must be at a 2D numpy array.&quot;</span>)
@@ -1373,56 +1473,130 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Expectation step, estimates which Gaussian the observed point cloud was sampled from.</p>
+        <p>Perform the Expectation step of the EM algorithm.</p>
+<p>The expectation step estimates the posterior probability (P) that each
+point in the source set corresponds to each point in the reference set,
+based on the current transformation and GMM variance.</p>
+<p>This step also handles outlier detection based on the uniform distribution
+weight parameter w.</p>
 
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Updates the following attributes:
+- P: Posterior probability matrix of point correspondences
+- Pt1: Column-wise sum of P
+- P1: Row-wise sum of P
+- Np: Sum of all elements in P</p>
+</details>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">157</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">expectation</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Expectation step, estimates which Gaussian the observed point cloud was sampled from.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">280</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">281</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">282</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">283</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">284</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">285</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">286</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">287</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">288</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">289</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">290</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">291</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">292</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">293</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">294</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">295</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">296</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">297</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">298</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">299</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">300</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">301</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">302</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">303</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">304</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">305</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">306</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">307</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">308</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">309</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">310</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">311</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">312</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">313</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">314</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">315</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">316</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">317</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">318</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">319</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">320</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">321</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">322</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">323</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">324</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">325</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">326</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">327</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">328</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">329</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">330</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">331</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">332</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">expectation</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform the Expectation step of the EM algorithm.</span>
+
+<span style="color: #BA2121; font-style: italic">    The expectation step estimates the posterior probability (P) that each</span>
+<span style="color: #BA2121; font-style: italic">    point in the source set corresponds to each point in the reference set,</span>
+<span style="color: #BA2121; font-style: italic">    based on the current transformation and GMM variance.</span>
+
+<span style="color: #BA2121; font-style: italic">    This step also handles outlier detection based on the uniform distribution</span>
+<span style="color: #BA2121; font-style: italic">    weight parameter w.</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    Updates the following attributes:</span>
+<span style="color: #BA2121; font-style: italic">    - P: Posterior probability matrix of point correspondences</span>
+<span style="color: #BA2121; font-style: italic">    - Pt1: Column-wise sum of P</span>
+<span style="color: #BA2121; font-style: italic">    - P1: Row-wise sum of P</span>
+<span style="color: #BA2121; font-style: italic">    - Np: Sum of all elements in P</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Initialize posterior probability matrix (M source points × N reference points)</span>
     P <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>M, <span style="color: #008000">self</span><span style="color: #666">.</span>N))
 
+    <span style="color: #3D7B7B; font-style: italic"># Calculate squared Mahalanobis distances between transformed source points and reference points</span>
     <span style="color: #008000; font-weight: bold">for</span> i <span style="color: #A2F; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666">0</span>, <span style="color: #008000">self</span><span style="color: #666">.</span>M):
+        <span style="color: #3D7B7B; font-style: italic"># Calculate differences between current transformed point and all reference points</span>
         diff <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>X <span style="color: #666">-</span> np<span style="color: #666">.</span>tile(<span style="color: #008000">self</span><span style="color: #666">.</span>TY[i, :], (<span style="color: #008000">self</span><span style="color: #666">.</span>N, <span style="color: #666">1</span>))
+        <span style="color: #3D7B7B; font-style: italic"># Square the differences</span>
         diff <span style="color: #666">=</span> np<span style="color: #666">.</span>multiply(diff, diff)
+        <span style="color: #3D7B7B; font-style: italic"># Sum squared differences across dimensions for each point pair</span>
         P[i, :] <span style="color: #666">=</span> P[i, :] <span style="color: #666">+</span> np<span style="color: #666">.</span>sum(diff, axis<span style="color: #666">=1</span>)
 
-    c <span style="color: #666">=</span> (<span style="color: #666">2</span> <span style="color: #666">*</span> np<span style="color: #666">.</span>pi <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2) <span style="color: #666">**</span> (<span style="color: #008000">self</span><span style="color: #666">.</span>D <span style="color: #666">/</span> <span style="color: #666">2</span>)
-    c <span style="color: #666">=</span> c <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>w <span style="color: #666">/</span> (<span style="color: #666">1</span> <span style="color: #666">-</span> <span style="color: #008000">self</span><span style="color: #666">.</span>w)
-    c <span style="color: #666">=</span> c <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>M <span style="color: #666">/</span> <span style="color: #008000">self</span><span style="color: #666">.</span>N
+    <span style="color: #3D7B7B; font-style: italic"># Calculate uniform distribution component for outlier handling</span>
+    c <span style="color: #666">=</span> (<span style="color: #666">2</span> <span style="color: #666">*</span> np<span style="color: #666">.</span>pi <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2) <span style="color: #666">**</span> (<span style="color: #008000">self</span><span style="color: #666">.</span>D <span style="color: #666">/</span> <span style="color: #666">2</span>)  <span style="color: #3D7B7B; font-style: italic"># Normalization factor for Gaussian</span>
+    c <span style="color: #666">=</span> c <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>w <span style="color: #666">/</span> (<span style="color: #666">1</span> <span style="color: #666">-</span> <span style="color: #008000">self</span><span style="color: #666">.</span>w)  <span style="color: #3D7B7B; font-style: italic"># Scale by outlier ratio</span>
+    c <span style="color: #666">=</span> c <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>M <span style="color: #666">/</span> <span style="color: #008000">self</span><span style="color: #666">.</span>N  <span style="color: #3D7B7B; font-style: italic"># Normalize by point cloud sizes</span>
 
+    <span style="color: #3D7B7B; font-style: italic"># Convert distances to probabilities using Gaussian kernel</span>
     P <span style="color: #666">=</span> np<span style="color: #666">.</span>exp(<span style="color: #666">-</span>P <span style="color: #666">/</span> (<span style="color: #666">2</span> <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2))
+
+    <span style="color: #3D7B7B; font-style: italic"># Calculate denominator for posterior probability normalization</span>
     den <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(P, axis<span style="color: #666">=0</span>)
     den <span style="color: #666">=</span> np<span style="color: #666">.</span>tile(den, (<span style="color: #008000">self</span><span style="color: #666">.</span>M, <span style="color: #666">1</span>))
+    <span style="color: #3D7B7B; font-style: italic"># Avoid division by zero</span>
     den[den <span style="color: #666">==</span> <span style="color: #666">0</span>] <span style="color: #666">=</span> np<span style="color: #666">.</span>finfo(<span style="color: #008000">float</span>)<span style="color: #666">.</span>eps
+    <span style="color: #3D7B7B; font-style: italic"># Add uniform component for outlier handling</span>
     den <span style="color: #666">+=</span> c
 
+    <span style="color: #3D7B7B; font-style: italic"># Compute normalized posterior probabilities</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>P <span style="color: #666">=</span> np<span style="color: #666">.</span>divide(P, den)
-    <span style="color: #008000">self</span><span style="color: #666">.</span>Pt1 <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P, axis<span style="color: #666">=0</span>)
-    <span style="color: #008000">self</span><span style="color: #666">.</span>P1 <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P, axis<span style="color: #666">=1</span>)
-    <span style="color: #008000">self</span><span style="color: #666">.</span>Np <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P1)
+
+    <span style="color: #3D7B7B; font-style: italic"># Calculate marginal probabilities and total correspondence strength</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>Pt1 <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P, axis<span style="color: #666">=0</span>)  <span style="color: #3D7B7B; font-style: italic"># Column-wise sum - probability mass for each reference point</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>P1 <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P, axis<span style="color: #666">=1</span>)  <span style="color: #3D7B7B; font-style: italic"># Row-wise sum - probability mass for each source point</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>Np <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(<span style="color: #008000">self</span><span style="color: #666">.</span>P1)  <span style="color: #3D7B7B; font-style: italic"># Total correspondence probability mass</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1440,15 +1614,94 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Abstract method to implement.</p>
+        <p>Get the current registration transformation parameters.</p>
+<p>This is an abstract method that must be implemented by child classes
+to return the specific transformation parameters used in the registration.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary containing the transformation parameters specific to
+the registration method.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If called from the base class without being overridden.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">203</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Get the current registration transformation parameters.</span>
+
+<span style="color: #BA2121; font-style: italic">    This is an abstract method that must be implemented by child classes</span>
+<span style="color: #BA2121; font-style: italic">    to return the specific transformation parameters used in the registration.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    dict</span>
+<span style="color: #BA2121; font-style: italic">        Dictionary containing the transformation parameters specific to</span>
+<span style="color: #BA2121; font-style: italic">        the registration method.</span>
+
+<span style="color: #BA2121; font-style: italic">    Raises</span>
+<span style="color: #BA2121; font-style: italic">    ------</span>
+<span style="color: #BA2121; font-style: italic">    NotImplementedError</span>
+<span style="color: #BA2121; font-style: italic">        If called from the base class without being overridden.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;Registration parameters should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1468,16 +1721,34 @@ Defaults to <code>0</code>.</p>
     <div class="doc doc-contents ">
 
         <p>Perform one Expectation-Maximization iteration.</p>
+<p>This method runs a single EM iteration consisting of:
+1. Expectation step: compute point correspondences
+2. Maximization step: update transformation parameters</p>
+<p>The iteration counter is incremented after each call.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">iterate</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform one Expectation-Maximization iteration.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">267</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">268</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">269</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">270</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">271</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">272</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">273</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">274</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">275</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">276</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">277</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">278</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">iterate</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform one Expectation-Maximization iteration.</span>
+
+<span style="color: #BA2121; font-style: italic">    This method runs a single EM iteration consisting of:</span>
+<span style="color: #BA2121; font-style: italic">    1. Expectation step: compute point correspondences</span>
+<span style="color: #BA2121; font-style: italic">    2. Maximization step: update transformation parameters</span>
+
+<span style="color: #BA2121; font-style: italic">    The iteration counter is incremented after each call.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>expectation()
     <span style="color: #008000">self</span><span style="color: #666">.</span>maximization()
     <span style="color: #008000">self</span><span style="color: #666">.</span>iteration <span style="color: #666">+=</span> <span style="color: #666">1</span>
@@ -1498,17 +1769,47 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Maximization step, maximizes the negative log-likelihood that the observed points were sampled from the Gaussian Mixture Model (GMM) with respect to the model parameters.</p>
+        <p>Perform the Maximization step of the EM algorithm.</p>
+<p>The maximization step updates the transformation parameters and variance
+to maximize the probability that the transformed source points were drawn
+from the GMM centered at the reference points.</p>
+<p>This method calls the abstract methods that should be implemented by child
+classes:
+1. update_transform()
+2. transform_point_cloud()
+3. update_variance()</p>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">maximization</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Maximization step, maximizes the negative log-likelihood that the observed points were sampled from the Gaussian Mixture Model (GMM) with respect to the model parameters.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">334</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">335</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">336</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">337</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">338</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">339</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">340</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">341</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">342</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">343</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">344</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">345</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">346</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">347</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">348</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">349</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">maximization</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform the Maximization step of the EM algorithm.</span>
+
+<span style="color: #BA2121; font-style: italic">    The maximization step updates the transformation parameters and variance</span>
+<span style="color: #BA2121; font-style: italic">    to maximize the probability that the transformed source points were drawn</span>
+<span style="color: #BA2121; font-style: italic">    from the GMM centered at the reference points.</span>
+
+<span style="color: #BA2121; font-style: italic">    This method calls the abstract methods that should be implemented by child</span>
+<span style="color: #BA2121; font-style: italic">    classes:</span>
+<span style="color: #BA2121; font-style: italic">    1. update_transform()</span>
+<span style="color: #BA2121; font-style: italic">    2. transform_point_cloud()</span>
+<span style="color: #BA2121; font-style: italic">    3. update_variance()</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>update_transform()
     <span style="color: #008000">self</span><span style="color: #666">.</span>transform_point_cloud()
     <span style="color: #008000">self</span><span style="color: #666">.</span>update_variance()
@@ -1529,7 +1830,11 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>???</p>
+        <p>Perform the point set registration.</p>
+<p>This method runs the EM algorithm to align the source point cloud (Y)
+to the reference point cloud (X). The algorithm iteratively estimates
+point correspondences and updates the transformation parameters until
+convergence or maximum iterations are reached.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1548,11 +1853,13 @@ Defaults to <code>0</code>.</p>
                 <code>callback</code>
             </td>
             <td>
-                  <code><span title="function">function</span></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#callable">callable</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???</p>
+                <p>Function to call after each iteration with registration state information.
+The function should accept keyword arguments: iteration, error, X, Y.
+Default is a no-op function.</p>
               </div>
             </td>
             <td>
@@ -1563,40 +1870,138 @@ Defaults to <code>0</code>.</p>
     </table>
 
 
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The transformed point cloud (TY).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Registration parameters specific to the registration method.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The registration is considered converged when the change in error between
+iterations falls below the tolerance threshold or the maximum number of
+iterations is reached.</p>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;???</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">227</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">228</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">229</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">230</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">231</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">232</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">233</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">234</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">235</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">236</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">237</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">238</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">239</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">240</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">241</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">242</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">243</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">244</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">245</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">246</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">247</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">248</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">249</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">250</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">251</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">252</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">253</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">254</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">255</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">256</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">257</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">258</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">259</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">260</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">261</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">262</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">263</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">264</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">265</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Perform the point set registration.</span>
+
+<span style="color: #BA2121; font-style: italic">    This method runs the EM algorithm to align the source point cloud (Y)</span>
+<span style="color: #BA2121; font-style: italic">    to the reference point cloud (X). The algorithm iteratively estimates</span>
+<span style="color: #BA2121; font-style: italic">    point correspondences and updates the transformation parameters until</span>
+<span style="color: #BA2121; font-style: italic">    convergence or maximum iterations are reached.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
-<span style="color: #BA2121; font-style: italic">    callback : function</span>
-<span style="color: #BA2121; font-style: italic">        ???</span>
+<span style="color: #BA2121; font-style: italic">    callback : callable, optional</span>
+<span style="color: #BA2121; font-style: italic">        Function to call after each iteration with registration state information.</span>
+<span style="color: #BA2121; font-style: italic">        The function should accept keyword arguments: iteration, error, X, Y.</span>
+<span style="color: #BA2121; font-style: italic">        Default is a no-op function.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        The transformed point cloud (TY).</span>
+<span style="color: #BA2121; font-style: italic">    dict</span>
+<span style="color: #BA2121; font-style: italic">        Registration parameters specific to the registration method.</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    The registration is considered converged when the change in error between</span>
+<span style="color: #BA2121; font-style: italic">    iterations falls below the tolerance threshold or the maximum number of</span>
+<span style="color: #BA2121; font-style: italic">    iterations is reached.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Initialize by transforming points according to current parameters</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>transform_point_cloud()
+
+    <span style="color: #3D7B7B; font-style: italic"># If variance is not provided, calculate initial variance based on point clouds</span>
     <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #A2F; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span>:
         <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> initialize_sigma2(<span style="color: #008000">self</span><span style="color: #666">.</span>X, <span style="color: #008000">self</span><span style="color: #666">.</span>TY)
+
+    <span style="color: #3D7B7B; font-style: italic"># Initialize negative log-likelihood (q) based on current error and variance</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>q <span style="color: #666">=</span> <span style="color: #666">-</span><span style="color: #008000">self</span><span style="color: #666">.</span>err <span style="color: #666">-</span> <span style="color: #008000">self</span><span style="color: #666">.</span>N <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>D <span style="color: #666">/</span> <span style="color: #666">2</span> <span style="color: #666">*</span> np<span style="color: #666">.</span>log(<span style="color: #008000">self</span><span style="color: #666">.</span>sigma2)
+
+    <span style="color: #3D7B7B; font-style: italic"># Main EM loop - continue until convergence or max iterations</span>
     <span style="color: #008000; font-weight: bold">while</span> <span style="color: #008000">self</span><span style="color: #666">.</span>iteration <span style="color: #666">&lt;</span> <span style="color: #008000">self</span><span style="color: #666">.</span>max_iterations <span style="color: #A2F; font-weight: bold">and</span> <span style="color: #008000">self</span><span style="color: #666">.</span>err <span style="color: #666">&gt;</span> <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance:
+        <span style="color: #3D7B7B; font-style: italic"># Run one iteration of Expectation-Maximization algorithm</span>
         <span style="color: #008000">self</span><span style="color: #666">.</span>iterate()
+        <span style="color: #3D7B7B; font-style: italic"># If callback is provided, execute it with current registration state</span>
         <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">callable</span>(callback):
             kwargs <span style="color: #666">=</span> {<span style="color: #BA2121">&#39;iteration&#39;</span>: <span style="color: #008000">self</span><span style="color: #666">.</span>iteration, <span style="color: #BA2121">&#39;error&#39;</span>: <span style="color: #008000">self</span><span style="color: #666">.</span>err, <span style="color: #BA2121">&#39;X&#39;</span>: <span style="color: #008000">self</span><span style="color: #666">.</span>X, <span style="color: #BA2121">&#39;Y&#39;</span>: <span style="color: #008000">self</span><span style="color: #666">.</span>TY}
             callback(<span style="color: #666">**</span>kwargs)
@@ -1619,15 +2024,58 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Abstract method to implement.</p>
+        <p>Apply the current transformation to the source point cloud.</p>
+<p>This is an abstract method that must be implemented by child classes
+to apply the specific transformation to the point cloud Y and update TY.</p>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If called from the base class without being overridden.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Apply the current transformation to the source point cloud.</span>
+
+<span style="color: #BA2121; font-style: italic">    This is an abstract method that must be implemented by child classes</span>
+<span style="color: #BA2121; font-style: italic">    to apply the specific transformation to the point cloud Y and update TY.</span>
+
+<span style="color: #BA2121; font-style: italic">    Raises</span>
+<span style="color: #BA2121; font-style: italic">    ------</span>
+<span style="color: #BA2121; font-style: italic">    NotImplementedError</span>
+<span style="color: #BA2121; font-style: italic">        If called from the base class without being overridden.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1646,15 +2094,61 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Abstract method to implement.</p>
+        <p>Update transformation parameters based on the current point correspondence.</p>
+<p>This is an abstract method that must be implemented by child classes
+to update the specific transformation parameters (e.g., rotation matrix,
+scaling factor, etc.) based on the current state of the registration.</p>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If called from the base class without being overridden.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update transformation parameters based on the current point correspondence.</span>
+
+<span style="color: #BA2121; font-style: italic">    This is an abstract method that must be implemented by child classes</span>
+<span style="color: #BA2121; font-style: italic">    to update the specific transformation parameters (e.g., rotation matrix,</span>
+<span style="color: #BA2121; font-style: italic">    scaling factor, etc.) based on the current state of the registration.</span>
+
+<span style="color: #BA2121; font-style: italic">    Raises</span>
+<span style="color: #BA2121; font-style: italic">    ------</span>
+<span style="color: #BA2121; font-style: italic">    NotImplementedError</span>
+<span style="color: #BA2121; font-style: italic">        If called from the base class without being overridden.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1673,15 +2167,61 @@ Defaults to <code>0</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Abstract method to implement.</p>
+        <p>Update the variance of the GMM model (sigma2).</p>
+<p>This is an abstract method that must be implemented by child classes
+to update the variance parameter based on the current state of the
+registration process.</p>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If called from the base class without being overridden.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Abstract method to implement.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">185</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">197</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update the variance of the GMM model (sigma2).</span>
+
+<span style="color: #BA2121; font-style: italic">    This is an abstract method that must be implemented by child classes</span>
+<span style="color: #BA2121; font-style: italic">    to update the variance parameter based on the current state of the</span>
+<span style="color: #BA2121; font-style: italic">    registration process.</span>
+
+<span style="color: #BA2121; font-style: italic">    Raises</span>
+<span style="color: #BA2121; font-style: italic">    ------</span>
+<span style="color: #BA2121; font-style: italic">    NotImplementedError</span>
+<span style="color: #BA2121; font-style: italic">        If called from the base class without being overridden.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">NotImplementedError</span>(<span style="color: #BA2121">&quot;This method should be defined in child classes.&quot;</span>)
 </code></pre></div></td></tr></table></div>
             </details>

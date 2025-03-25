@@ -912,19 +912,7 @@ compute all pairwise distances without explicit loops.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 70</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 71</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 72</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 73</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 74</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 75</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 77</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 78</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 79</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 80</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 81</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 82</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 82</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 83</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 84</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 85</span>
@@ -965,7 +953,31 @@ compute all pairwise distances without explicit loops.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">gaussian_kernel</span>(Y, beta):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">gaussian_kernel</span>(Y, beta):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Compute the Gaussian kernel matrix for a point set.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function calculates a Gaussian kernel matrix (Gram matrix) where each element</span>
@@ -1010,14 +1022,26 @@ compute all pairwise distances without explicit loops.</p>
 <span style="color: #BA2121; font-style: italic">     [0.607 1.    0.368]</span>
 <span style="color: #BA2121; font-style: italic">     [0.607 0.368 1.   ]]</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    (M, D) <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape
+    <span style="color: #3D7B7B; font-style: italic"># Extract dimensions from input point set</span>
+    (M, D) <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># M = number of points, D = dimensions per point</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Reshape Y into a 3D tensor with shape (1, M, D) for broadcasting</span>
     XX <span style="color: #666">=</span> np<span style="color: #666">.</span>reshape(Y, (<span style="color: #666">1</span>, M, D))
+    <span style="color: #3D7B7B; font-style: italic"># Reshape Y into a 3D tensor with shape (M, 1, D) for broadcasting</span>
     YY <span style="color: #666">=</span> np<span style="color: #666">.</span>reshape(Y, (M, <span style="color: #666">1</span>, D))
+    <span style="color: #3D7B7B; font-style: italic"># Tile XX to create a tensor of shape (M, M, D) where each &quot;row&quot; is repeated M times</span>
     XX <span style="color: #666">=</span> np<span style="color: #666">.</span>tile(XX, (M, <span style="color: #666">1</span>, <span style="color: #666">1</span>))
+    <span style="color: #3D7B7B; font-style: italic"># Tile YY to create a tensor of shape (M, M, D) where each &quot;column&quot; is repeated M times</span>
     YY <span style="color: #666">=</span> np<span style="color: #666">.</span>tile(YY, (<span style="color: #666">1</span>, M, <span style="color: #666">1</span>))
+
+    <span style="color: #3D7B7B; font-style: italic"># Calculate the element-wise difference between each pair of points</span>
     diff <span style="color: #666">=</span> XX <span style="color: #666">-</span> YY
+    <span style="color: #3D7B7B; font-style: italic"># Square the differences</span>
     diff <span style="color: #666">=</span> np<span style="color: #666">.</span>multiply(diff, diff)
+    <span style="color: #3D7B7B; font-style: italic"># Sum along the dimension axis to get squared Euclidean distances between each pair of points</span>
     diff <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(diff, <span style="color: #666">2</span>)
+
+    <span style="color: #3D7B7B; font-style: italic"># Apply Gaussian RBF to get the kernel matrix: exp(-||Y[i] - Y[j]||^2 / (2 * beta))</span>
     <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666">.</span>exp(<span style="color: #666">-</span>diff <span style="color: #666">/</span> (<span style="color: #666">2</span> <span style="color: #666">*</span> beta))
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1184,7 +1208,19 @@ to efficiently calculate distances between all point pairs.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2</span>(X, Y):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">73</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2</span>(X, Y):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the variance parameter for point set registration algorithms.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function calculates the initial variance (sigma squared) between two point sets,</span>
@@ -1224,14 +1260,26 @@ to efficiently calculate distances between all point pairs.</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;{sigma2:.6f}&quot;)</span>
 <span style="color: #BA2121; font-style: italic">    0.276667</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    (N, D) <span style="color: #666">=</span> X<span style="color: #666">.</span>shape
-    (M, _) <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape
+    <span style="color: #3D7B7B; font-style: italic"># Get dimensions of the point sets</span>
+    (N, D) <span style="color: #666">=</span> X<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># N = number of points in X, D = dimensionality of points</span>
+    (M, _) <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># M = number of points in Y</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Reshape X to add a dimension for broadcasting (1×N×D)</span>
     XX <span style="color: #666">=</span> np<span style="color: #666">.</span>reshape(X, (<span style="color: #666">1</span>, N, D))
+    <span style="color: #3D7B7B; font-style: italic"># Reshape Y to add a dimension for broadcasting (M×1×D)</span>
     YY <span style="color: #666">=</span> np<span style="color: #666">.</span>reshape(Y, (M, <span style="color: #666">1</span>, D))
+    <span style="color: #3D7B7B; font-style: italic"># Replicate XX along M dimension to create matrix of size (M×N×D)</span>
     XX <span style="color: #666">=</span> np<span style="color: #666">.</span>tile(XX, (M, <span style="color: #666">1</span>, <span style="color: #666">1</span>))
+    <span style="color: #3D7B7B; font-style: italic"># Replicate YY along N dimension to create matrix of size (M×N×D)</span>
     YY <span style="color: #666">=</span> np<span style="color: #666">.</span>tile(YY, (<span style="color: #666">1</span>, N, <span style="color: #666">1</span>))
+
+    <span style="color: #3D7B7B; font-style: italic"># Calculate the difference between every pair of points</span>
     diff <span style="color: #666">=</span> XX <span style="color: #666">-</span> YY
+    <span style="color: #3D7B7B; font-style: italic"># Square the differences</span>
     err <span style="color: #666">=</span> np<span style="color: #666">.</span>multiply(diff, diff)
+
+    <span style="color: #3D7B7B; font-style: italic"># Return the mean squared distance between all point pairs</span>
+    <span style="color: #3D7B7B; font-style: italic"># Normalized by dimension D and total number of point pairs (M*N)</span>
     <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666">.</span>sum(err) <span style="color: #666">/</span> (D <span style="color: #666">*</span> M <span style="color: #666">*</span> N)
 </code></pre></div></td></tr></table></div>
             </details>

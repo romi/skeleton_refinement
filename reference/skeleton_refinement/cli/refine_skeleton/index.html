@@ -508,6 +508,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton--basic-usage-with-default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic usage with default parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton--advanced-usage-with-custom-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced usage with custom parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.cli.refine_skeleton.file_loader" class="md-nav__link">
     <span class="md-ellipsis">
       file_loader
@@ -722,6 +740,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton--basic-usage-with-default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic usage with default parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.cli.refine_skeleton--advanced-usage-with-custom-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced usage with custom parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.cli.refine_skeleton.file_loader" class="md-nav__link">
     <span class="md-ellipsis">
       file_loader
@@ -767,14 +803,22 @@
 <a id="skeleton_refinement.cli.refine_skeleton"></a>
     <div class="doc doc-contents first">
 
-        <p>This program performs refinement of an existing skeleton (in the form of 3D point cloud data)
-of a plant starting from it's initial "coarse" structure. The coarse skeleton is "rectified"
-via a stochastic optimization framework, by "pushing" the skeleton points towards the original
-point cloud data so that they get "aligned" in space. There are two parameters that control
-the quality of alignment, alpha and beta (denoted as 'myAlpha' and 'myBeta' in 'param_settings.py')</p>
+        <p>Skeleton Refinement Tool</p>
+<p>A command-line utility for refining plant skeletons by aligning coarse skeleton structures with 3D point cloud data
+using a stochastic optimization framework. This tool helps improve the quality of plant representation by pushing
+skeleton points toward their proper positions in the original point cloud.</p>
+<p>There are two parameters that control the quality of alignment, alpha and beta.</p>
+
+
+<details class="usage-examples" open>
+  <summary>Usage Examples</summary>
+  <h2 id="skeleton_refinement.cli.refine_skeleton--basic-usage-with-default-parameters">Basic usage with default parameters<a class="headerlink" href="#skeleton_refinement.cli.refine_skeleton--basic-usage-with-default-parameters" title="Permanent link">Link</a></h2>
+<p>$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json</p>
+<h2 id="skeleton_refinement.cli.refine_skeleton--advanced-usage-with-custom-parameters">Advanced usage with custom parameters<a class="headerlink" href="#skeleton_refinement.cli.refine_skeleton--advanced-usage-with-custom-parameters" title="Permanent link">Link</a></h2>
+<p>$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json --alpha 0.5 --beta 0.1 --knn_mst --n_nei 8</p>
 <p>Author: Ayan Chaudhury
 INRIA team MOSAIC</p>
-
+</details>
 
 
 
@@ -809,19 +853,19 @@ INRIA team MOSAIC</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/cli/refine_skeleton.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">87</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">88</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">89</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">90</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">91</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">92</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">93</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">94</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">95</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">96</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">97</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">98</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">99</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_loader</span>(fname):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_loader</span>(fname):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load point cloud or skeleton from a file.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
         xyz <span style="color: #666">=</span> load_xyz(fname)
@@ -856,17 +900,17 @@ INRIA team MOSAIC</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/cli/refine_skeleton.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_writer</span>(fname, skel):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_writer</span>(fname, skel):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Write skeleton to a file.&quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
         np<span style="color: #666">.</span>savetxt(fname, skel, delimiter<span style="color: #666">=</span><span style="color: #BA2121">&#39; &#39;</span>)

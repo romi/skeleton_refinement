@@ -536,6 +536,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--create-sample-point-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create sample point sets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--initialize-and-run-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize and run registration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--get-registration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get registration parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.deformable_registration.DeformableRegistration" class="md-nav__link">
     <span class="md-ellipsis">
       DeformableRegistration
@@ -753,6 +780,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--create-sample-point-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create sample point sets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--initialize-and-run-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize and run registration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.deformable_registration--get-registration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get registration parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.deformable_registration.DeformableRegistration" class="md-nav__link">
     <span class="md-ellipsis">
       DeformableRegistration
@@ -831,12 +885,49 @@
 <a id="skeleton_refinement.deformable_registration"></a>
     <div class="doc doc-contents first">
 
-        <p>This is a part of the implementation of the stochastic registration algorithm based
+        <p>Deformable Registration</p>
+<p>This module provides a non-rigid point set registration implementation using the Coherent Point Drift (CPD) algorithm, enabling accurate alignment of point clouds with non-linear deformations.</p>
+
+
+<details class="key-features" open>
+  <summary>Key Features</summary>
+  <ul>
+<li>Non-rigid point cloud alignment using Gaussian Mixture Models (GMM)</li>
+<li>Coherent Point Drift algorithm implementation with customizable parameters</li>
+<li>Efficient transformation calculation with regularization for smooth deformations</li>
+<li>Support for arbitrary dimensional point clouds</li>
+<li>Built on a generic Expectation-Maximization registration framework</li>
+</ul>
+</details>
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>This is a part of the implementation of the stochastic registration algorithm based
 on the following paper:
 Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift", IEEE
 Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.</p>
-<p>The library is based on the python implementation of the paper in pycpd package.</p>
+<p>The library is based on the python implementation of the paper in <code>pycpd</code> package.</p>
+</details>
 
+<details class="usage-examples" open>
+  <summary>Usage Examples</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>import numpy as np
+from skeleton_refinement.deformable_registration import DeformableRegistration</p>
+<h2 id="skeleton_refinement.deformable_registration--create-sample-point-sets">Create sample point sets<a class="headerlink" href="#skeleton_refinement.deformable_registration--create-sample-point-sets" title="Permanent link">Link</a></h2>
+<p>X = np.random.rand(10, 3)  # Reference point set
+Y = np.random.rand(10, 3)  # Point set to be aligned</p>
+<h2 id="skeleton_refinement.deformable_registration--initialize-and-run-registration">Initialize and run registration<a class="headerlink" href="#skeleton_refinement.deformable_registration--initialize-and-run-registration" title="Permanent link">Link</a></h2>
+<p>reg = DeformableRegistration(X=X, Y=Y, alpha=2, beta=2)
+TY = reg.register()</p>
+<h2 id="skeleton_refinement.deformable_registration--get-registration-parameters">Get registration parameters<a class="headerlink" href="#skeleton_refinement.deformable_registration--get-registration-parameters" title="Permanent link">Link</a></h2>
+<p>G, W = reg.get_registration_parameters()</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
 
 
 
@@ -869,7 +960,11 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
               Bases: <code><a class="autorefs autorefs-internal" title="ExpectationMaximizationRegistration(X, Y, sigma2=None, max_iterations=MAX_ITER, tolerance=TOL, w=0, *args, **kwargs) (skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration)" href="../expectation_maximization_registration/#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration">ExpectationMaximizationRegistration</a></code></p>
 
 
-        <p>Implement a deformable registration by Expectation-Maximization.</p>
+        <p>Deformable point set registration using Coherent Point Drift algorithm.</p>
+<p>This class implements the non-rigid point set registration algorithm from the paper:
+"Point Set Registration: Coherent Point Drift" by Myronenko and Song (2010).
+It optimizes a Gaussian Mixture Model (GMM) to find correspondences between
+two point sets and computes a non-rigid transformation.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -889,7 +984,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.</p>
+                <p>Regularization weight controlling the smoothness of deformation.</p>
               </div>
             </td>
           </tr>
@@ -900,7 +995,7 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.</p>
+                <p>Width of Gaussian kernel used in the non-rigid transformation.</p>
               </div>
             </td>
           </tr>
@@ -911,7 +1006,8 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.</p>
+                <p>Deformation matrix of shape <code>(M, D)</code> where <code>M</code> is the number of points in <code>Y</code>
+and <code>D</code> is the dimension.</p>
               </div>
             </td>
           </tr>
@@ -922,12 +1018,59 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.</p>
+                <p>Gaussian kernel matrix of shape <code>(M, M)</code>, computed from <code>Y</code> using <code>beta</code> as width.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="skeleton_refinement.deformable_registration.DeformableRegistration.TY">TY</span></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The transformed point set <code>Y</code> after registration.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="skeleton_refinement.deformable_registration.DeformableRegistration.sigma2">sigma2</span></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Final variance of GMM.</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>The implementation uses Expectation-Maximization algorithm to optimize the transformation.
+The non-rigid transformation is represented as <code>T(Y) = Y + G*W</code> where <code>G</code> is the Gaussian kernel and <code>W</code> is optimized.</p>
+</details>
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration : Base class for EM-based registration algorithms.</p>
+</details>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">numpy</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">np</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.deformable_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> DeformableRegistration
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create sample point sets</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>X <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">10</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># Reference point set</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>Y <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">10</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># Point set to be aligned</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Initialize and run registration</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>reg <span style="color: #666">=</span> DeformableRegistration(X<span style="color: #666">=</span>X, Y<span style="color: #666">=</span>Y, alpha<span style="color: #666">=2</span>, beta<span style="color: #666">=2</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>TY <span style="color: #666">=</span> reg<span style="color: #666">.</span>register()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Get registration parameters</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G, W <span style="color: #666">=</span> reg<span style="color: #666">.</span>get_registration_parameters()
+</code></pre></div>
 
         <p>Initialize the deformable registration algorithm.</p>
 
@@ -952,8 +1095,8 @@ Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 20
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.
-Defaults to <code>ALPHA</code>.</p>
+                <p>Regularization weight controlling the smoothness of deformation.
+Higher values result in smoother deformation. Default is <code>2</code>.</p>
               </div>
             </td>
             <td>
@@ -969,12 +1112,109 @@ Defaults to <code>ALPHA</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>???.
-Defaults to <code>BETA</code>.</p>
+                <p>Width of Gaussian kernel used in the non-rigid transformation.
+Controls the interaction between points. Default is <code>2</code>.</p>
               </div>
             </td>
             <td>
                   <code><span title="skeleton_refinement.deformable_registration.BETA">BETA</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>X</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Reference point set of shape <code>(N, D)</code> where <code>N</code> is number of points and <code>D</code> is dimension.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Point set to be aligned to <code>X</code>, of shape <code>(M, D)</code> where <code>M</code> is number of points.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>sigma2</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial variance of GMM. If <code>None</code>, it's computed from data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>max_iterations</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of iterations for the optimization algorithm.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tolerance</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Convergence threshold based on change in <code>sigma2</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>w</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Weight of the uniform distribution component, range <code>[0,1]</code>.
+Used to account for outliers. Default is <code>0</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -988,33 +1228,59 @@ Defaults to <code>BETA</code>.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>skeleton_refinement/deformable_registration.py</code></summary>
-                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, alpha<span style="color: #666">=</span>ALPHA, beta<span style="color: #666">=</span>BETA, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
+                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 95</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 96</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 97</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, alpha<span style="color: #666">=</span>ALPHA, beta<span style="color: #666">=</span>BETA, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the deformable registration algorithm.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    alpha : float, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `ALPHA`.</span>
+<span style="color: #BA2121; font-style: italic">        Regularization weight controlling the smoothness of deformation.</span>
+<span style="color: #BA2121; font-style: italic">        Higher values result in smoother deformation. Default is ``2``.</span>
 <span style="color: #BA2121; font-style: italic">    beta : float, optional</span>
-<span style="color: #BA2121; font-style: italic">        ???.</span>
-<span style="color: #BA2121; font-style: italic">        Defaults to `BETA`.</span>
+<span style="color: #BA2121; font-style: italic">        Width of Gaussian kernel used in the non-rigid transformation.</span>
+<span style="color: #BA2121; font-style: italic">        Controls the interaction between points. Default is ``2``.</span>
+<span style="color: #BA2121; font-style: italic">    X : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        Reference point set of shape ``(N, D)`` where ``N`` is number of points and ``D`` is dimension.</span>
+<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        Point set to be aligned to ``X``, of shape ``(M, D)`` where ``M`` is number of points.</span>
+<span style="color: #BA2121; font-style: italic">    sigma2 : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        Initial variance of GMM. If ``None``, it&#39;s computed from data.</span>
+<span style="color: #BA2121; font-style: italic">    max_iterations : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        Maximum number of iterations for the optimization algorithm.</span>
+<span style="color: #BA2121; font-style: italic">    tolerance : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        Convergence threshold based on change in `sigma2`.</span>
+<span style="color: #BA2121; font-style: italic">    w : float, optional</span>
+<span style="color: #BA2121; font-style: italic">        Weight of the uniform distribution component, range ``[0,1]``.</span>
+<span style="color: #BA2121; font-style: italic">        Used to account for outliers. Default is ``0``.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000">super</span>()<span style="color: #666">.</span><span style="color: #00F">__init__</span>(<span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs)
     <span style="color: #008000">self</span><span style="color: #666">.</span>alpha <span style="color: #666">=</span> ALPHA <span style="color: #008000; font-weight: bold">if</span> alpha <span style="color: #A2F; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span> <span style="color: #008000; font-weight: bold">else</span> alpha
@@ -1050,12 +1316,77 @@ Defaults to <code>BETA</code>.</p>
         <p>Retrieve the registration parameters <code>G</code> &amp; <code>W</code>.</p>
 
 
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Gaussian kernel matrix of shape <code>(M, M)</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Deformation matrix of shape <code>(M, D)</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>These parameters can be used to apply the learned transformation
+to other point sets using the formula: <code>Y_transformed = Y + G*W</code></p>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/deformable_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">82</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">83</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Retrieve the registration parameters `G` &amp; `W`.&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Retrieve the registration parameters `G` &amp; `W`.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        Gaussian kernel matrix of shape ``(M, M)``.</span>
+<span style="color: #BA2121; font-style: italic">    numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        Deformation matrix of shape ``(M, D)``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Notes</span>
+<span style="color: #BA2121; font-style: italic">    -----</span>
+<span style="color: #BA2121; font-style: italic">    These parameters can be used to apply the learned transformation</span>
+<span style="color: #BA2121; font-style: italic">    to other point sets using the formula: ``Y_transformed = Y + G*W``</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">self</span><span style="color: #666">.</span>G, <span style="color: #008000">self</span><span style="color: #666">.</span>W
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1074,23 +1405,121 @@ Defaults to <code>BETA</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>???</p>
+        <p>Apply the non-rigid transformation to a point cloud.</p>
+<p>The transformation is defined as: <code>T(Y) = Y + G*W</code>,
+where <code>G</code> is the Gaussian kernel and <code>W</code> is the deformation matrix.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Point cloud to transform of shape <code>(M, D)</code>.
+If <code>None</code>, transforms the stored point cloud <code>self.Y</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a> or None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transformed point cloud of the same shape as input <code>Y</code>.
+If <code>Y</code> is <code>None</code>, updates <code>self.TY</code> and returns <code>None</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/deformable_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>, Y<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;???&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">157</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>, Y<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Apply the non-rigid transformation to a point cloud.</span>
+
+<span style="color: #BA2121; font-style: italic">    The transformation is defined as: ``T(Y) = Y + G*W``,</span>
+<span style="color: #BA2121; font-style: italic">    where ``G`` is the Gaussian kernel and ``W`` is the deformation matrix.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray, optional</span>
+<span style="color: #BA2121; font-style: italic">        Point cloud to transform of shape ``(M, D)``.</span>
+<span style="color: #BA2121; font-style: italic">        If `None`, transforms the stored point cloud ``self.Y``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    numpy.ndarray or None</span>
+<span style="color: #BA2121; font-style: italic">        Transformed point cloud of the same shape as input ``Y``.</span>
+<span style="color: #BA2121; font-style: italic">        If ``Y`` is ``None``, updates ``self.TY`` and returns `None`.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #008000; font-weight: bold">if</span> Y <span style="color: #A2F; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span>:
+        <span style="color: #3D7B7B; font-style: italic"># Apply non-rigid transformation to the class&#39;s own point cloud</span>
+        <span style="color: #3D7B7B; font-style: italic"># TY = Y + G*W where G is the Gaussian kernel matrix and W is the deformation matrix</span>
         <span style="color: #008000">self</span><span style="color: #666">.</span>TY <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>Y <span style="color: #666">+</span> np<span style="color: #666">.</span>dot(<span style="color: #008000">self</span><span style="color: #666">.</span>G, <span style="color: #008000">self</span><span style="color: #666">.</span>W)
         <span style="color: #008000; font-weight: bold">return</span>
     <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #3D7B7B; font-style: italic"># Apply transformation to the input point cloud and return the result</span>
+        <span style="color: #3D7B7B; font-style: italic"># Returns the transformed points without modifying internal state</span>
         <span style="color: #008000; font-weight: bold">return</span> Y <span style="color: #666">+</span> np<span style="color: #666">.</span>dot(<span style="color: #008000">self</span><span style="color: #666">.</span>G, <span style="color: #008000">self</span><span style="color: #666">.</span>W)
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1109,20 +1538,57 @@ Defaults to <code>BETA</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>???</p>
+        <p>Update the transformation parameters.</p>
+<p>Solves for the deformation matrix W that minimizes the energy function.
+This is computed by solving the linear system: <code>(DP1*G + alpha*sigma2*I)*W = P*X - DP1*Y</code>,
+where:
+  - <code>DP1</code> is a diagonal matrix with elements of <code>P1</code>,
+  - <code>G</code> is the Gaussian kernel,
+  - <code>I</code> is the identity matrix,
+  - <code>P</code> is the posterior probability matrix.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/deformable_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;???&quot;&quot;&quot;</span>
-    A <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>diag(<span style="color: #008000">self</span><span style="color: #666">.</span>P1), <span style="color: #008000">self</span><span style="color: #666">.</span>G) <span style="color: #666">+</span> <span style="color: #008000">self</span><span style="color: #666">.</span>alpha <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">*</span> np<span style="color: #666">.</span>eye(<span style="color: #008000">self</span><span style="color: #666">.</span>M)
-    B <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(<span style="color: #008000">self</span><span style="color: #666">.</span>P, <span style="color: #008000">self</span><span style="color: #666">.</span>X) <span style="color: #666">-</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>diag(<span style="color: #008000">self</span><span style="color: #666">.</span>P1), <span style="color: #008000">self</span><span style="color: #666">.</span>Y)
-    <span style="color: #008000">self</span><span style="color: #666">.</span>W <span style="color: #666">=</span> np<span style="color: #666">.</span>linalg<span style="color: #666">.</span>solve(A, B)
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update the transformation parameters.</span>
+
+<span style="color: #BA2121; font-style: italic">    Solves for the deformation matrix W that minimizes the energy function.</span>
+<span style="color: #BA2121; font-style: italic">    This is computed by solving the linear system: ``(DP1*G + alpha*sigma2*I)*W = P*X - DP1*Y``,</span>
+<span style="color: #BA2121; font-style: italic">    where:</span>
+<span style="color: #BA2121; font-style: italic">      - ``DP1`` is a diagonal matrix with elements of ``P1``,</span>
+<span style="color: #BA2121; font-style: italic">      - ``G`` is the Gaussian kernel,</span>
+<span style="color: #BA2121; font-style: italic">      - ``I`` is the identity matrix,</span>
+<span style="color: #BA2121; font-style: italic">      - ``P`` is the posterior probability matrix.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Solve for optimal deformation matrix W in CPD algorithm</span>
+    <span style="color: #3D7B7B; font-style: italic"># A: Left side of linear equation system combining point correspondences and regularization</span>
+    A <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>diag(<span style="color: #008000">self</span><span style="color: #666">.</span>P1), <span style="color: #008000">self</span><span style="color: #666">.</span>G) <span style="color: #666">+</span> <span style="color: #008000">self</span><span style="color: #666">.</span>alpha <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">*</span> np<span style="color: #666">.</span>eye(<span style="color: #008000">self</span><span style="color: #666">.</span>M)  <span style="color: #3D7B7B; font-style: italic"># P1-weighted kernel matrix + regularization term</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># B: Right side of equation system representing the difference between points</span>
+    B <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(<span style="color: #008000">self</span><span style="color: #666">.</span>P, <span style="color: #008000">self</span><span style="color: #666">.</span>X) <span style="color: #666">-</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>diag(<span style="color: #008000">self</span><span style="color: #666">.</span>P1), <span style="color: #008000">self</span><span style="color: #666">.</span>Y)  <span style="color: #3D7B7B; font-style: italic"># P-weighted X points minus P1-weighted Y points</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Compute deformation matrix W by solving linear system AW = B</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>W <span style="color: #666">=</span> np<span style="color: #666">.</span>linalg<span style="color: #666">.</span>solve(A, B)  <span style="color: #3D7B7B; font-style: italic"># W determines how points in Y are transformed</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1140,35 +1606,68 @@ Defaults to <code>BETA</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>???</p>
+        <p>Update the variance (<code>sigma2</code>) of the Gaussian Mixture Model.</p>
+<p>Computes the weighted distance between the transformed <code>Y</code> (<code>TY</code>) and the
+reference point cloud <code>X</code>, normalized by the number of points and dimensions.
+The updated variance is used to evaluate convergence in the EM algorithm.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/deformable_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">73</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">80</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;???&quot;&quot;&quot;</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">184</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">185</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">197</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">198</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Update the variance (``sigma2``) of the Gaussian Mixture Model.</span>
+
+<span style="color: #BA2121; font-style: italic">    Computes the weighted distance between the transformed ``Y`` (``TY``) and the</span>
+<span style="color: #BA2121; font-style: italic">    reference point cloud ``X``, normalized by the number of points and dimensions.</span>
+<span style="color: #BA2121; font-style: italic">    The updated variance is used to evaluate convergence in the EM algorithm.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Store previous sigma2 value to calculate change later</span>
     qprev <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2
 
+    <span style="color: #3D7B7B; font-style: italic"># Calculate weighted sum of squared norms of X points: P^T * (X^2)</span>
     xPx <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>transpose(<span style="color: #008000">self</span><span style="color: #666">.</span>Pt1), np<span style="color: #666">.</span>sum(np<span style="color: #666">.</span>multiply(<span style="color: #008000">self</span><span style="color: #666">.</span>X, <span style="color: #008000">self</span><span style="color: #666">.</span>X), axis<span style="color: #666">=1</span>))
+    <span style="color: #3D7B7B; font-style: italic"># Calculate weighted sum of squared norms of transformed Y points: P1^T * (TY^2)</span>
     yPy <span style="color: #666">=</span> np<span style="color: #666">.</span>dot(np<span style="color: #666">.</span>transpose(<span style="color: #008000">self</span><span style="color: #666">.</span>P1), np<span style="color: #666">.</span>sum(np<span style="color: #666">.</span>multiply(<span style="color: #008000">self</span><span style="color: #666">.</span>TY, <span style="color: #008000">self</span><span style="color: #666">.</span>TY), axis<span style="color: #666">=1</span>))
+    <span style="color: #3D7B7B; font-style: italic"># Calculate trace of P * X * Y^T (cross-correlation term)</span>
     trPXY <span style="color: #666">=</span> np<span style="color: #666">.</span>sum(np<span style="color: #666">.</span>multiply(<span style="color: #008000">self</span><span style="color: #666">.</span>TY, np<span style="color: #666">.</span>dot(<span style="color: #008000">self</span><span style="color: #666">.</span>P, <span style="color: #008000">self</span><span style="color: #666">.</span>X)))
 
+    <span style="color: #3D7B7B; font-style: italic"># Update sigma2 using the formula from CPD algorithm:</span>
+    <span style="color: #3D7B7B; font-style: italic"># σ² = (xPx - 2*trPXY + yPy) / (Np * D)</span>
+    <span style="color: #3D7B7B; font-style: italic"># where Np is number of points and D is dimensionality</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> (xPx <span style="color: #666">-</span> <span style="color: #666">2</span> <span style="color: #666">*</span> trPXY <span style="color: #666">+</span> yPy) <span style="color: #666">/</span> (<span style="color: #008000">self</span><span style="color: #666">.</span>Np <span style="color: #666">*</span> <span style="color: #008000">self</span><span style="color: #666">.</span>D)
 
+    <span style="color: #3D7B7B; font-style: italic"># Prevent numerical issues by setting a minimum threshold for sigma2</span>
     <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">&lt;=</span> <span style="color: #666">0</span>:
         <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance <span style="color: #666">/</span> <span style="color: #666">10</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Calculate absolute change in sigma2 for convergence check</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>err <span style="color: #666">=</span> np<span style="color: #666">.</span>abs(<span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">-</span> qprev)
 </code></pre></div></td></tr></table></div>
             </details>
