@@ -1,30 +1,44 @@
-name: Conda packaging
+# GitHub workflow that builds and publishes conda packages to Anaconda.org when releases are published or manually triggered
+name: Build & Publish Conda packages
 
 on:
   # Automatic trigger on release
   release:
     types: [ published ]
-  # Allows you to run this workflow manually from the Actions tab
+  # Enables manual triggering from the Action tab
   workflow_dispatch:
 
 jobs:
   conda_build:
-    name: Build conda package
+    name: Build conda packages
     runs-on: ubuntu-latest
-    environment: anaconda
+    environment: anaconda  # Sets the required deployment environment (for secrets)
     defaults:
       run:
-        shell: bash -el {0}
+        shell: bash -el {0}   # Use bash login shell to ensure conda environments are activated properly
+
     steps:
+      # Step 1: Check out the repository code
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Step 2: Set up Miniconda environment
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-          python-version: "3.10"
+          auto-update-conda: true   # Ensure conda is updated to latest version
+          python-version: "3.10"    # Specify Python version for the environment
+
+      # Step 3: Build and upload the conda package with environment variable
       - name: Conda build
         run: |
+          # Install necessary tools for building and uploading packages
           conda install conda-build anaconda-client
+          
+          # Configure conda to automatically upload packages after building
           conda config --set anaconda_upload yes
+          
+          # Build package from recipe directory and upload to Anaconda.org
+          # Uses conda-forge channel for dependencies
+          # Specifies the user account and uses the token stored in GitHub secrets
           conda build conda/recipe/ -c conda-forge --user romi-eu --token ${{ secrets.ANACONDA_TOKEN }}
