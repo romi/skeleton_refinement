@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Point Cloud Registration using Expectation-Maximization
+"""
+## Point Cloud Registration using Expectation-Maximization
 
 This module implements the Expectation-Maximization algorithm for point cloud registration,
 providing a probabilistic approach to align 3D point sets with robust handling of noise and outliers.
 This is an abstract base class that should be implemented by specific registration methods.
 
-Key Features
-------------
+### Key Features
+
 - Probabilistic point cloud alignment using EM algorithm
 - Iterative refinement of transformation parameters
 - Automatic variance estimation for noise handling
 - Support for rigid and non-rigid transformations
 - Convergence control through iteration limits and tolerance settings
 
-Notes
------
-This is a part of the implementation of the stochastic registration algorithm based
-on the following paper:
-Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift", IEEE
-Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.
+### Notes
+
+This is a part of the implementation of the stochastic registration algorithm based on the following paper:
+Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
+_IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
+DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
 
 The library is based on the python implementation of the paper in ``pycpd`` package.
 """
@@ -48,12 +49,12 @@ class ExpectationMaximizationRegistration(object):
 
     Attributes
     ----------
-    X : numpy.ndarray, shape ``(N, D)``
-        Reference point cloud coordinates.
-    Y : numpy.ndarray, shape ``(M, D)``
-        Initial point cloud coordinates to optimize.
-    TY : numpy.ndarray, shape ``(M, D)``
-        Transformed/registered version of Y after optimization.
+    X : numpy.ndarray
+        Reference point cloud coordinates, shape ``(N, D)``.
+    Y : numpy.ndarray
+        Initial point cloud coordinates to optimize, shape ``(M, D)``.
+    TY : numpy.ndarray
+        Transformed/registered version of Y after optimization, shape ``(M, D)``.
     sigma2 : float
         Variance of the Gaussian Mixture Model (GMM), updated during registration.
     N : int
@@ -72,12 +73,12 @@ class ExpectationMaximizationRegistration(object):
         Current iteration number during registration process.
     err : float
         Current registration error/distance between point sets.
-    P : numpy.ndarray, shape ``(M, N)``
-        Posterior probability matrix of point correspondences.
-    Pt1 : numpy.ndarray, shape ``(N,)``
-        Column-wise sum of posterior probability matrix.
-    P1 : numpy.ndarray, shape ``(M,)``
-        Row-wise sum of posterior probability matrix.
+    P : numpy.ndarray
+        Posterior probability matrix of point correspondences, shape ``(M, N)``.
+    Pt1 : numpy.ndarray
+        Column-wise sum of posterior probability matrix, shape ``(N,)``.
+    P1 : numpy.ndarray
+        Row-wise sum of posterior probability matrix, shape ``(M,)``.
     Np : float
         Sum of all elements in the posterior probability matrix.
     q : float
@@ -86,6 +87,7 @@ class ExpectationMaximizationRegistration(object):
     Notes
     -----
     This is an abstract base class. Child classes must implement:
+
     - ``update_transform()``: Update transformation parameters
     - ``transform_point_cloud()``: Apply transformation to point cloud
     - ``update_variance()``: Update GMM variance
@@ -93,8 +95,9 @@ class ExpectationMaximizationRegistration(object):
 
     References
     ----------
-    Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift",
-    IEEE Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.
+    Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
+    _IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
+    DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
 
     See Also
     --------
@@ -106,10 +109,10 @@ class ExpectationMaximizationRegistration(object):
 
         Parameters
         ----------
-        X : numpy.ndarray, shape ``(N, D)``
-            Reference point cloud (target) of shape (n_points, dimensions).
-        Y : numpy.ndarray, shape ``(M, D)``
-            Point cloud to be aligned (source) of shape (n_points, dimensions).
+        X : numpy.ndarray
+            Reference point cloud (target), shape ``(N, D)``.
+        Y : numpy.ndarray
+            Point cloud to be aligned (source), shape ``(M, D)``.
         sigma2 : float or None, optional
             Initial variance of the Gaussian Mixture Model (GMM).
             If ``None``, it will be estimated from data.
@@ -268,6 +271,7 @@ class ExpectationMaximizationRegistration(object):
         """Perform one Expectation-Maximization iteration.
 
         This method runs a single EM iteration consisting of:
+
         1. Expectation step: compute point correspondences
         2. Maximization step: update transformation parameters
 
@@ -290,6 +294,7 @@ class ExpectationMaximizationRegistration(object):
         Notes
         -----
         Updates the following attributes:
+
         - P: Posterior probability matrix of point correspondences
         - Pt1: Column-wise sum of P
         - P1: Row-wise sum of P
@@ -338,8 +343,8 @@ class ExpectationMaximizationRegistration(object):
         to maximize the probability that the transformed source points were drawn
         from the GMM centered at the reference points.
 
-        This method calls the abstract methods that should be implemented by child
-        classes:
+        This method calls the abstract methods that should be implemented by child classes:
+
         1. update_transform()
         2. transform_point_cloud()
         3. update_variance()

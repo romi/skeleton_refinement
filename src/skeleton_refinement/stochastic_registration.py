@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Stochastic Point Cloud Registration
+"""
+## Stochastic Point Cloud Registration
 
 A module for aligning and registering 3D skeleton structures to point clouds using stochastic optimization techniques.
 It enables precise fitting of skeletal models to noisy or dense point cloud data, commonly used in 3D plant structure analysis.
 
-Key Features
-------------
+### Key Features
+
 - Non-rigid point set registration using Coherent Point Drift (CPD) algorithm
 - Optimized skeleton alignment to underlying point cloud structures
 - Minimum spanning tree construction from point sets using k-nearest neighbors
 - Configurable regularization parameters for controlling deformation smoothness
 - Support for handling outliers and varying point densities
 
-Usage Examples
---------------
+### Usage Examples
+
+```python
 >>> from skeleton_refinement.stochastic_registration import perform_registration, knn_mst
 >>> from skeleton_refinement.io import load_ply, load_json
 >>> # Load point cloud and skeleton data
@@ -25,6 +27,7 @@ Usage Examples
 >>> refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)
 >>> # Generate skeleton graph structure
 >>> skel_tree = knn_mst(refined_skel)
+```
 """
 
 import networkx as nx

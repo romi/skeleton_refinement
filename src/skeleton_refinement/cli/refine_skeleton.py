@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Skeleton Refinement Tool
+"""
+## Skeleton Refinement Tool
 
 A command-line utility for refining plant skeletons by aligning coarse skeleton structures with 3D point cloud data
 using a stochastic optimization framework. This tool helps improve the quality of plant representation by pushing
@@ -9,16 +10,23 @@ skeleton points toward their proper positions in the original point cloud.
 
 There are two parameters that control the quality of alignment, alpha and beta.
 
-Usage Examples
---------------
+### Usage Examples
+
+```shell
 # Basic usage with default parameters
 $ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json
 
 # Advanced usage with custom parameters
 $ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json --alpha 0.5 --beta 0.1 --knn_mst --n_nei 8
+```
 
-Author: Ayan Chaudhury
-INRIA team MOSAIC
+### Author
+
+Ayan Chaudhury,
+Inria team MOSAIC,
+Laboratoire Reproduction et Développement des Plantes,
+Univ. Lyon, ENS de Lyon, UCB Lyon 1, CNRS, INRA, Inria
+France
 """
 
 import argparse

@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Deformable Registration
+"""
+## Deformable Registration
 
 This module provides a non-rigid point set registration implementation using the Coherent Point Drift (CPD) algorithm, enabling accurate alignment of point clouds with non-linear deformations.
 
-Key Features
-------------
+### Key Features
+
 - Non-rigid point cloud alignment using Gaussian Mixture Models (GMM)
 - Coherent Point Drift algorithm implementation with customizable parameters
 - Efficient transformation calculation with regularization for smooth deformations
 - Support for arbitrary dimensional point clouds
 - Built on a generic Expectation-Maximization registration framework
 
-Notes
------
-This is a part of the implementation of the stochastic registration algorithm based
-on the following paper:
-Andriy Myronenko and Xubo Song, "Point set registration: Coherent Point drift", IEEE
-Transactions on Pattern Analysis and Machine Intelligence. 32 (2): 2262-2275, 2010.
+### Notes
+
+This is a part of the implementation of the stochastic registration algorithm based on the following paper:
+Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
+_IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
+DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
 
 The library is based on the python implementation of the paper in ``pycpd`` package.
 
-Usage Examples
---------------
+### Usage Examples
+
+```python
 >>> import numpy as np
 >>> from skeleton_refinement.deformable_registration import DeformableRegistration
 >>> # Create sample point sets
@@ -34,6 +36,7 @@ Usage Examples
 >>> TY = reg.register()
 >>> # Get registration parameters
 >>> G, W = reg.get_registration_parameters()
+```
 """
 
 import numpy as np
@@ -127,8 +130,8 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
         """Update the transformation parameters.
 
         Solves for the deformation matrix W that minimizes the energy function.
-        This is computed by solving the linear system: ``(DP1*G + alpha*sigma2*I)*W = P*X - DP1*Y``,
-        where:
+        This is computed by solving the linear system: ``(DP1*G + alpha*sigma2*I)*W = P*X - DP1*Y``, where:
+
           - ``DP1`` is a diagonal matrix with elements of ``P1``,
           - ``G`` is the Gaussian kernel,
           - ``I`` is the identity matrix,
