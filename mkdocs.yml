@@ -7,8 +7,8 @@ repo_url: https://github.com/romi/skeleton_refinement
 
 nav:
   - 'Home': index.md
-  - 'Reference API': reference/
   - dev.md
+  - 'Reference API': reference/
 
 
 theme:
@@ -69,7 +69,7 @@ plugins:
   - markdown-exec
   - gen-files:
       scripts:
-        - scripts/gen_ref_pages.py
+        - docs/assets/scripts/gen_ref_pages.py
   - literate-nav:
       nav_file: SUMMARY.md
   - section-index
@@ -80,6 +80,7 @@ plugins:
           import:
             - https://docs.python.org/3/objects.inv
             - https://numpy.org/doc/stable/objects.inv
+            - https://networkx.org/documentation/stable/objects.inv
           options:
             docstring_style: numpy
             docstring_section_style: table
@@ -88,7 +89,14 @@ plugins:
             show_docstring_examples: true
             show_docstring_raises: true
             signature_crossrefs: true
-
+            show_root_full_path: false
+            show_root_heading: false
+            show_category_heading: False
+            show_bases: true
+            separate_signature: true
+            show_symbol_type_heading: False
+            show_symbol_type_toc: true
+            inherited_members: false
 
 extra_css:
   - assets/css/extra.css
