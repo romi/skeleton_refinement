@@ -31,11 +31,9 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 """
 
 import networkx as nx
-import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 from skeleton_refinement.deformable_registration import DeformableRegistration
-from skeleton_refinement.utilities import initialize_sigma2
 
 
 def perform_registration(X, Y, **kwargs):
@@ -102,30 +100,19 @@ def perform_registration(X, Y, **kwargs):
     --------
     >>> from skeleton_refinement.stochastic_registration import perform_registration
     >>> from skeleton_refinement.io import load_ply, load_json
-    >>> pcd = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
-    >>> skel = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
+    >>> pcd = load_ply("tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
+    >>> skel = load_json("tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
     >>> # Perform stochastic optimization
     >>> refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)
-    >>> print(refined_skel.shape)
+    >>> print(skel.shape)
     """
     # Add input point sets to kwargs to pass to DeformableRegistration
     kwargs.update({'X': X, 'Y': Y})
 
     # Initialize the Coherent Point Drift registration object
     reg = DeformableRegistration(**kwargs)
-    # Perform initial transformation of the point cloud
-    reg.transform_point_cloud()
-
-    # If sigma2 (variance of GMM) is not provided, estimate it and run EM iterations
-    if reg.sigma2 is None:
-        # Initialize sigma2 based on current point sets
-        reg.sigma2 = initialize_sigma2(reg.X, reg.TY)
-        # Update objective function with new sigma2 value
-        # (q is the log-likelihood with regularization terms)
-        reg.q = -reg.err - reg.N * reg.D / 2 * np.log(reg.sigma2)
-        # Iteratively refine transformation until convergence or max iterations reached
-        while reg.iteration < reg.max_iterations and reg.err > reg.tolerance:
-            reg.iterate()  # Run one EM iteration
+    # Perform registration
+    reg.register()
 
     return reg.TY
 

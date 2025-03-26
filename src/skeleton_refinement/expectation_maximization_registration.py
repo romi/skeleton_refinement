@@ -27,6 +27,7 @@ The library is based on the python implementation of the paper in ``pycpd`` pack
 """
 
 import numpy as np
+from tqdm import tqdm
 
 from skeleton_refinement.utilities import initialize_sigma2
 
@@ -256,6 +257,9 @@ class ExpectationMaximizationRegistration(object):
         # Initialize negative log-likelihood (q) based on current error and variance
         self.q = -self.err - self.N * self.D / 2 * np.log(self.sigma2)
 
+        # Create progress bar
+        pbar = tqdm(total=self.max_iterations, desc="Registration")
+
         # Main EM loop - continue until convergence or max iterations
         while self.iteration < self.max_iterations and self.err > self.tolerance:
             # Run one iteration of Expectation-Maximization algorithm
@@ -264,8 +268,18 @@ class ExpectationMaximizationRegistration(object):
             if callable(callback):
                 kwargs = {'iteration': self.iteration, 'error': self.err, 'X': self.X, 'Y': self.TY}
                 callback(**kwargs)
+            # Update progress bar
+            pbar.update(1)
+            pbar.set_postfix({"error": f"{self.err:.6f}", 'tol.': f'{self.tolerance}'})
+            # If we've reached convergence, update to max to close the bar
+            if self.err <= self.tolerance:
+                pbar.n = self.max_iterations
+                pbar.set_postfix({"error": f"{self.err:.6f}/{self.tolerance}", "total n_iter": f"{self.iteration}"})
+                pbar.refresh()
 
-        return self.TY, self.get_registration_parameters()
+        # Close the progress bar
+        pbar.close()
+        return
 
     def iterate(self):
         """Perform one Expectation-Maximization iteration.
