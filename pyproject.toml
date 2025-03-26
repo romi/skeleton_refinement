@@ -11,10 +11,10 @@ dependencies = [
     "numpy",
     "plyfile",
 ]
-description = ""
+description = "Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework."
 readme = "README.md"
 requires-python = ">=3.8"
-license = { file = "LICENSE" }
+license = { 'text' = "GPL-3.0-or-later" }   # to replace by "GPL-3.0-or-later" only in next release, pending deprecation
 authors = [
     { name = "Ayan Chaudhury", email = "ayanchaudhury.cs@gmail.com" },
     { name = "Christophe Godin", email = "christophe.godin@inria.fr" },
@@ -25,23 +25,30 @@ maintainers = [
 keywords = [
     "Robotics for Microfarms",
     "ROMI",
-    "skeleton",
+    "Skeleton",
+    "Point-cloud",
+    "Stochastic Optimization",
+    "Gaussian Mixture Models",
+    "Expectation Maximization",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)"
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
 ]
 
 [project.scripts]
 refine_skeleton = "skeleton_refinement.cli.refine_skeleton:main"
 
 [project.urls]
-Homepage = "https://romi-project.eu/"
-Documentation = "https://docs.romi-project.eu/plant_imager/"
-Repository = "https://github.com/romi/skeleton_refinement"
-Issues = "https://github.com/romi/skeleton_refinement/issues"
+homepage = "https://romi-project.eu/"
+documentation = "https://docs.romi-project.eu/plant_imager/"
+source = "https://github.com/romi/skeleton_refinement"
+issues = "https://github.com/romi/skeleton_refinement/issues"
 
 [project.optional-dependencies]
 doc = [

@@ -1,12 +1,13 @@
 # Template for generating Conda package metadata YAML files
 
-{% set package_path = "../../src/"%}  # Define path to package directory
+{% set package_path = "../../"%}  # Define path to package directory
 {% set pyproject = load_file_data(package_path + '/pyproject.toml', 'toml', from_recipe_dir=True) %}  # Load pyproject.toml content
 {% set project = pyproject.get('project', {}) %}  # Extract project metadata
 {% set deps = project.get('dependencies', []) %}  # Get package dependencies
 {% set urls = project.get('urls', {}) %}  # Get URLs from project metadata
 {% set build_system = pyproject.get('build-system', {}) %}  # Extract build-system info
 {% set build_requires = build_system.get('requires', []) %}  # Get build requirements
+{% set scripts = project.get('scripts', {}) %}  # Get CLI script names
 
 # References for conda-build metadata and Jinja context functionality
 # https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#loading-data-from-other-files
@@ -14,8 +15,8 @@
 # Then search for the `load_file_data` function.
 
 package:
-  name: {{ project.get('name') }}
-  version: {{ project.get('version') }}
+  name: {{ project.get('name') }}  # Package name from pyproject.toml
+  version: {{ project.get('version') }}  # Version from pyproject.toml
 
 source:
   path: {{ package_path }}  # Local path to package source code
@@ -41,10 +42,12 @@ test:
   imports:
     - {{ project.get('name') }}  # test the import of the library
   commands:
-    - refine_skeleton -h
+    {% for script_name in scripts %}
+    - {{ script_name }} -h  # Test CLI help option for each script
+    {% endfor %}
 
 about:
   home: {{ urls.get('homepage', '') }}  # Project homepage
   summary: {{ project.get('description', '') }}  # Package description
   dev_url: {{ urls.get('source', '') }}  # Repository URL
-  license: GPL-3.0-or-later  # License type
+  license: {{ project.get('license', {}).get('text', '') }}  # License type
