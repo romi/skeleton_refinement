@@ -1,8 +1,12 @@
 # Skeleton Refinement
 
-[![Anaconda-Server Badge](https://anaconda.org/romi-eu/skeleton_refinement/badges/version.svg)](https://anaconda.org/romi-eu/skeleton_refinement)
-[![Anaconda-Server Badge](https://anaconda.org/romi-eu/skeleton_refinement/badges/platforms.svg)](https://anaconda.org/romi-eu/skeleton_refinement)
-[![Anaconda-Server Badge](https://anaconda.org/romi-eu/skeleton_refinement/badges/license.svg)](https://anaconda.org/romi-eu/skeleton_refinement)
+[![Licence](https://img.shields.io/github/license/romi/skeleton_refinement?color=lightgray)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Python Version](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fromi%2Fskeleton_refinement%2Frefs%2Fheads%2Fmain%2Fpyproject.toml&logo=python&logoColor=white)]()
+[![PyPI - Version](https://img.shields.io/pypi/v/skeleton_refinement?logo=pypi&logoColor=white)](https://pypi.org/project/skeleton_refinement/)
+[![Conda - Version](https://img.shields.io/conda/vn/romi-eu/skeleton_refinement?logo=anaconda&logoColor=white&label=romi-eu&color=%2344A833)](https://anaconda.org/romi-eu/skeleton_refinement)
+[![GitHub branch check runs](https://img.shields.io/github/check-runs/romi/skeleton_refinement/main)](https://github.com/romi/skeleton_refinement)
+
+[![ROMI_logo](docs/assets/images/ROMI_logo_green.svg)](https://romi-project.eu)
 
 The documentation of the _Plant Imager_ project can be found here: https://docs.romi-project.eu/plant_imager/
 
