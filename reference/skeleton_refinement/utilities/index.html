@@ -673,6 +673,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.estimate_sigma2_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;estimate_sigma2_memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities.gaussian_kernel" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;gaussian_kernel
@@ -682,9 +691,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.get_available_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;get_available_memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.human_readable_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;human_readable_size
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities.initialize_sigma2" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.initialize_sigma2_fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2_fast
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2_mem_efficient
     </span>
   </a>
   
@@ -778,6 +823,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.estimate_sigma2_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;estimate_sigma2_memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities.gaussian_kernel" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;gaussian_kernel
@@ -787,9 +841,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.get_available_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;get_available_memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.human_readable_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;human_readable_size
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities.initialize_sigma2" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.initialize_sigma2_fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2_fast
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;initialize_sigma2_mem_efficient
     </span>
   </a>
   
@@ -850,6 +940,201 @@
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="skeleton_refinement.utilities.estimate_sigma2_memory" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">estimate_sigma2_memory</span>
+
+
+<a href="#skeleton_refinement.utilities.estimate_sigma2_memory" class="headerlink" title="Permanent link">Link</a></h2>
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>estimate_sigma2_memory(X, Y)
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate the estimated memory usage for sigma squared computation.</p>
+<p>This function estimates the required memory for the computation of sigma squared
+based on given input arrays. The memory estimation accounts for the creation of
+intermediate arrays (<code>XX</code>, <code>YY</code>, <code>diff</code>, and <code>err</code>), which are simultaneously
+needed during computations.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>X</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The first input array of shape (N, D), where N is the number of samples and
+D is the number of dimensions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The second input array of shape (M, _), where M is the number of samples.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The estimated number of bytes required for the computation of sigma squared.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">numpy</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">np</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> estimate_sigma2_memory
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> human_readable_size
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create large point sets</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>X <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">100000</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># a point-cloud of 100,000 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>Y <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">1000</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># a skeleton of 1,000 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>req_mem <span style="color: #666">=</span> estimate_sigma2_memory(X, Y)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(req_mem)
+<span style="color: #717171">9600000000</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(human_readable_size(req_mem))
+<span style="color: #717171">8.94 GB</span>
+</code></pre></div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">20</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">22</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">23</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">24</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">25</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">26</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">27</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">28</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">29</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">30</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">31</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">32</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">33</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">34</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">estimate_sigma2_memory</span>(X, Y):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Calculate the estimated memory usage for sigma squared computation.</span>
+
+<span style="color: #BA2121; font-style: italic">    This function estimates the required memory for the computation of sigma squared</span>
+<span style="color: #BA2121; font-style: italic">    based on given input arrays. The memory estimation accounts for the creation of</span>
+<span style="color: #BA2121; font-style: italic">    intermediate arrays (`XX`, `YY`, `diff`, and `err`), which are simultaneously</span>
+<span style="color: #BA2121; font-style: italic">    needed during computations.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    X : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        The first input array of shape (N, D), where N is the number of samples and</span>
+<span style="color: #BA2121; font-style: italic">        D is the number of dimensions.</span>
+<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        The second input array of shape (M, _), where M is the number of samples.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    int</span>
+<span style="color: #BA2121; font-style: italic">        The estimated number of bytes required for the computation of sigma squared.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; import numpy as np</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import estimate_sigma2_memory</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import human_readable_size</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Create large point sets</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; X = np.random.rand(100000, 3)  # a point-cloud of 100,000 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; Y = np.random.rand(1000, 3)  # a skeleton of 1,000 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; req_mem = estimate_sigma2_memory(X, Y)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(req_mem)</span>
+<span style="color: #BA2121; font-style: italic">    9600000000</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(human_readable_size(req_mem))</span>
+<span style="color: #BA2121; font-style: italic">    8.94 GB</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    N, D <span style="color: #666">=</span> X<span style="color: #666">.</span>shape
+    M, _ <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape
+    dtype_byte <span style="color: #666">=</span> X<span style="color: #666">.</span>itemsize
+    <span style="color: #3D7B7B; font-style: italic"># Multiply by 4 since we need to create 4 arrays (`XX`, `YY`, `diff` &amp; `err`)</span>
+    n_bytes <span style="color: #666">=</span> dtype_byte <span style="color: #666">*</span> M <span style="color: #666">*</span> N <span style="color: #666">*</span> D <span style="color: #666">*</span> <span style="color: #666">4</span>
+    <span style="color: #008000; font-weight: bold">return</span> n_bytes
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
@@ -969,72 +1254,72 @@ compute all pairwise distances without explicit loops.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 83</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 84</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 85</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 86</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 87</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 88</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 89</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 92</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 93</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 94</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 95</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 96</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 97</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">gaussian_kernel</span>(Y, beta):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">283</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">284</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">285</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">286</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">287</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">288</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">289</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">290</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">291</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">292</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">293</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">294</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">295</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">296</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">297</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">298</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">299</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">300</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">301</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">302</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">303</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">304</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">305</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">306</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">307</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">308</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">309</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">310</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">311</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">312</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">313</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">314</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">315</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">316</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">317</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">318</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">319</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">320</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">321</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">322</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">323</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">324</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">325</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">326</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">327</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">328</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">329</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">330</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">331</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">332</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">333</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">334</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">335</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">336</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">337</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">338</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">339</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">340</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">341</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">342</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">343</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">344</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">345</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">346</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">347</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">348</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">gaussian_kernel</span>(Y, beta):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Compute the Gaussian kernel matrix for a point set.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function calculates a Gaussian kernel matrix (Gram matrix) where each element</span>
@@ -1109,12 +1394,436 @@ compute all pairwise distances without explicit loops.</p>
 <div class="doc doc-object doc-function">
 
 
+<h2 id="skeleton_refinement.utilities.get_available_memory" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_available_memory</span>
+
+
+<a href="#skeleton_refinement.utilities.get_available_memory" class="headerlink" title="Permanent link">Link</a></h2>
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>get_available_memory()
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Gets the amount of available physical memory in bytes using the <code>psutil</code> library.</p>
+<p>This function utilizes the <code>psutil</code> library to retrieve the current available physical
+memory on the system. It returns the number of bytes of memory that can be allocated
+for new or existing processes without causing pagefile swapping.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The amount of available memory in bytes.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> get_available_memory
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> human_readable_size
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>free_mem <span style="color: #666">=</span> get_available_memory()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(free_mem)
+<span style="color: #717171">7247376384</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(human_readable_size(free_mem))
+<span style="color: #717171">6.75 GB</span>
+</code></pre></div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">73</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">80</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">81</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">82</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">83</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">85</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">86</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">87</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_available_memory</span>():
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Gets the amount of available physical memory in bytes using the `psutil` library.</span>
+
+<span style="color: #BA2121; font-style: italic">    This function utilizes the `psutil` library to retrieve the current available physical</span>
+<span style="color: #BA2121; font-style: italic">    memory on the system. It returns the number of bytes of memory that can be allocated</span>
+<span style="color: #BA2121; font-style: italic">    for new or existing processes without causing pagefile swapping.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    int</span>
+<span style="color: #BA2121; font-style: italic">        The amount of available memory in bytes.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import get_available_memory</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import human_readable_size</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; free_mem = get_available_memory()</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(free_mem)</span>
+<span style="color: #BA2121; font-style: italic">    7247376384</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(human_readable_size(free_mem))</span>
+<span style="color: #BA2121; font-style: italic">    6.75 GB</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">psutil</span>
+    <span style="color: #008000; font-weight: bold">return</span> psutil<span style="color: #666">.</span>virtual_memory()<span style="color: #666">.</span>available
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="skeleton_refinement.utilities.human_readable_size" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">human_readable_size</span>
+
+
+<a href="#skeleton_refinement.utilities.human_readable_size" class="headerlink" title="Permanent link">Link</a></h2>
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>human_readable_size(bytes_value)
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Convert a size in bytes to a human-readable string with appropriate unit.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>bytes_value</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Size in bytes</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Human-readable string with size and unit (B, KB, MB, GB, TB)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 92</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 93</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 94</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 95</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 96</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 97</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 98</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 99</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">100</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">101</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">102</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">106</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">107</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">108</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">109</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">110</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">111</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">human_readable_size</span>(bytes_value):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Convert a size in bytes to a human-readable string with appropriate unit.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    bytes_value : int</span>
+<span style="color: #BA2121; font-style: italic">        Size in bytes</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    str</span>
+<span style="color: #BA2121; font-style: italic">        Human-readable string with size and unit (B, KB, MB, GB, TB)</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    <span style="color: #3D7B7B; font-style: italic"># Define size units</span>
+    units <span style="color: #666">=</span> [<span style="color: #BA2121">&#39;B&#39;</span>, <span style="color: #BA2121">&#39;KB&#39;</span>, <span style="color: #BA2121">&#39;MB&#39;</span>, <span style="color: #BA2121">&#39;GB&#39;</span>, <span style="color: #BA2121">&#39;TB&#39;</span>, <span style="color: #BA2121">&#39;PB&#39;</span>]
+
+    <span style="color: #3D7B7B; font-style: italic"># Use logarithmic approach to determine the appropriate unit</span>
+    <span style="color: #008000; font-weight: bold">if</span> bytes_value <span style="color: #666">==</span> <span style="color: #666">0</span>:
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&quot;0 B&quot;</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Find the appropriate unit</span>
+    unit_index <span style="color: #666">=</span> <span style="color: #666">0</span>
+    <span style="color: #008000; font-weight: bold">while</span> bytes_value <span style="color: #666">&gt;=</span> <span style="color: #666">1024</span> <span style="color: #A2F; font-weight: bold">and</span> unit_index <span style="color: #666">&lt;</span> <span style="color: #008000">len</span>(units) <span style="color: #666">-</span> <span style="color: #666">1</span>:
+        bytes_value <span style="color: #666">/=</span> <span style="color: #666">1024</span>
+        unit_index <span style="color: #666">+=</span> <span style="color: #666">1</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Format with 2 decimal places if not in bytes</span>
+    <span style="color: #008000; font-weight: bold">if</span> unit_index <span style="color: #666">==</span> <span style="color: #666">0</span>:
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">f&quot;</span><span style="color: #A45A77; font-weight: bold">{</span><span style="color: #008000">int</span>(bytes_value)<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121"> </span><span style="color: #A45A77; font-weight: bold">{</span>units[unit_index]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>
+    <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">f&quot;</span><span style="color: #A45A77; font-weight: bold">{</span>bytes_value<span style="color: #A45A77; font-weight: bold">:</span><span style="color: #BA2121">.2f</span><span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121"> </span><span style="color: #A45A77; font-weight: bold">{</span>units[unit_index]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h2 id="skeleton_refinement.utilities.initialize_sigma2" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">initialize_sigma2</span>
 
 
 <a href="#skeleton_refinement.utilities.initialize_sigma2" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2(X, Y)
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2(X, Y, batch_size<span style="color: #666">=1000</span>)
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the variance parameter for point set registration algorithms.</p>
+<p>Selects and initializes the appropriate method for computing <code>sigma2</code> based on
+the available system memory and the estimated memory requirement for processing
+input data. Switches to a memory-efficient method if the required memory
+exceeds the available system memory.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>X</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/array.html#module-array">array</a> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Input data, typically representing the feature matrix.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/array.html#module-array">array</a> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target data, typically representing an outcome or dependent variable.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>batch_size</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Batch size for the memory-efficient implementation.
+Defaults to <code>1000</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The initial variance value, calculated as the mean squared distance
+between all point pairs from <code>X</code> and <code>Y</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">251</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">252</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">253</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">254</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">255</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">256</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">257</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">258</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">259</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">260</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">261</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">262</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">263</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">264</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">265</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">266</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">267</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">268</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">269</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">270</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">271</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">272</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">273</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">274</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">275</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">276</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">277</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">278</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">279</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">280</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2</span>(X, Y, batch_size<span style="color: #666">=1000</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the variance parameter for point set registration algorithms.</span>
+
+<span style="color: #BA2121; font-style: italic">    Selects and initializes the appropriate method for computing `sigma2` based on</span>
+<span style="color: #BA2121; font-style: italic">    the available system memory and the estimated memory requirement for processing</span>
+<span style="color: #BA2121; font-style: italic">    input data. Switches to a memory-efficient method if the required memory</span>
+<span style="color: #BA2121; font-style: italic">    exceeds the available system memory.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    X : array-like</span>
+<span style="color: #BA2121; font-style: italic">        Input data, typically representing the feature matrix.</span>
+<span style="color: #BA2121; font-style: italic">    Y : array-like</span>
+<span style="color: #BA2121; font-style: italic">        Target data, typically representing an outcome or dependent variable.</span>
+<span style="color: #BA2121; font-style: italic">    batch_size : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        Batch size for the memory-efficient implementation.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``1000``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    float</span>
+<span style="color: #BA2121; font-style: italic">        The initial variance value, calculated as the mean squared distance</span>
+<span style="color: #BA2121; font-style: italic">        between all point pairs from `X` and `Y`.</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    required_memory <span style="color: #666">=</span> estimate_sigma2_memory(X, Y)
+    available_memory <span style="color: #666">=</span> get_available_memory()
+    <span style="color: #008000; font-weight: bold">if</span> required_memory <span style="color: #666">&lt;</span> available_memory:
+        <span style="color: #008000; font-weight: bold">return</span> initialize_sigma2_fast(X, Y)
+    <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #008000; font-weight: bold">return</span> initialize_sigma2_mem_efficient(X, Y, batch_size<span style="color: #666">=</span>batch_size)
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="skeleton_refinement.utilities.initialize_sigma2_fast" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">initialize_sigma2_fast</span>
+
+
+<a href="#skeleton_refinement.utilities.initialize_sigma2_fast" class="headerlink" title="Permanent link">Link</a></h2>
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2_fast(X, Y)
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1208,7 +1917,7 @@ to efficiently calculate distances between all point pairs.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">numpy</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">np</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> initialize_sigma2
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> initialize_sigma2_fast
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>X <span style="color: #666">=</span> np<span style="color: #666">.</span>array([[<span style="color: #666">0</span>, <span style="color: #666">0</span>, <span style="color: #666">0</span>], [<span style="color: #666">1</span>, <span style="color: #666">0</span>, <span style="color: #666">0</span>], [<span style="color: #666">0</span>, <span style="color: #666">1</span>, <span style="color: #666">0</span>]])  <span style="color: #3D7B7B; font-style: italic"># 3 points in 3D</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>Y <span style="color: #666">=</span> np<span style="color: #666">.</span>array([[<span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>], [<span style="color: #666">1.1</span>, <span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>]])  <span style="color: #3D7B7B; font-style: italic"># 2 points in 3D</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sigma2 <span style="color: #666">=</span> initialize_sigma2(X, Y)
@@ -1219,67 +1928,67 @@ to efficiently calculate distances between all point pairs.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">20</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">22</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">23</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">24</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">25</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">26</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">27</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">28</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">29</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">30</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">31</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">32</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">33</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">34</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">35</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">36</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">37</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">38</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">39</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">40</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">41</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">42</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">43</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">44</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">45</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">46</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">47</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">48</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">49</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">50</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">51</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">52</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">53</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">66</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">67</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">68</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">69</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">70</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">71</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">72</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">73</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">78</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">79</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">80</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2</span>(X, Y):
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">137</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">141</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">142</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">143</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">144</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">148</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">149</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">150</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">151</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">152</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">153</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">154</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">155</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">156</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">157</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">158</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">159</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">160</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">161</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2_fast</span>(X, Y):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the variance parameter for point set registration algorithms.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function calculates the initial variance (sigma squared) between two point sets,</span>
@@ -1312,7 +2021,7 @@ to efficiently calculate distances between all point pairs.</p>
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; import numpy as np</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import initialize_sigma2</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import initialize_sigma2_fast</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; X = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0]])  # 3 points in 3D</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; Y = np.array([[0.1, 0.1, 0.1], [1.1, 0.1, 0.1]])  # 2 points in 3D</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sigma2 = initialize_sigma2(X, Y)</span>
@@ -1340,6 +2049,264 @@ to efficiently calculate distances between all point pairs.</p>
     <span style="color: #3D7B7B; font-style: italic"># Return the mean squared distance between all point pairs</span>
     <span style="color: #3D7B7B; font-style: italic"># Normalized by dimension D and total number of point pairs (M*N)</span>
     <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666">.</span>sum(err) <span style="color: #666">/</span> (D <span style="color: #666">*</span> M <span style="color: #666">*</span> N)
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">initialize_sigma2_mem_efficient</span>
+
+
+<a href="#skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="headerlink" title="Permanent link">Link</a></h2>
+<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2_mem_efficient(X, Y, batch_size<span style="color: #666">=1000</span>)
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Memory-efficient version of initialize_sigma2 that processes the point cloud in batches.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>X</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>First point set of shape <code>(N, D)</code> where <code>N</code> is the number of point-cloud points and
+<code>D</code> is the dimensionality of each point.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>Y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Second point set of shape <code>(M, D)</code> where <code>M</code> is the number of skeleton points and
+<code>D</code> is the dimensionality of each point.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>batch_size</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The size of the batch to process at a time, that is, the number of point-cloud points.
+Defaults to <code>1000</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The initial variance value, calculated as the mean squared distance
+between all point pairs from <code>X</code> and <code>Y</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">numpy</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">np</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> initialize_sigma2_mem_efficient
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.utilities</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> estimate_sigma2_memory
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create sample point sets</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>X <span style="color: #666">=</span> np<span style="color: #666">.</span>array([[<span style="color: #666">0</span>, <span style="color: #666">0</span>, <span style="color: #666">0</span>], [<span style="color: #666">1</span>, <span style="color: #666">0</span>, <span style="color: #666">0</span>], [<span style="color: #666">0</span>, <span style="color: #666">1</span>, <span style="color: #666">0</span>]])  <span style="color: #3D7B7B; font-style: italic"># 3 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>Y <span style="color: #666">=</span> np<span style="color: #666">.</span>array([[<span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>], [<span style="color: #666">1.1</span>, <span style="color: #666">0.1</span>, <span style="color: #666">0.1</span>]])  <span style="color: #3D7B7B; font-style: italic"># 2 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sigma2 <span style="color: #666">=</span> initialize_sigma2_mem_efficient(X, Y)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;</span><span style="color: #A45A77; font-weight: bold">{</span>sigma2<span style="color: #A45A77; font-weight: bold">:</span><span style="color: #BA2121">.6f</span><span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #717171">0.276667</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create large point sets</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>X <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">100000</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># a point-cloud of 100,000 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>Y <span style="color: #666">=</span> np<span style="color: #666">.</span>random<span style="color: #666">.</span>rand(<span style="color: #666">1000</span>, <span style="color: #666">3</span>)  <span style="color: #3D7B7B; font-style: italic"># a skeleton of 1,000 points in 3D</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sigma2 <span style="color: #666">=</span> initialize_sigma2_mem_efficient(X, Y)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;</span><span style="color: #A45A77; font-weight: bold">{</span>sigma2<span style="color: #A45A77; font-weight: bold">:</span><span style="color: #BA2121">.6f</span><span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #717171">0.165825</span>
+</code></pre></div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">197</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">198</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">203</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">227</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">228</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">229</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">230</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">231</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">232</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">233</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">234</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">235</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">236</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">237</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">238</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">239</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">240</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">241</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">242</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">243</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">244</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">245</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">246</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">247</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">248</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">initialize_sigma2_mem_efficient</span>(X, Y, batch_size<span style="color: #666">=1000</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Memory-efficient version of initialize_sigma2 that processes the point cloud in batches.</span>
+
+<span style="color: #BA2121; font-style: italic">    Parameters</span>
+<span style="color: #BA2121; font-style: italic">    ----------</span>
+<span style="color: #BA2121; font-style: italic">    X : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        First point set of shape ``(N, D)`` where ``N`` is the number of point-cloud points and</span>
+<span style="color: #BA2121; font-style: italic">        ``D`` is the dimensionality of each point.</span>
+<span style="color: #BA2121; font-style: italic">    Y : numpy.ndarray</span>
+<span style="color: #BA2121; font-style: italic">        Second point set of shape ``(M, D)`` where ``M`` is the number of skeleton points and</span>
+<span style="color: #BA2121; font-style: italic">        ``D`` is the dimensionality of each point.</span>
+<span style="color: #BA2121; font-style: italic">    batch_size : int, optional</span>
+<span style="color: #BA2121; font-style: italic">        The size of the batch to process at a time, that is, the number of point-cloud points.</span>
+<span style="color: #BA2121; font-style: italic">        Defaults to ``1000``.</span>
+
+<span style="color: #BA2121; font-style: italic">    Returns</span>
+<span style="color: #BA2121; font-style: italic">    -------</span>
+<span style="color: #BA2121; font-style: italic">    float</span>
+<span style="color: #BA2121; font-style: italic">        The initial variance value, calculated as the mean squared distance</span>
+<span style="color: #BA2121; font-style: italic">        between all point pairs from `X` and `Y`.</span>
+
+<span style="color: #BA2121; font-style: italic">    Examples</span>
+<span style="color: #BA2121; font-style: italic">    --------</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; import numpy as np</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import initialize_sigma2_mem_efficient</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.utilities import estimate_sigma2_memory</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Create sample point sets</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; X = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0]])  # 3 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; Y = np.array([[0.1, 0.1, 0.1], [1.1, 0.1, 0.1]])  # 2 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sigma2 = initialize_sigma2_mem_efficient(X, Y)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;{sigma2:.6f}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    0.276667</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Create large point sets</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; X = np.random.rand(100000, 3)  # a point-cloud of 100,000 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; Y = np.random.rand(1000, 3)  # a skeleton of 1,000 points in 3D</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sigma2 = initialize_sigma2_mem_efficient(X, Y)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;{sigma2:.6f}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    0.165825</span>
+<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+    N, D <span style="color: #666">=</span> X<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># N = number of points in X, D = dimensionality of points</span>
+    M, _ <span style="color: #666">=</span> Y<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># M = number of points in Y</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Initialize sum of squared differences</span>
+    sum_sq_diff <span style="color: #666">=</span> <span style="color: #666">0.0</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Process X points in batches to reduce memory usage</span>
+    batch_size <span style="color: #666">=</span> <span style="color: #008000">min</span>(batch_size, N)  <span style="color: #3D7B7B; font-style: italic"># Adjust batch size based on available memory</span>
+
+    <span style="color: #008000; font-weight: bold">for</span> i <span style="color: #A2F; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666">0</span>, N, batch_size):
+        batch_end <span style="color: #666">=</span> <span style="color: #008000">min</span>(i <span style="color: #666">+</span> batch_size, N)
+        batch_X <span style="color: #666">=</span> X[i:batch_end]
+
+        <span style="color: #3D7B7B; font-style: italic"># For each point in Y, compute distance to all points in the current X batch</span>
+        <span style="color: #008000; font-weight: bold">for</span> j <span style="color: #A2F; font-weight: bold">in</span> <span style="color: #008000">range</span>(M):
+            <span style="color: #3D7B7B; font-style: italic"># Get current Y point and reshape to (1, D) for broadcasting</span>
+            y_point <span style="color: #666">=</span> Y[j]<span style="color: #666">.</span>reshape(<span style="color: #666">1</span>, D)
+
+            <span style="color: #3D7B7B; font-style: italic"># Calculate squared distances between all batch_X points and this Y point</span>
+            diff <span style="color: #666">=</span> batch_X <span style="color: #666">-</span> y_point
+            sum_sq_diff <span style="color: #666">+=</span> np<span style="color: #666">.</span>sum(diff <span style="color: #666">*</span> diff)
+
+    <span style="color: #3D7B7B; font-style: italic"># Return the mean squared distance</span>
+    <span style="color: #008000; font-weight: bold">return</span> sum_sq_diff <span style="color: #666">/</span> (D <span style="color: #666">*</span> M <span style="color: #666">*</span> N)
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

@@ -1055,7 +1055,20 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">133</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">134</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">135</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">136</span>
@@ -1137,20 +1150,7 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">227</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">228</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function constructs a k-nearest neighbors graph from the input skeleton points</span>
@@ -1451,17 +1451,19 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(refined_skel<span style="color: #666">.</span>shape)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(skel<span style="color: #666">.</span>shape)
 </code></pre></div>
 
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 41</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 39</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 40</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 41</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 42</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 43</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 44</span>
@@ -1537,20 +1539,7 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid</span>
@@ -1614,30 +1603,19 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import perform_registration</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply, load_json</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Perform stochastic optimization</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(refined_skel.shape)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(skel.shape)</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #3D7B7B; font-style: italic"># Add input point sets to kwargs to pass to DeformableRegistration</span>
     kwargs<span style="color: #666">.</span>update({<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
 
     <span style="color: #3D7B7B; font-style: italic"># Initialize the Coherent Point Drift registration object</span>
     reg <span style="color: #666">=</span> DeformableRegistration(<span style="color: #666">**</span>kwargs)
-    <span style="color: #3D7B7B; font-style: italic"># Perform initial transformation of the point cloud</span>
-    reg<span style="color: #666">.</span>transform_point_cloud()
-
-    <span style="color: #3D7B7B; font-style: italic"># If sigma2 (variance of GMM) is not provided, estimate it and run EM iterations</span>
-    <span style="color: #008000; font-weight: bold">if</span> reg<span style="color: #666">.</span>sigma2 <span style="color: #A2F; font-weight: bold">is</span> <span style="color: #008000; font-weight: bold">None</span>:
-        <span style="color: #3D7B7B; font-style: italic"># Initialize sigma2 based on current point sets</span>
-        reg<span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> initialize_sigma2(reg<span style="color: #666">.</span>X, reg<span style="color: #666">.</span>TY)
-        <span style="color: #3D7B7B; font-style: italic"># Update objective function with new sigma2 value</span>
-        <span style="color: #3D7B7B; font-style: italic"># (q is the log-likelihood with regularization terms)</span>
-        reg<span style="color: #666">.</span>q <span style="color: #666">=</span> <span style="color: #666">-</span>reg<span style="color: #666">.</span>err <span style="color: #666">-</span> reg<span style="color: #666">.</span>N <span style="color: #666">*</span> reg<span style="color: #666">.</span>D <span style="color: #666">/</span> <span style="color: #666">2</span> <span style="color: #666">*</span> np<span style="color: #666">.</span>log(reg<span style="color: #666">.</span>sigma2)
-        <span style="color: #3D7B7B; font-style: italic"># Iteratively refine transformation until convergence or max iterations reached</span>
-        <span style="color: #008000; font-weight: bold">while</span> reg<span style="color: #666">.</span>iteration <span style="color: #666">&lt;</span> reg<span style="color: #666">.</span>max_iterations <span style="color: #A2F; font-weight: bold">and</span> reg<span style="color: #666">.</span>err <span style="color: #666">&gt;</span> reg<span style="color: #666">.</span>tolerance:
-            reg<span style="color: #666">.</span>iterate()  <span style="color: #3D7B7B; font-style: italic"># Run one EM iteration</span>
+    <span style="color: #3D7B7B; font-style: italic"># Perform registration</span>
+    reg<span style="color: #666">.</span>register()
 
     <span style="color: #008000; font-weight: bold">return</span> reg<span style="color: #666">.</span>TY
 </code></pre></div></td></tr></table></div>
