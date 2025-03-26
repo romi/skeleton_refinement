@@ -12,9 +12,17 @@ The API documentation of the `skeleton_refinement` library can be found here: ht
 
 This library is intended to provide the implementation of a skeleton refinement method published here:
 
-Chaudhury A. and Godin C. (2020) **Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework**. _Front. Plant Sci._ 11:773. doi: [10.3389/fpls.2020.00773](https://doi.org/10.3389/fpls.2020.00773).
+Chaudhury A. and Godin C. (2020) **Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework**.
+_Front. Plant Sci._ 11:773.
+DOI: [10.3389/fpls.2020.00773](https://doi.org/10.3389/fpls.2020.00773).
 
 ![Skeleton refinement result on arabidopsis data.](docs/assets/images/arabidopsis_example.png)
+
+This is a part of the implementation of the stochastic registration algorithm based on the following paper:
+Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
+_IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
+DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
+
 
 ## Installation
 
