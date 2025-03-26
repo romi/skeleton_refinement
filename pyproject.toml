@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "skeleton_refinement"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
     "matplotlib",
     "networkx",
     "numpy",
     "plyfile",
+    "scikit-learn"
 ]
 description = "Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework."
 readme = "README.md"
