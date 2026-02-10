@@ -10,6 +10,7 @@ dependencies = [
     "networkx",
     "numpy",
     "plyfile",
+    "psutils",
     "scikit-learn",
     "tqdm"
 ]
@@ -62,6 +63,9 @@ doc = [
     "mkdocs-gen-files",
     "mkdocs-literate-nav",
     "mkdocs-section-index",
+]
+gui = [
+    "pyside6",
 ]
 test = [
     "nose2[coverage]",
