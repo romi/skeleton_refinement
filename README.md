@@ -34,7 +34,7 @@ The library is based on the Python implementation of the paper in ``pycpd`` pack
 
 ## Installation
 
-We strongly advise to create isolated environments to install the ROMI libraries.
+We strongly advise creating isolated environments to install the ROMI libraries.
 
 We often use `conda` as an environment and Python package manager.
 If you do not yet have `miniconda3` installed on your system, have a look [here](https://docs.conda.io/en/latest/miniconda.html).
@@ -54,8 +54,8 @@ conda create -n romi skeleton_refinement -c romi-eu
 ```
 
 ### Installation from sources
-To install this library, simply clone the repo and use `pip` to install it and the required dependencies.
-Again, we strongly advise to create a `conda` environment.
+To install this library, clone the repo and use `pip` to install it and the required dependencies.
+Again, we strongly advise creating a `conda` environment.
 
 All this can be done as follows:
 ```shell
@@ -101,7 +101,7 @@ refine_skeleton \
 
 ### Python API
 
-Here is a minimal example how to use the `skeleton_refinement` library in Python:
+Here is a minimal example of how to use the `skeleton_refinement` library in Python:
 
 ```python
 from skeleton_refinement.stochastic_registration import perform_registration
@@ -122,7 +122,7 @@ ax.set_aspect('equal')
 plt.show()
 ```
 
-A detailed documentation of the Python API is available here: https://romi.github.io/skeleton_refinement/reference.html
+Detailed documentation of the Python API is available here: https://romi.github.io/skeleton_refinement/reference.html
 
 
 ## Developers & contributors
@@ -139,7 +139,7 @@ nose2 -v -C
 Notes:
 
 - the configuratio[mkdocs.yml](mkdocs.yml)n file used by `nose2` is `unittests.cfg`
-- the `-C` option generate a coverage report, as defined by the `.coveragerc` file.
+- the `-C` option generates a coverage report, as defined by the `.coveragerc` file.
 - this requires the `nose2` & `coverage` packages listed in the `requirements.txt` file.
 
 You first have to install the library from sources as explained [here](#installation-from-sources).
