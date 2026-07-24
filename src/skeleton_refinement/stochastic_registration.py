@@ -37,7 +37,8 @@ from skeleton_refinement.deformable_registration import DeformableRegistration
 
 
 def perform_registration(X, Y, **kwargs):
-    """Performs stochastic deformation registration to align a skeleton to a point cloud.
+    """
+    Performs stochastic deformation registration to align a skeleton to a point cloud.
 
     This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid
     registration between a reference point cloud and a skeleton. The algorithm optimizes
@@ -106,11 +107,8 @@ def perform_registration(X, Y, **kwargs):
     >>> refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)
     >>> print(skel.shape)
     """
-    # Add input point sets to kwargs to pass to DeformableRegistration
-    kwargs.update({'X': X, 'Y': Y})
-
     # Initialize the Coherent Point Drift registration object
-    reg = DeformableRegistration(**kwargs)
+    reg = DeformableRegistration(**{'X': X, 'Y': Y})
     # Perform registration
     reg.register()
 
@@ -118,7 +116,8 @@ def perform_registration(X, Y, **kwargs):
 
 
 def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorithm='kruskal'):
-    """Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.
+    """
+    Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.
 
     This function constructs a k-nearest neighbors graph from the input skeleton points
     using Euclidean distances, then computes the minimum spanning tree of this graph.
