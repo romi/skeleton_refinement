@@ -20,11 +20,11 @@ jobs:
     steps:
       # Step 1: Check out the repository code
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.1.0
 
       # Step 2: Set up Miniconda environment
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v3
+        uses: conda-incubator/setup-miniconda@v4.0.1
         with:
           auto-update-conda: true   # Ensure conda is updated to latest version
           python-version: "3.10"    # Specify Python version for the environment
@@ -41,4 +41,4 @@ jobs:
           # Build package from recipe directory and upload to Anaconda.org
           # Uses conda-forge channel for dependencies
           # Specifies the user account and uses the token stored in GitHub secrets
-          conda build conda/recipe/ -c conda-forge --user romi-eu --token ${{ secrets.ANACONDA_TOKEN }}
+          conda-build conda/recipe/ -c conda-forge --user romi-eu --token ${{ secrets.ANACONDA_TOKEN }}
