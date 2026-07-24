@@ -2,28 +2,31 @@
 # -*- coding: utf-8 -*-
 
 """
-## Point Cloud Registration using Expectation-Maximization
+# Expectation‑Maximization Point Cloud Registration
 
-This module implements the Expectation-Maximization algorithm for point cloud registration,
-providing a probabilistic approach to align 3D point sets with robust handling of noise and outliers.
-This is an abstract base class that should be implemented by specific registration methods.
+A lightweight, extensible implementation of the Expectation‑Maximization (EM) algorithm for aligning two point clouds.
+It provides a solid base for the Coherent Point Drift (CPD) registration method, handling outliers, automatic variance initialization, and flexible convergence control, while allowing concrete subclasses to define the specific transformation model (rigid, affine, non‑rigid, etc.).
 
-### Key Features
+## Key Features
 
-- Probabilistic point cloud alignment using EM algorithm
-- Iterative refinement of transformation parameters
-- Automatic variance estimation for noise handling
-- Support for rigid and non-rigid transformations
-- Convergence control through iteration limits and tolerance settings
+- **General EM framework**: Implements the full EM loop (E‑step & M‑step) for point‑set registration.
+- **Outlier robustness**: Supports a uniform outlier distribution weighted by `w` (0 ≤ w < 1).
+- **Automatic variance estimation**: If `sigma2` is omitted, it is computed from the data via `initialize_sigma2`.
+- **Configurable convergence**: Set maximum iterations and tolerance to trade off speed versus accuracy.
+- **Extensible design**: Abstract methods (`update_transform`, `transform_point_cloud`, `update_variance`, `get_registration_parameters`) let you plug in any transformation model (rigid, affine, thin‑plate spline, etc.).
+- **Callback hook**: Optional per‑iteration callback for visualization, logging, or custom monitoring.
 
-### Notes
+## Reference
 
 This is a part of the implementation of the stochastic registration algorithm based on the following paper:
 Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
 _IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
 DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
+arXiv [PDF](https://arxiv.org/pdf/0905.2635).
 
-The library is based on the python implementation of the paper in ``pycpd`` package.
+The library is based on the Python implementation of the paper in ``pycpd`` package.
+[GitHub](https://github.com/siavashk/pycpd) sources.
+[PyPi](https://pypi.org/project/pycpd/) package.
 """
 
 import numpy as np
@@ -31,12 +34,14 @@ from tqdm import tqdm
 
 from skeleton_refinement.utilities import initialize_sigma2
 
-MAX_ITER = 100
-TOL = 0.0001
+MAX_ITER = 100  # default maximum number of EM iterations
+TOL = 0.0001  # default tolerance for convergence (objective change)
+
 
 
 class ExpectationMaximizationRegistration(object):
-    """Abstract base class for point cloud registration using Expectation-Maximization algorithm.
+    """
+    Abstract base class for point cloud registration using Expectation-Maximization algorithm.
 
     This class implements the core functionality of the Coherent Point Drift (CPD)
     algorithm for point set registration based on Myronenko and Song's paper.
@@ -51,42 +56,52 @@ class ExpectationMaximizationRegistration(object):
     Attributes
     ----------
     X : numpy.ndarray
-        Reference point cloud coordinates, shape ``(N, D)``.
+        Target point cloud of shape ``(N, D)`` where ``N`` is the number of points
+        and ``D`` is the dimensionality.
     Y : numpy.ndarray
-        Initial point cloud coordinates to optimize, shape ``(M, D)``.
-    TY : numpy.ndarray
-        Transformed/registered version of Y after optimization, shape ``(M, D)``.
+        Source point cloud of shape ``(M, D)``.
+    TY : numpy.ndarray or None
+        Transformed source points after registration, shape ``(M, D)``.
+        ``None`` before the first iteration.
     sigma2 : float
-        Variance of the Gaussian Mixture Model (GMM), updated during registration.
+        Initial variance of the Gaussian mixture model, updated during registration.
+        ``None`` triggers automatic initialization from the data.
     N : int
-        Number of points in reference cloud `X`.
+        Number of target points in point cloud `X`.
     M : int
-        Number of points in source cloud `Y`.
+        Number of source points in point cloud `Y`.
     D : int
         Dimensionality of the point clouds (e.g., 3 for 3D point clouds).
-    tolerance : float
-        Convergence criterion threshold.
-    w : float
-        Weight of the uniform distribution component for outlier handling.
-    max_iterations : int
-        Maximum number of iterations for the algorithm.
     iteration : int
-        Current iteration number during registration process.
-    err : float
-        Current registration error/distance between point sets.
-    P : numpy.ndarray
-        Posterior probability matrix of point correspondences, shape ``(M, N)``.
-    Pt1 : numpy.ndarray
-        Column-wise sum of posterior probability matrix, shape ``(N,)``.
-    P1 : numpy.ndarray
-        Row-wise sum of posterior probability matrix, shape ``(M,)``.
-    Np : float
-        Sum of all elements in the posterior probability matrix.
+        Current iteration count during the registration process.
+    max_iterations : int
+        Upper bound on the number of EM iterations.
+    tolerance : float
+        Convergence tolerance for the change in the objective function.
+    w : float
+        Weight of the uniform (outlier) distribution; ``0 <= w < 1``.
     q : float
-        Negative log-likelihood of the current estimate.
+        Current value of the objective function.
+    err : float
+        Absolute change of ``q``, error/distance between point sets, between successive iterations.
+    P : numpy.ndarray
+        Responsibility matrix of shape ``(M, N)``; ``P[m, n]`` is the probability
+        that source point *m* corresponds to target point *n*.
+    Pt1 : numpy.ndarray
+        Column-wise sum of posterior probability matrix ``P``, shape ``(N,)``.
+    P1 : numpy.ndarray
+        Row-wise sum of posterior probability matrix ``P`` (shape ``(M,)``).
+    Np : float
+        Sum of all elements in the posterior probability matrix ``P`` (effective number of correspondences).
 
     Notes
     -----
+    This class implements the EM algorithm described in Myronenko & Song (2010).
+    arXiv [PDF](https://arxiv.org/pdf/0905.2635).
+
+    It is a base class; concrete subclasses must implement ``update_transform``, ``transform_point_cloud``,
+    ``update_variance``, and ``get_registration_parameters``.
+
     This is an abstract base class. Child classes must implement:
 
     - ``update_transform()``: Update transformation parameters
@@ -103,6 +118,7 @@ class ExpectationMaximizationRegistration(object):
     See Also
     --------
     skeleton_refinement.utilities.initialize_sigma2 : Function to initialize the variance parameter
+
     """
 
     def __init__(self, X, Y, sigma2=None, max_iterations=MAX_ITER, tolerance=TOL, w=0, *args, **kwargs):
@@ -111,29 +127,33 @@ class ExpectationMaximizationRegistration(object):
         Parameters
         ----------
         X : numpy.ndarray
-            Reference point cloud (target), shape ``(N, D)``.
+            The reference point cloud of shape ``(N, D)`` (XYZ sorted).
         Y : numpy.ndarray
-            Point cloud to be aligned (source), shape ``(M, D)``.
-        sigma2 : float or None, optional
+            The source point cloud to be aligned, shape ``(M, D)`` (XYZ sorted).
+        sigma2 : float, optional
             Initial variance of the Gaussian Mixture Model (GMM).
-            If ``None``, it will be estimated from data.
-            Default is ``None``.
+            If ``None``, it will be estimated from the data during registration.
+            ``None`` by default.
         max_iterations : int, optional
-            Maximum number of EM iterations. Default is ``100``.
+            Maximum number of EM iterations before termination. ``100`` by default.
         tolerance : float, optional
-            Convergence threshold for stopping iterations.
-            Algorithm stops when change in error falls below this value.
-            Default is ``0.0001``.
+            Convergence tolerance for the change in the objective function.
+            Algorithm stops when the change in error falls below this value.
+            ``0.0001`` by default.
         w : float, optional
-            Weight of the uniform distribution component (0 <= w < 1).
+            Weight of the uniform outlier distribution (``0 <= w < 1``).
             Used to account for outliers and noise.
-            A value of ``0`` means no outlier handling.
-            Default is ``0``.
+            A value of ``0`` means no outlier handling. ``0`` by default.
 
         Raises
         ------
         ValueError
-            If `X` or `Y` are not 2D numpy arrays, or if their dimensions don't match.
+            If ``X`` or ``Y`` are not 2‑D ``numpy.ndarray`` or if they have mismatched dimensionality.
+
+        Notes
+        -----
+        The constructor validates the input point clouds and initializes all internal
+        state variables required for the EM iteration.
         """
         if not isinstance(X, np.ndarray) or X.ndim != 2:
             raise ValueError("The target point cloud (X) must be at a 2D numpy array.")
@@ -160,67 +180,52 @@ class ExpectationMaximizationRegistration(object):
         self.TY = None
 
     def update_transform(self):
-        """Update transformation parameters based on the current point correspondence.
-
-        This is an abstract method that must be implemented by child classes
-        to update the specific transformation parameters (e.g., rotation matrix,
-        scaling factor, etc.) based on the current state of the registration.
+        """
+        Placeholder for child classes to implement the transformation update.
 
         Raises
         ------
         NotImplementedError
-            If called from the base class without being overridden.
+            Always raised; subclasses must override this method.
         """
         raise NotImplementedError("This method should be defined in child classes.")
 
     def transform_point_cloud(self):
-        """Apply the current transformation to the source point cloud.
-
-        This is an abstract method that must be implemented by child classes
-        to apply the specific transformation to the point cloud Y and update TY.
+        """
+        Placeholder for child classes to implement point‑cloud transformation.
 
         Raises
         ------
         NotImplementedError
-            If called from the base class without being overridden.
+            Always raised; subclasses must override this method.
         """
         raise NotImplementedError("This method should be defined in child classes.")
 
     def update_variance(self):
-        """Update the variance of the GMM model (sigma2).
-
-        This is an abstract method that must be implemented by child classes
-        to update the variance parameter based on the current state of the
-        registration process.
+        """
+        Placeholder for child classes to implement variance update.
 
         Raises
         ------
         NotImplementedError
-            If called from the base class without being overridden.
+            Always raised; subclasses must override this method.
         """
         raise NotImplementedError("This method should be defined in child classes.")
 
     def get_registration_parameters(self):
-        """Get the current registration transformation parameters.
-
-        This is an abstract method that must be implemented by child classes
-        to return the specific transformation parameters used in the registration.
-
-        Returns
-        -------
-        dict
-            Dictionary containing the transformation parameters specific to
-            the registration method.
+        """
+        Placeholder for child classes to return registration parameters.
 
         Raises
         ------
         NotImplementedError
-            If called from the base class without being overridden.
+            Always raised; subclasses must override this method.
         """
         raise NotImplementedError("Registration parameters should be defined in child classes.")
 
     def register(self, callback=lambda **kwargs: None):
-        """Perform the point set registration.
+        """
+        Perform the EM registration.
 
         This method runs the EM algorithm to align the source point cloud (Y)
         to the reference point cloud (X). The algorithm iteratively estimates
@@ -230,22 +235,26 @@ class ExpectationMaximizationRegistration(object):
         Parameters
         ----------
         callback : callable, optional
-            Function to call after each iteration with registration state information.
-            The function should accept keyword arguments: iteration, error, X, Y.
-            Default is a no-op function.
+            Function called after each iteration with keyword arguments ``iteration``, ``error``,
+            ``X`` and ``Y`` (the current transformed source points).
 
         Returns
         -------
-        numpy.ndarray
-            The transformed point cloud (TY).
-        dict
-            Registration parameters specific to the registration method.
+        TY : numpy.ndarray
+            The transformed source point cloud after convergence.
+        params : dict
+            Dictionary of registration parameters returned by ``get_registration_parameters`` (implementation‑specific).
+
+        Raises
+        ------
+        RuntimeError
+            If the algorithm fails to converge within ``max_iterations`` and the final error exceeds ``tolerance``.
 
         Notes
         -----
-        The registration is considered converged when the change in error between
-        iterations falls below the tolerance threshold or the maximum number of
-        iterations is reached.
+        If ``sigma2`` was not supplied at construction, it is initialized using the
+        ``initialize_sigma2`` utility. The EM loop stops when either the maximum number
+        of iterations is reached or the change in the objective function falls below ``tolerance``.
         """
         # Initialize by transforming points according to current parameters
         self.transform_point_cloud()
@@ -282,7 +291,8 @@ class ExpectationMaximizationRegistration(object):
         return
 
     def iterate(self):
-        """Perform one Expectation-Maximization iteration.
+        """
+        Perform one Expectation-Maximization iteration.
 
         This method runs a single EM iteration consisting of:
 
@@ -296,23 +306,25 @@ class ExpectationMaximizationRegistration(object):
         self.iteration += 1
 
     def expectation(self):
-        """Perform the Expectation step of the EM algorithm.
+        """
+        Compute the expectation (E‑step) of the EM algorithm.
 
-        The expectation step estimates the posterior probability (P) that each
+        The expectation step estimates the posterior probability ``P`` that each
         point in the source set corresponds to each point in the reference set,
         based on the current transformation and GMM variance.
 
         This step also handles outlier detection based on the uniform distribution
-        weight parameter w.
+        weight parameter ``w``.
 
         Notes
         -----
-        Updates the following attributes:
+        Updates the responsibility matrix ``P`` and related statistics based on the current transformed source
+        points ``TY`` and variance ``sigma2``:
 
-        - P: Posterior probability matrix of point correspondences
-        - Pt1: Column-wise sum of P
-        - P1: Row-wise sum of P
-        - Np: Sum of all elements in P
+        - ``P``: Posterior probability matrix of point correspondences
+        - ``Pt1``: Column-wise sum of ``P``
+        - ``P1``: Row-wise sum of ``P``
+        - ``Np``: Sum of all elements in ``P``
         """
         # Initialize posterior probability matrix (M source points × N reference points)
         P = np.zeros((self.M, self.N))
@@ -351,17 +363,17 @@ class ExpectationMaximizationRegistration(object):
         self.Np = np.sum(self.P1)  # Total correspondence probability mass
 
     def maximization(self):
-        """Perform the Maximization step of the EM algorithm.
+        """
+        Perform the maximization (M‑step) of the EM algorithm.
 
         The maximization step updates the transformation parameters and variance
         to maximize the probability that the transformed source points were drawn
         from the GMM centered at the reference points.
 
-        This method calls the abstract methods that should be implemented by child classes:
-
-        1. update_transform()
-        2. transform_point_cloud()
-        3. update_variance()
+        Notes
+        -----
+        Calls the subclass‑implemented ``update_transform``, ``transform_point_cloud``
+        and ``update_variance`` to obtain new transformation parameters and update ``sigma2``.
         """
         self.update_transform()
         self.transform_point_cloud()
