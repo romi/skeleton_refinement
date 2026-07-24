@@ -20,12 +20,13 @@ import numpy as np
 
 
 def load_xyz(filename):
-    """Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.
+    """
+    Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.
 
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the point cloud or skeleton file to parse.
+        The path to the point cloud or skeleton file to parse.
 
     Returns
     -------
@@ -58,12 +59,13 @@ def load_xyz(filename):
 
 
 def load_ply(filename):
-    """Load point cloud coordinates from a PLY file.
+    """
+    Load point cloud coordinates from a PLY file.
 
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the PLY file to parse.
+        The path to the PLY file to parse.
 
     Returns
     -------
@@ -87,12 +89,12 @@ def load_ply(filename):
 
 
 def load_json(filename, key=None):
-    """Load a point cloud or skeleton file from a JSON file.
-
+    """
+    Load a point cloud or skeleton file from a JSON file.
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the JSON file to parse.
+        The path to the JSON file to parse.
     key : str, optional
         The key of the JSON dictionary containing the point cloud or skeleton
         coordinates to load. If ``None``, the entire JSON content is returned.
@@ -125,12 +127,12 @@ def load_json(filename, key=None):
 
 
 def load_nx(filename, key='position'):
-    """Load a tree graph from a pickled NetworkX file.
-
+    """
+    Load a tree graph from a pickled NetworkX file.
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the pickled NetworkX graph file to parse.
+        The path to the pickled NetworkX graph file to parse.
     key : str, optional
         The node attribute key containing the position data.
         Default is 'position'.
@@ -166,7 +168,8 @@ def load_nx(filename, key='position'):
 
 
 def save_json(filename, G, **kwargs):
-    """Save a tree graph to a JSON file.
+    """
+    Save a tree graph to a JSON file.
 
     This function exports a NetworkX graph to a JSON file format,
     storing both node positions and edge connections.
@@ -174,9 +177,9 @@ def save_json(filename, G, **kwargs):
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the JSON file to write.
+        The path to the JSON file to write.
     G : networkx.Graph
-        Graph to write. Nodes must have a 'position' attribute.
+        The graph to write. Nodes must have a 'position' attribute.
     **kwargs
         Additional keyword arguments to pass to ``json.dumps()``.
         If 'indent' is not provided, it defaults to ``2``.
@@ -212,16 +215,17 @@ def save_json(filename, G, **kwargs):
 
 
 def save_nx(filename, G, **kwargs):
-    """Save a tree graph to a pickle file.
+    """
+    Save a tree graph to a pickle file.
 
     This function saves a NetworkX graph to a pickle file for later retrieval.
 
     Parameters
     ----------
     filename : str or pathlib.Path
-        Path to the pickle file to write.
+        The path to the pickle file to write.
     G : networkx.Graph
-        Graph to write.
+        The graph to write.
     **kwargs
         Additional keyword arguments to pass to pickle.dump().
         If 'protocol' is not provided, it defaults to pickle.HIGHEST_PROTOCOL.
