@@ -12,13 +12,13 @@ jobs:
     steps:
       #  Step 1: Clone the repository code
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5.1.0
 
       # Step 2: Install Python runtime
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v5
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6.3.0
         with:
-          python-version: '3.9'  # Specify Python version for docs build
+          python-version: '3.10'  # Specify Python version for docs build
           cache: 'pip'  # Enable caching of pip packages to speed up workflow
 
       # Step 3: Install the sources with documentation dependencies
@@ -32,7 +32,7 @@ jobs:
 
       # Step 5: Deploy to GitHub Pages
       - name: Deploy documentation
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Use auto-generated token for authentication
           publish_dir: ./site  # Deploy the mkdocs output directory
