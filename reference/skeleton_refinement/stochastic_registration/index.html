@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../assets/images/ROMI_ICON_green.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -1178,7 +1178,9 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
@@ -1272,9 +1274,9 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function constructs a k-nearest neighbors graph from the input skeleton points</span>
 <span style="color: #BA2121; font-style: italic">    using Euclidean distances, then computes the minimum spanning tree of this graph.</span>
@@ -1660,10 +1662,9 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid</span>
 <span style="color: #BA2121; font-style: italic">    registration between a reference point cloud and a skeleton. The algorithm optimizes</span>
@@ -1732,11 +1733,8 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(skel.shape)</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #3D7B7B; font-style: italic"># Add input point sets to kwargs to pass to DeformableRegistration</span>
-    kwargs<span style="color: #666">.</span>update({<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
-
     <span style="color: #3D7B7B; font-style: italic"># Initialize the Coherent Point Drift registration object</span>
-    reg <span style="color: #666">=</span> DeformableRegistration(<span style="color: #666">**</span>kwargs)
+    reg <span style="color: #666">=</span> DeformableRegistration(<span style="color: #666">**</span>{<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
     <span style="color: #3D7B7B; font-style: italic"># Perform registration</span>
     reg<span style="color: #666">.</span>register()
 
@@ -1848,7 +1846,7 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/_markdown_exec_pyodide.js"></script>
       

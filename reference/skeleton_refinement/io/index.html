@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../assets/images/ROMI_ICON_green.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -1096,7 +1096,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the JSON file to parse.</p>
+                <p>The path to the JSON file to parse.</p>
               </div>
             </td>
             <td>
@@ -1163,9 +1163,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 89</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 92</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 93</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 94</span>
@@ -1198,13 +1196,15 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_json</span>(filename, key<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud or skeleton file from a JSON file.</span>
-
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_json</span>(filename, key<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Load a point cloud or skeleton file from a JSON file.</span>
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the JSON file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the JSON file to parse.</span>
 <span style="color: #BA2121; font-style: italic">    key : str, optional</span>
 <span style="color: #BA2121; font-style: italic">        The key of the JSON dictionary containing the point cloud or skeleton</span>
 <span style="color: #BA2121; font-style: italic">        coordinates to load. If ``None``, the entire JSON content is returned.</span>
@@ -1276,7 +1276,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the pickled NetworkX graph file to parse.</p>
+                <p>The path to the pickled NetworkX graph file to parse.</p>
               </div>
             </td>
             <td>
@@ -1345,9 +1345,7 @@ where n is the number of nodes.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span>
@@ -1383,13 +1381,15 @@ where n is the number of nodes.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">162</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">163</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">164</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a tree graph from a pickled NetworkX file.</span>
-
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">167</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Load a tree graph from a pickled NetworkX file.</span>
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the pickled NetworkX graph file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the pickled NetworkX graph file to parse.</span>
 <span style="color: #BA2121; font-style: italic">    key : str, optional</span>
 <span style="color: #BA2121; font-style: italic">        The node attribute key containing the position data.</span>
 <span style="color: #BA2121; font-style: italic">        Default is &#39;position&#39;.</span>
@@ -1464,7 +1464,7 @@ where n is the number of nodes.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the PLY file to parse.</p>
+                <p>The path to the PLY file to parse.</p>
               </div>
             </td>
             <td>
@@ -1511,8 +1511,7 @@ where n is the number of nodes.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">60</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">61</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">62</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
@@ -1537,13 +1536,16 @@ where n is the number of nodes.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">83</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">85</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">86</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_ply</span>(filename):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load point cloud coordinates from a PLY file.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">86</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">87</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">88</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_ply</span>(filename):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Load point cloud coordinates from a PLY file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the PLY file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the PLY file to parse.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
@@ -1606,7 +1608,7 @@ where n is the number of nodes.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the point cloud or skeleton file to parse.</p>
+                <p>The path to the point cloud or skeleton file to parse.</p>
               </div>
             </td>
             <td>
@@ -1689,13 +1691,15 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">54</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">55</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">56</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_xyz</span>(filename):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_xyz</span>(filename):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the point cloud or skeleton file to parse.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the point cloud or skeleton file to parse.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
@@ -1769,7 +1773,7 @@ storing both node positions and edge connections.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the JSON file to write.</p>
+                <p>The path to the JSON file to write.</p>
               </div>
             </td>
             <td>
@@ -1785,7 +1789,7 @@ storing both node positions and edge connections.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Graph to write. Nodes must have a 'position' attribute.</p>
+                <p>The graph to write. Nodes must have a 'position' attribute.</p>
               </div>
             </td>
             <td>
@@ -1834,9 +1838,7 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">168</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">169</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span>
@@ -1877,8 +1879,12 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">208</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_json</span>(filename, G, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Save a tree graph to a JSON file.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_json</span>(filename, G, <span style="color: #666">**</span>kwargs):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Save a tree graph to a JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function exports a NetworkX graph to a JSON file format,</span>
 <span style="color: #BA2121; font-style: italic">    storing both node positions and edge connections.</span>
@@ -1886,9 +1892,9 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the JSON file to write.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the JSON file to write.</span>
 <span style="color: #BA2121; font-style: italic">    G : networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        Graph to write. Nodes must have a &#39;position&#39; attribute.</span>
+<span style="color: #BA2121; font-style: italic">        The graph to write. Nodes must have a &#39;position&#39; attribute.</span>
 <span style="color: #BA2121; font-style: italic">    **kwargs</span>
 <span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to ``json.dumps()``.</span>
 <span style="color: #BA2121; font-style: italic">        If &#39;indent&#39; is not provided, it defaults to ``2``.</span>
@@ -1964,7 +1970,7 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Path to the pickle file to write.</p>
+                <p>The path to the pickle file to write.</p>
               </div>
             </td>
             <td>
@@ -1980,7 +1986,7 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Graph to write.</p>
+                <p>The graph to write.</p>
               </div>
             </td>
             <td>
@@ -2028,10 +2034,7 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 
             <details class="quote">
               <summary>Source code in <code>skeleton_refinement/io.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
@@ -2067,17 +2070,22 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">250</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">251</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">252</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">253</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_nx</span>(filename, G, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Save a tree graph to a pickle file.</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">253</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">254</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">255</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">256</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">257</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_nx</span>(filename, G, <span style="color: #666">**</span>kwargs):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    Save a tree graph to a pickle file.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function saves a NetworkX graph to a pickle file for later retrieval.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
-<span style="color: #BA2121; font-style: italic">        Path to the pickle file to write.</span>
+<span style="color: #BA2121; font-style: italic">        The path to the pickle file to write.</span>
 <span style="color: #BA2121; font-style: italic">    G : networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        Graph to write.</span>
+<span style="color: #BA2121; font-style: italic">        The graph to write.</span>
 <span style="color: #BA2121; font-style: italic">    **kwargs</span>
 <span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to pickle.dump().</span>
 <span style="color: #BA2121; font-style: italic">        If &#39;protocol&#39; is not provided, it defaults to pickle.HIGHEST_PROTOCOL.</span>
@@ -2214,7 +2222,7 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/_markdown_exec_pyodide.js"></script>
       
