@@ -24,14 +24,19 @@ DOI: [10.3389/fpls.2020.00773](https://doi.org/10.3389/fpls.2020.00773).
 This is a part of the implementation of the stochastic registration algorithm based on the following paper:
 Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
 _IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
-DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
+DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46).
+arXiv [PDF](https://arxiv.org/pdf/0905.2635).
+
+The library is based on the Python implementation of the paper in ``pycpd`` package.
+[GitHub](https://github.com/siavashk/pycpd) sources.
+[PyPi](https://pypi.org/project/pycpd/) package.
 
 
 ## Installation
 
 We strongly advise to create isolated environments to install the ROMI libraries.
 
-We often use `conda` as an environment and python package manager.
+We often use `conda` as an environment and Python package manager.
 If you do not yet have `miniconda3` installed on your system, have a look [here](https://docs.conda.io/en/latest/miniconda.html).
 
 The `skeleton_refinement` package is available from the `romi-eu` channel.
