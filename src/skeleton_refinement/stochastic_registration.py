@@ -100,15 +100,19 @@ def perform_registration(X, Y, **kwargs):
     Examples
     --------
     >>> from skeleton_refinement.stochastic_registration import perform_registration
-    >>> from skeleton_refinement.io import load_ply, load_json
-    >>> pcd = load_ply("tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
-    >>> skel = load_json("tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
+    >>> from skeleton_refinement.data import pointcloud
+    >>> from skeleton_refinement.data import skeleton_points
+    >>> pcd = pointcloud()
+    >>> skel = skeleton_points()
     >>> # Perform stochastic optimization
     >>> refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)
     >>> print(skel.shape)
+    (948, 3)
+    >>> print(refined_skel.shape)
+    (948, 3)
     """
     # Initialize the Coherent Point Drift registration object
-    reg = DeformableRegistration(**{'X': X, 'Y': Y})
+    reg = DeformableRegistration(X=X, Y=Y, **kwargs)
     # Perform registration
     reg.register()
 
@@ -134,6 +138,7 @@ def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorit
         k-nearest neighbors graph. Default is ``5``.
     knn_algorithm : {'auto', 'ball_tree', 'kd_tree', 'brute'}, optional
         The algorithm to use for computing the k-nearest neighbors.
+
         - 'kd_tree': KD Tree algorithm, works well for low dimensions.
         - 'ball_tree': Ball Tree algorithm, works well for high dimensions.
         - 'brute': Brute force algorithm, always uses all data points.
@@ -141,6 +146,7 @@ def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorit
         Default is `'kd_tree'`.
     mst_algorithm : {'kruskal', 'prim', 'boruvka'}, optional
         The algorithm to use for computing the minimum spanning tree.
+
         - 'kruskal': Kruskal's algorithm, efficient for sparse graphs.
         - 'prim': Prim's algorithm, efficient for dense graphs.
         - 'boruvka': Borůvka's algorithm, another MST algorithm.
@@ -149,7 +155,8 @@ def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorit
     Returns
     -------
     networkx.Graph
-        A NetworkX Graph representing the skeleton structure as a minimum spanning tree.
+        A NetworkX Graph representing the skeleton structure as a minimum-spanning tree.
+
         - Nodes correspond to skeleton points with their 3D coordinates stored as a 'position' attribute
         - Edges connect points that are part of the minimum spanning tree
         - Edge weights represent Euclidean distances between connected points
@@ -171,19 +178,23 @@ def knn_mst(skeleton_points, n_neighbors=5, knn_algorithm='kd_tree', mst_algorit
     --------
     >>> from skeleton_refinement.stochastic_registration import perform_registration
     >>> from skeleton_refinement.stochastic_registration import knn_mst
-    >>> from skeleton_refinement.io import load_ply, load_json
-    >>> pcd = load_ply("real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply")
-    >>> skel = load_json("real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json", "points")
+    >>> from skeleton_refinement.data import pointcloud
+    >>> from skeleton_refinement.data import skeleton_points
+    >>> pcd = pointcloud()
+    >>> skel = skeleton_points()
     >>> # Perform stochastic optimization
     >>> refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)
     >>> # Compute skeleton tree structure using mst on knn-graph:
     >>> skel_tree = knn_mst(refined_skel)
     >>> # The output is a NetworkX Graph with nodes representing skeleton points
     >>> print(f"Number of nodes: {skel_tree.number_of_nodes()}")
+    Number of nodes: 948
     >>> print(f"Number of edges: {skel_tree.number_of_edges()}")
+    Number of edges: 947
     >>> # Access node coordinates
     >>> sample_node = list(skel_tree.nodes())[0]
     >>> print(f"Position of node {sample_node}: {skel_tree.nodes[sample_node]['position']}")
+    Position of node 0: [ 411.2186938   370.7403124  -164.25342772]
     """
     # Initialize nearest neighbors model with Euclidean distance (Minkowski p=2)
     nbrs = NearestNeighbors(n_neighbors=n_neighbors, algorithm=knn_algorithm, metric="minkowski", p=2).fit(
