@@ -76,3 +76,9 @@ nb = [
     "ipywidgets",
     "plotly",
 ]
+
+[tool.setuptools]
+packages = ["skeleton_refinement"]
+
+[tool.setuptools.package-data]
+"skeleton_refinement" = ["data/*"]
