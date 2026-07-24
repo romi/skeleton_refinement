@@ -15,6 +15,7 @@ This module provides functions for loading and saving 3D point clouds and skelet
 """
 
 from pathlib import Path
+from typing import Union
 
 import numpy as np
 
@@ -58,7 +59,7 @@ def load_xyz(filename):
     return X
 
 
-def load_ply(filename):
+def load_ply(filename: str | Path) -> np.ndarray:
     """
     Load point cloud coordinates from a PLY file.
 
@@ -69,18 +70,19 @@ def load_ply(filename):
 
     Returns
     -------
-    The XYZ coordinates of the point cloud as a NumPy array
-        with shape ``(n, 3)``, where ``n`` is the number of points.
+    numpy.ndarray
+        The XYZ coordinates of the point cloud, of shape ``(n, 3)``, where ``n`` is the number of points.
 
     Examples
     --------
     >>> from skeleton_refinement.io import load_ply
-    >>> points = load_ply('point_cloud.ply')
+    >>> from skeleton_refinement.data import pointcloud_path
+    >>> points = load_ply(pointcloud_path())
     >>> print(points.shape)
-    (1000, 3)
+    (57890, 3)
     >>> print(points[:2])
-    [[ 1.2  3.4  5.6]
-     [-0.1  0.2  0.3]]
+    [[349.75394719 360.28330448  70.08627054]
+     [349.75394924 360.2833028   70.41372997]]
     """
     from plyfile import PlyData
     plydata = PlyData.read(filename)
@@ -91,6 +93,7 @@ def load_ply(filename):
 def load_json(filename, key=None):
     """
     Load a point cloud or skeleton file from a JSON file.
+
     Parameters
     ----------
     filename : str or pathlib.Path
@@ -123,12 +126,14 @@ def load_json(filename, key=None):
 
     if key is not None:
         X = X[key]
-    return np.array(X)
-
+        return np.array(X)
+    else:
+        return X
 
 def load_nx(filename, key='position'):
     """
     Load a tree graph from a pickled NetworkX file.
+
     Parameters
     ----------
     filename : str or pathlib.Path
@@ -143,6 +148,10 @@ def load_nx(filename, key='position'):
         The XYZ coordinates of the nodes as a NumPy array with shape (n, 3),
         where n is the number of nodes.
 
+    Notes
+    -----
+    The NetworkX graph must have nodes with the specified attribute.
+
     Examples
     --------
     >>> from skeleton_refinement.io import load_nx
@@ -151,10 +160,6 @@ def load_nx(filename, key='position'):
     (50, 3)
     >>> # Load custom attribute
     >>> attributes = load_nx('graph.pkl', key='custom_attribute')
-
-    Notes
-    -----
-    The NetworkX graph must have nodes with the specified attribute.
     """
     import pickle
     with open(filename, mode='rb') as f:
@@ -184,6 +189,12 @@ def save_json(filename, G, **kwargs):
         Additional keyword arguments to pass to ``json.dumps()``.
         If 'indent' is not provided, it defaults to ``2``.
 
+    Notes
+    -----
+    The output JSON structure will contain:
+    - 'points': list of node positions
+    - 'lines': list of edges
+
     Examples
     --------
     >>> import networkx as nx
@@ -195,12 +206,6 @@ def save_json(filename, G, **kwargs):
     >>> save_json('graph.json', G)
     >>> # With custom JSON formatting
     >>> save_json('pretty_graph.json', G, indent=4, sort_keys=True)
-
-    Notes
-    -----
-    The output JSON structure will contain:
-    - 'points': list of node positions
-    - 'lines': list of edges
     """
     import json
     data = {
@@ -230,6 +235,11 @@ def save_nx(filename, G, **kwargs):
         Additional keyword arguments to pass to pickle.dump().
         If 'protocol' is not provided, it defaults to pickle.HIGHEST_PROTOCOL.
 
+    Notes
+    -----
+    The pickle format is not secure against erroneous or maliciously constructed data.
+    Never unpickle data received from untrusted or unauthenticated sources.
+
     Examples
     --------
     >>> import networkx as nx
@@ -241,11 +251,6 @@ def save_nx(filename, G, **kwargs):
     >>> save_nx('graph.pkl', G)
     >>> # With specific protocol
     >>> save_nx('graph_v2.pkl', G, protocol=2)
-
-    Notes
-    -----
-    The pickle format is not secure against erroneous or maliciously constructed data.
-    Never unpickle data received from untrusted or unauthenticated sources.
     """
     import pickle
     if 'protocol' not in kwargs:
