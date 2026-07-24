@@ -22,9 +22,9 @@ DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
 
 ## Installation
 
-We strongly advise to create isolated environments to install the ROMI libraries.
+We strongly advise creating isolated environments to install the ROMI libraries.
 
-We often use `conda` as an environment and python package manager.
+We often use `conda` as an environment and Python package manager.
 If you do not yet have `miniconda3` installed on your system, have a look [here](https://docs.conda.io/en/latest/miniconda.html).
 
 The `skeleton_refinement` package is available from the `romi-eu` channel.
@@ -42,8 +42,8 @@ conda create -n romi skeleton_refinement -c romi-eu
 ```
 
 ### Installation from sources
-To install this library, simply clone the repo and use `pip` to install it and the required dependencies.
-Again, we strongly advise to create a `conda` environment.
+To install this library, clone the repo and use `pip` to install it and the required dependencies.
+Again, we strongly advise creating a `conda` environment.
 
 All this can be done as follows:
 ```shell
@@ -88,7 +88,7 @@ refine_skeleton \
 
 ### Python API
 
-Here is a minimal example how to use the `skeleton_refinement` library in Python:
+Here is a minimal example of how to use the `skeleton_refinement` library in Python:
 
 ```python
 from skeleton_refinement.stochastic_registration import perform_registration
