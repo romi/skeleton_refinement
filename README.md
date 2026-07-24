@@ -61,7 +61,7 @@ All this can be done as follows:
 ```shell
 git clone https://github.com/romi/skeleton_refinement.git
 cd skeleton_refinement
-conda create -n skeleton_refinement 'python =3.10'
+conda create -n skeleton_refinement 'python =3.10' ipython
 conda activate skeleton_refinement  # do not forget to activate your environment!
 python -m pip install -e .  # install the sources
 ```
