@@ -124,8 +124,64 @@ plt.show()
 
 Detailed documentation of the Python API is available here: https://romi.github.io/skeleton_refinement/reference.html
 
+## Git LFS & pacakge data
+
+Large binary assets (_e.g._, point‑cloud files) are stored with **Git Large File Storage (LFS)**.
+To make sure you have the required data locally, follow the steps below.
+
+### 1. Install Git LFS (once per machine)
+
+```shell
+# macOS (Homebrew)
+brew install git-lfs
+
+# Ubuntu/Debian
+sudo apt-get install git-lfs
+
+# Windows (Chocolatey)
+choco install git-lfs
+```
+
+After installation, run the global initializer:
+
+```shell
+git lfs install
+```
+
+*(You only need to run `git lfs install` the first time you use LFS on a machine.)*
+
+### 2. Pull (or refresh) LFS data after cloning or after a `git pull`
+
+If you already have the repository cloned and want to make sure all LFS objects are present:
+
+```shell
+git lfs pull            # Downloads only the missing LFS objects
+# or, to fetch *all* LFS blobs for every branch/tag:
+git lfs fetch --all
+git lfs checkout        # Replace pointers with real files
+```
+
+### 3. Verify that large files are present
+
+```shell
+git lfs ls-files
+```
+
+You should see a list of tracked files with their SHA‑256 hashes, confirming that the real content is on disk.
 
 ## Developers & contributors
+
+### Adding new large files
+
+If you add a new large file, LFS should handle that.
+Let's assume you want to add a PLY point-cloud:
+
+```shell
+git lfs track "*.ply"   # Example for point‑cloud files
+git commit -m "Add a new large point‑cloud file via Git LFS"
+git push
+```
+Git LFS will automatically upload the file to the LFS storage associated with the repository.
 
 ### Unitary tests
 
