@@ -66,14 +66,20 @@ doc = [
     "mkdocs-section-index",
 ]
 test = [
-    "nose2[coverage]",
-    "coverage[toml]",
+    "pytest",
+    "pytest-cov",
 ]
 nb = [
     "notebook",
     "ipywidgets",
     "plotly",
 ]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-data]
 "skeleton_refinement" = ["src/skeleton_refinement/data/*"]
