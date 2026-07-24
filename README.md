@@ -124,7 +124,7 @@ plt.show()
 
 Detailed documentation of the Python API is available here: https://romi.github.io/skeleton_refinement/reference.html
 
-## Git LFS & pacakge data
+## Git LFS & package data
 
 Large binary assets (_e.g._, point‑cloud files) are stored with **Git Large File Storage (LFS)**.
 To make sure you have the required data locally, follow the steps below.
@@ -192,28 +192,24 @@ We use `nose2` to call them as follows:
 nose2 -v -C
 ```
 
-Notes:
-
-- the configuratio[mkdocs.yml](mkdocs.yml)n file used by `nose2` is `unittests.cfg`
-- the `-C` option generates a coverage report, as defined by the `.coveragerc` file.
-- this requires the `nose2` & `coverage` packages listed in the `requirements.txt` file.
-
-You first have to install the library from sources as explained [here](#installation-from-sources).
-
 ### Conda packaging
+
+The repository provides a **conda_build** GitHub Actions workflow (`.github/workflows/conda.yml`).  
+It runs automatically when a new release is published **or** can be triggered manually from the Actions tab.
+
+#### Build a conda package locally
+
 Start by installing the required `conda-build` & `anaconda-client` conda packages in the `base` environment as follows:
 ```shell
 conda install -n base conda-build anaconda-client
 ```
 
-#### Build a conda package
-To build the `romitask` conda package, from the root directory of the repository and the `base` conda environment, run:
+To build the `skeleton_refinement` conda package locally, from the root directory of the repository and the `base` conda environment, run:
 ```shell
 conda build conda/recipe/ -c conda-forge --user romi-eu
 ```
 
-If you are struggling with some of the modifications you made to the recipe, 
-notably when using environment variables or Jinja2 stuffs, you can always render the recipe with:
+If you need to inspect the rendered recipe before building, you can render it with:
 ```shell
 conda render conda/recipe/
 ```
@@ -221,6 +217,7 @@ conda render conda/recipe/
 The official documentation for `conda-render` can be found [here](https://docs.conda.io/projects/conda-build/en/stable/resources/commands/conda-render.html).
 
 #### Upload a conda package
+
 To upload the built package, you need a valid account (here `romi-eu`) on [anaconda.org](www.anaconda.org) & to log ONCE
 with `anaconda login`, then:
 ```shell
@@ -228,6 +225,7 @@ anaconda upload ~/miniconda3/conda-bld/linux-64/skeleton_refinement*.tar.bz2 --u
 ```
 
 #### Clean builds
+
 To clean the source and build intermediates:
 ```shell
 conda build purge
@@ -238,3 +236,26 @@ To clean **ALL** the built packages & build environments:
 conda build purge-all
 ```
 
+### PyPi packaging
+
+The repository includes a GitHub Actions workflow (`.github/workflows/pip_build.yml`) that builds the package and publishes it to **PyPI** automatically on each release.
+
+#### Build the distribution
+
+The GitHub Actions workflow builds the package using `python -m build`, generating both source (`sdist`) and wheel (`bdist_wheel`) archives in the `dist/` folder.
+
+You can run the same command locally:
+```shell
+python -m build
+```
+
+#### Publish to PyPI
+
+For releases, the workflow uses the trusted publishing action `pypa/gh-action-pypi-publish` to upload the artifacts from `dist/` to PyPI.
+
+If you need to publish manually, you can use `twine`:
+```shell
+twine upload dist/*
+```
+
+> **Note:** Ensure that the `pypi` environment in your GitHub repository is configured with a valid PyPI API token (or use the built‑in trusted publishing mechanism).
