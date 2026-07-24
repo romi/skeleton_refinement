@@ -2,31 +2,30 @@
 # -*- coding: utf-8 -*-
 
 """
-## Skeleton Refinement Tool
+# Skeleton Refinement Tool
 
-A command-line utility for refining plant skeletons by aligning coarse skeleton structures with 3D point cloud data
-using a stochastic optimization framework. This tool helps improve the quality of plant representation by pushing
-skeleton points toward their proper positions in the original point cloud.
+A command-line utility for refining plant skeletons by aligning coarse skeleton structures with 3D point cloud data using a stochastic optimization framework.
+This tool helps improve the quality of plant representation by pushing skeleton points toward their proper positions in the original point cloud.
 
-There are two parameters that control the quality of alignment, alpha and beta.
+There are two parameters that control the quality of alignment:
 
-### Usage Examples
+- ``alpha`` is the regularization weight controlling smoothness of deformation
+- ``beta`` is the Gaussian kernel width governing the kernel's influence radius
+
+
+## Usage Examples
+
+### Basic usage with default parameters
 
 ```shell
-# Basic usage with default parameters
-$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json
-
-# Advanced usage with custom parameters
-$ refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json --alpha 0.5 --beta 0.1 --knn_mst --n_nei 8
+refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json
 ```
 
-### Author
+### Advanced usage with custom parameters
 
-Ayan Chaudhury,
-Inria team MOSAIC,
-Laboratoire Reproduction et Développement des Plantes,
-Univ. Lyon, ENS de Lyon, UCB Lyon 1, CNRS, INRA, Inria
-France
+```shell
+refine_skeleton path/to/pointcloud.ply path/to/skeleton.json refined_skeleton.json --alpha 0.5 --beta 0.1 --knn_mst --n_nei 8
+```
 """
 
 import argparse
@@ -76,19 +75,19 @@ def parsing():
     em_opt = parser.add_argument_group("EM algorithm options")
     em_opt.add_argument(
         '--alpha', type=float, default=ALPHA,
-        help="Alpha value. "
+        help="The regularization weight controlling smoothness of deformation."
              f"Default is {ALPHA}.")
     em_opt.add_argument(
         '--beta', type=float, default=BETA,
-        help="Beta value. "
+        help="The Gaussian kernel width governing the kernel's influence radius."
              f"Default is {BETA}.")
     em_opt.add_argument(
         '--max_iter', type=int, default=MAX_ITER,
-        help="Maximum number of iterations of the EM algorithm to perform. "
+        help="Maximum number of iterations of the EM algorithm to perform."
              f"Default is '{MAX_ITER}'.")
     em_opt.add_argument(
         '--tol', type=float, default=TOL,
-        help="Tolerance to use to stop the iterations of the EM algorithm. "
+        help="Tolerance to use to stop the iterations of the EM algorithm."
              f"Default is '{TOL}'.")
 
     tree_opt = parser.add_argument_group("tree options")
