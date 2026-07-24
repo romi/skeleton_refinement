@@ -50,4 +50,4 @@ about:
   home: {{ urls.get('homepage', '') }}  # Project homepage
   summary: {{ project.get('description', '') }}  # Package description
   dev_url: {{ urls.get('source', '') }}  # Repository URL
-  license: {{ project.get('license', {}).get('text', '') }}  # License type
+  license: {{ project.get('license') }}  # License type
