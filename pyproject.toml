@@ -17,7 +17,7 @@ dependencies = [
 description = "Skeletonization of Plant Point Cloud Data Using Stochastic Optimization Framework."
 readme = "README.md"
 requires-python = ">=3.8"
-license = { 'text' = "GPL-3.0-or-later" }   # to replace by "GPL-3.0-or-later" only in next release, pending deprecation
+license = "GPL-3.0-or-later"
 authors = [
     { name = "Ayan Chaudhury", email = "ayanchaudhury.cs@gmail.com" },
     { name = "Christophe Godin", email = "christophe.godin@inria.fr" },
@@ -77,8 +77,5 @@ nb = [
     "plotly",
 ]
 
-[tool.setuptools]
-packages = ["skeleton_refinement"]
-
 [tool.setuptools.package-data]
-"skeleton_refinement" = ["data/*"]
+"skeleton_refinement" = ["src/skeleton_refinement/data/*"]
