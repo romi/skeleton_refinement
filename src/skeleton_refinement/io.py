@@ -111,22 +111,23 @@ def load_json(filename, key=None):
     Examples
     --------
     >>> from skeleton_refinement.io import load_json
+    >>> from skeleton_refinement.data import skeleton_path
     >>> # JSON file with structure: {"points": [[x1,y1,z1], [x2,y2,z2], ...]}
-    >>> points = load_json('point_cloud.json', key='points')
+    >>> points = load_json(skeleton_path(), key='points')
     >>> print(points.shape)
     (1000, 3)
-    >>> # JSON file with direct array: [[x1,y1,z1], [x2,y2,z2], ...]
-    >>> points = load_json('simple_points.json')
+    >>> points = load_json(skeleton_path())
     >>> print(points.shape)
     (1000, 3)
     """
     import json
-    with open(filename, mode='rb') as f:
+    with open(filename, mode='r') as f:
         X = json.load(f)
 
-    if key is not None:
-        X = X[key]
-        return np.array(X)
+    if key:
+        if key not in X:
+            raise KeyError(f"Missing key '{key}' in JSON file.")
+        return np.asarray(X[key])
     else:
         return X
 
