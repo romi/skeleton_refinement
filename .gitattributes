@@ -1,3 +1,2 @@
-src/skeleton_refinement/data/* filter=lfs diff=lfs merge=lfs -text
 src/skeleton_refinement/data/real_plant/CurveSkeleton.json filter=lfs diff=lfs merge=lfs -text
 src/skeleton_refinement/data/real_plant/PointCloud.ply filter=lfs diff=lfs merge=lfs -text
