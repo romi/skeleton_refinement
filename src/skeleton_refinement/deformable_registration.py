@@ -68,42 +68,45 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
 
     Attributes
     ----------
-    alpha: float
+    alpha : float
         Trade‑off between the likelihood term and the regularization term.
         Must be a positive value; larger values enforce a smoother transformation.
-    beta: float
+    beta : float
         Width of the Gaussian kernel (variance of the smoothing kernel).
         Must be a positive value; larger values produce a broader influence region.
-    W: numpy.ndarray, shape (M, D)
+    W : numpy.ndarray, shape (M, D)
         Deformable transformation matrix that maps the reference points to the target space.
         Updated at each EM iteration.
-    G: numpy.ndarray, shape (M, M)
+    G : numpy.ndarray, shape (M, M)
         Pre‑computed Gaussian kernel matrix between all points in the reference set ``self.Y``.
         Used to express the smoothness constraint.
     """
 
-    def __init__(self, alpha=ALPHA, beta=BETA, *args, **kwargs):
+    def __init__(self, alpha: float=ALPHA, beta: float=BETA, *args, **kwargs):
         """
         Initialize the deformable registration algorithm.
 
         Parameters
         ----------
-        alpha: float, optional
+        alpha : float, optional
             Trade‑off between the maximum‑likelihood fit and the regularization term.
             Must be positive. Defaults to ``2`` (the value of ``ALPHA``).
-        beta: float, optional
+        beta : float, optional
             Width of the Gaussian kernel. Must be positive. Defaults to ``2`` (the value of ``BETA``).
-        X: numpy.ndarray
+
+        Other Parameters
+        ----------------
+        X : numpy.ndarray
             Reference point set of shape ``(N, D)`` where ``N`` is the number of points and ``D`` is the dimension.
-        Y: numpy.ndarray
+        Y : numpy.ndarray
             Point set to be aligned to ``X``, of shape ``(M, D)`` where ``M`` is the number of points.
-        sigma2: float, optional
+        sigma2 : float, optional
             Initial variance of GMM. If ``None``, it's computed from data.
-        max_iterations: int, optional
+        max_iterations : int, optional
             Maximum number of iterations for the optimization algorithm.
-        tolerance: float, optional
+        tolerance : float, optional
             Convergence threshold based on change in `sigma2`.
-        w: float, optional
+        w : float, optional
             Weight of the uniform distribution component, range ``[0,1]``.
             Used to account for outliers. Default is ``0``.
 

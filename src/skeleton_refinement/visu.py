@@ -2,9 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-Visualization utilities.
+# skeleton_visu
 
-These helpers convert the point‑cloud and skeleton resources into PyVista data structures (``pv.PolyData``) and provide simple one‑liner render functions.
+A lightweight visualization module that converts point‑cloud and skeleton data into PyVista mesh objects, enabling fast 3‑D rendering with just a few lines of code.
+It simplifies the workflow for researchers and developers who need to inspect or present geometric data without handling the low‑level mesh construction themselves.
+
+## Key Features
+- **Point‑cloud conversion**: `pointcloud_polydata` builds a `pv.PolyData` mesh directly from an `(N, 3)` NumPy array of XYZ coordinates.
+- **Skeleton rendering**: `skeleton_polydata` creates a `pv.PolyData` mesh with line cells from a dictionary containing `"points"` and `"lines"` arrays.
+- **Zero‑boilerplate usage**: Both helpers return ready‑to‑plot PyVista objects, so you can immediately add them to a `pv.Plotter`.
+- **No external dependencies beyond PyVista and NumPy**: The functions rely only on these common scientific packages.
 
 ## Usage Example
 
@@ -30,6 +37,7 @@ These helpers convert the point‑cloud and skeleton resources into PyVista data
 >>> plotter.show_grid()
 >>> plotter.add_floor()
 >>> plotter.show()
+```
 """
 
 import numpy as np
