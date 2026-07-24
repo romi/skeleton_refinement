@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skeleton_refinement.stochastic_registration" class="md-skip">
+        <a href="#skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration" class="md-skip">
           Skip to content
         </a>
       
@@ -564,6 +564,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../deformable_registration/" class="md-nav__link">
         
   
@@ -704,18 +732,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skeleton_refinement.stochastic_registration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;stochastic_registration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" stochastic_registration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -746,11 +762,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -818,6 +829,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    visu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -858,18 +897,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skeleton_refinement.stochastic_registration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;stochastic_registration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" stochastic_registration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -900,11 +927,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -961,13 +983,13 @@
 
 
 
-<a id="skeleton_refinement.stochastic_registration"></a>
+
     <div class="doc doc-contents first">
 
-        <h3 id="skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration">Stochastic Point Cloud Registration<a class="headerlink" href="#skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration" title="Permanent link">Link</a></h3>
+        <h2 id="skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration">Stochastic Point Cloud Registration<a class="headerlink" href="#skeleton_refinement.stochastic_registration--stochastic-point-cloud-registration" title="Permanent link">Link</a></h2>
 <p>A module for aligning and registering 3D skeleton structures to point clouds using stochastic optimization techniques.
 It enables precise fitting of skeletal models to noisy or dense point cloud data, commonly used in 3D plant structure analysis.</p>
-<h4 id="skeleton_refinement.stochastic_registration--key-features">Key Features<a class="headerlink" href="#skeleton_refinement.stochastic_registration--key-features" title="Permanent link">Link</a></h4>
+<h3 id="skeleton_refinement.stochastic_registration--key-features">Key Features<a class="headerlink" href="#skeleton_refinement.stochastic_registration--key-features" title="Permanent link">Link</a></h3>
 <ul>
 <li>Non-rigid point set registration using Coherent Point Drift (CPD) algorithm</li>
 <li>Optimized skeleton alignment to underlying point cloud structures</li>
@@ -975,7 +997,7 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 <li>Configurable regularization parameters for controlling deformation smoothness</li>
 <li>Support for handling outliers and varying point densities</li>
 </ul>
-<h4 id="skeleton_refinement.stochastic_registration--usage-examples">Usage Examples<a class="headerlink" href="#skeleton_refinement.stochastic_registration--usage-examples" title="Permanent link">Link</a></h4>
+<h3 id="skeleton_refinement.stochastic_registration--usage-examples">Usage Examples<a class="headerlink" href="#skeleton_refinement.stochastic_registration--usage-examples" title="Permanent link">Link</a></h3>
 <div class="language-python highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration, knn_mst
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #3D7B7B; font-style: italic"># Load point cloud and skeleton data</span>
@@ -996,7 +1018,7 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -1011,12 +1033,10 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 
 
 <h2 id="skeleton_refinement.stochastic_registration.knn_mst" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">knn_mst</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">knn_mst(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>)</code>
 
 <a href="#skeleton_refinement.stochastic_registration.knn_mst" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>knn_mst(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1081,12 +1101,14 @@ k-nearest neighbors graph. Default is <code>5</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The algorithm to use for computing the k-nearest neighbors.
-- 'kd_tree': KD Tree algorithm, works well for low dimensions.
-- 'ball_tree': Ball Tree algorithm, works well for high dimensions.
-- 'brute': Brute force algorithm, always uses all data points.
-- 'auto': Automatically chooses the most appropriate algorithm.
-Default is <code>'kd_tree'</code>.</p>
+                <p>The algorithm to use for computing the k-nearest neighbors.</p>
+<ul>
+<li>'kd_tree': KD Tree algorithm, works well for low dimensions.</li>
+<li>'ball_tree': Ball Tree algorithm, works well for high dimensions.</li>
+<li>'brute': Brute force algorithm, always uses all data points.</li>
+<li>'auto': Automatically chooses the most appropriate algorithm.
+Default is <code>'kd_tree'</code>.</li>
+</ul>
               </div>
             </td>
             <td>
@@ -1102,11 +1124,13 @@ Default is <code>'kd_tree'</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The algorithm to use for computing the minimum spanning tree.
-- 'kruskal': Kruskal's algorithm, efficient for sparse graphs.
-- 'prim': Prim's algorithm, efficient for dense graphs.
-- 'boruvka': Borůvka's algorithm, another MST algorithm.
-Default is <code>'kruskal'</code>.</p>
+                <p>The algorithm to use for computing the minimum spanning tree.</p>
+<ul>
+<li>'kruskal': Kruskal's algorithm, efficient for sparse graphs.</li>
+<li>'prim': Prim's algorithm, efficient for dense graphs.</li>
+<li>'boruvka': Borůvka's algorithm, another MST algorithm.
+Default is <code>'kruskal'</code>.</li>
+</ul>
               </div>
             </td>
             <td>
@@ -1132,10 +1156,12 @@ Default is <code>'kruskal'</code>.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A NetworkX Graph representing the skeleton structure as a minimum spanning tree.
-- Nodes correspond to skeleton points with their 3D coordinates stored as a 'position' attribute
-- Edges connect points that are part of the minimum spanning tree
-- Edge weights represent Euclidean distances between connected points</p>
+                <p>A NetworkX Graph representing the skeleton structure as a minimum-spanning tree.</p>
+<ul>
+<li>Nodes correspond to skeleton points with their 3D coordinates stored as a 'position' attribute</li>
+<li>Edges connect points that are part of the minimum spanning tree</li>
+<li>Edge weights represent Euclidean distances between connected points</li>
+</ul>
               </div>
             </td>
           </tr>
@@ -1160,29 +1186,29 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> knn_mst
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> pointcloud
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> skeleton_points
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> pointcloud()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> skeleton_points()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Compute skeleton tree structure using mst on knn-graph:</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel_tree <span style="color: #666">=</span> knn_mst(refined_skel)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># The output is a NetworkX Graph with nodes representing skeleton points</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of nodes: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_nodes()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #717171">Number of nodes: 948</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of edges: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_edges()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #717171">Number of edges: 947</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Access node coordinates</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sample_node <span style="color: #666">=</span> <span style="color: #008000">list</span>(skel_tree<span style="color: #666">.</span>nodes())[<span style="color: #666">0</span>]
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Position of node </span><span style="color: #A45A77; font-weight: bold">{</span>sample_node<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>nodes[sample_node][<span style="color: #BA2121">&#39;position&#39;</span>]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #717171">Position of node 0: [ 411.2186938   370.7403124  -164.25342772]</span>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
@@ -1274,7 +1300,18 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
 
@@ -1293,6 +1330,7 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">        k-nearest neighbors graph. Default is ``5``.</span>
 <span style="color: #BA2121; font-style: italic">    knn_algorithm : {&#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39;, &#39;brute&#39;}, optional</span>
 <span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the k-nearest neighbors.</span>
+
 <span style="color: #BA2121; font-style: italic">        - &#39;kd_tree&#39;: KD Tree algorithm, works well for low dimensions.</span>
 <span style="color: #BA2121; font-style: italic">        - &#39;ball_tree&#39;: Ball Tree algorithm, works well for high dimensions.</span>
 <span style="color: #BA2121; font-style: italic">        - &#39;brute&#39;: Brute force algorithm, always uses all data points.</span>
@@ -1300,6 +1338,7 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">        Default is `&#39;kd_tree&#39;`.</span>
 <span style="color: #BA2121; font-style: italic">    mst_algorithm : {&#39;kruskal&#39;, &#39;prim&#39;, &#39;boruvka&#39;}, optional</span>
 <span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the minimum spanning tree.</span>
+
 <span style="color: #BA2121; font-style: italic">        - &#39;kruskal&#39;: Kruskal&#39;s algorithm, efficient for sparse graphs.</span>
 <span style="color: #BA2121; font-style: italic">        - &#39;prim&#39;: Prim&#39;s algorithm, efficient for dense graphs.</span>
 <span style="color: #BA2121; font-style: italic">        - &#39;boruvka&#39;: Borůvka&#39;s algorithm, another MST algorithm.</span>
@@ -1308,7 +1347,8 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        A NetworkX Graph representing the skeleton structure as a minimum spanning tree.</span>
+<span style="color: #BA2121; font-style: italic">        A NetworkX Graph representing the skeleton structure as a minimum-spanning tree.</span>
+
 <span style="color: #BA2121; font-style: italic">        - Nodes correspond to skeleton points with their 3D coordinates stored as a &#39;position&#39; attribute</span>
 <span style="color: #BA2121; font-style: italic">        - Edges connect points that are part of the minimum spanning tree</span>
 <span style="color: #BA2121; font-style: italic">        - Edge weights represent Euclidean distances between connected points</span>
@@ -1330,19 +1370,23 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import perform_registration</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import knn_mst</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply, load_json</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import pointcloud</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import skeleton_points</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = pointcloud()</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = skeleton_points()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Perform stochastic optimization</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Compute skeleton tree structure using mst on knn-graph:</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel_tree = knn_mst(refined_skel)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # The output is a NetworkX Graph with nodes representing skeleton points</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of nodes: {skel_tree.number_of_nodes()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    Number of nodes: 948</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of edges: {skel_tree.number_of_edges()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    Number of edges: 947</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Access node coordinates</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sample_node = list(skel_tree.nodes())[0]</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Position of node {sample_node}: {skel_tree.nodes[sample_node][&#39;position&#39;]}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    Position of node 0: [ 411.2186938   370.7403124  -164.25342772]</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #3D7B7B; font-style: italic"># Initialize nearest neighbors model with Euclidean distance (Minkowski p=2)</span>
     nbrs <span style="color: #666">=</span> NearestNeighbors(n_neighbors<span style="color: #666">=</span>n_neighbors, algorithm<span style="color: #666">=</span>knn_algorithm, metric<span style="color: #666">=</span><span style="color: #BA2121">&quot;minkowski&quot;</span>, p<span style="color: #666">=2</span>)<span style="color: #666">.</span>fit(
@@ -1381,12 +1425,10 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 
 
 <h2 id="skeleton_refinement.stochastic_registration.perform_registration" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">perform_registration</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">perform_registration(X, Y, <span style="color: #666">**</span>kwargs)</code>
 
 <a href="#skeleton_refinement.stochastic_registration.perform_registration" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>perform_registration(X, Y, <span style="color: #666">**</span>kwargs)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1575,16 +1617,20 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> pointcloud
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> skeleton_points
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>pcd <span style="color: #666">=</span> pointcloud()
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> skeleton_points()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(skel<span style="color: #666">.</span>shape)
+<span style="color: #717171">(948, 3)</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(refined_skel<span style="color: #666">.</span>shape)
+<span style="color: #717171">(948, 3)</span>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/stochastic_registration.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 39</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 40</span>
@@ -1662,7 +1708,11 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">112</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">113</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">114</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">115</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">116</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
 
@@ -1726,15 +1776,19 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.stochastic_registration import perform_registration</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_ply, load_json</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = load_ply(&quot;tests/testdata/real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = load_json(&quot;tests/testdata/real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;, &quot;points&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import pointcloud</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import skeleton_points</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = pointcloud()</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = skeleton_points()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Perform stochastic optimization</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; refined_skel = perform_registration(pcd, skel, alpha=5, beta=5)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(skel.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (948, 3)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(refined_skel.shape)</span>
+<span style="color: #BA2121; font-style: italic">    (948, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
     <span style="color: #3D7B7B; font-style: italic"># Initialize the Coherent Point Drift registration object</span>
-    reg <span style="color: #666">=</span> DeformableRegistration(<span style="color: #666">**</span>{<span style="color: #BA2121">&#39;X&#39;</span>: X, <span style="color: #BA2121">&#39;Y&#39;</span>: Y})
+    reg <span style="color: #666">=</span> DeformableRegistration(X<span style="color: #666">=</span>X, Y<span style="color: #666">=</span>Y, <span style="color: #666">**</span>kwargs)
     <span style="color: #3D7B7B; font-style: italic"># Perform registration</span>
     reg<span style="color: #666">.</span>register()
 

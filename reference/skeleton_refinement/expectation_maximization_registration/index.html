@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skeleton_refinement.expectation_maximization_registration" class="md-skip">
+        <a href="#skeleton_refinement.expectation_maximization_registration--expectationmaximization-point-cloud-registration" class="md-skip">
           Skip to content
         </a>
       
@@ -564,6 +564,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../deformable_registration/" class="md-nav__link">
         
   
@@ -646,17 +674,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#skeleton_refinement.expectation_maximization_registration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;expectation_maximization_registration
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#skeleton_refinement.expectation_maximization_registration--expectationmaximization-point-cloud-registration" class="md-nav__link">
@@ -895,6 +912,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    visu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -933,17 +978,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#skeleton_refinement.expectation_maximization_registration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;expectation_maximization_registration
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#skeleton_refinement.expectation_maximization_registration--expectationmaximization-point-cloud-registration" class="md-nav__link">
@@ -1115,7 +1149,7 @@
 
 
 
-<a id="skeleton_refinement.expectation_maximization_registration"></a>
+
     <div class="doc doc-contents first">
 
         <h2 id="skeleton_refinement.expectation_maximization_registration--expectationmaximization-point-cloud-registration">Expectation‑Maximization Point Cloud Registration<a class="headerlink" href="#skeleton_refinement.expectation_maximization_registration--expectationmaximization-point-cloud-registration" title="Permanent link">Link</a></h2>
@@ -1149,7 +1183,7 @@ arXiv <a href="https://arxiv.org/pdf/0905.2635">PDF</a>.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -1164,26 +1198,25 @@ arXiv <a href="https://arxiv.org/pdf/0905.2635">PDF</a>.</p>
 
 
 <h2 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration" class="doc doc-heading">
-            <span class="doc doc-object-name doc-class-name">ExpectationMaximizationRegistration</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python">ExpectationMaximizationRegistration(X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span>MAX_ITER, tolerance<span style="color: #666">=</span>TOL, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs)</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>ExpectationMaximizationRegistration(X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span><span title="skeleton_refinement.expectation_maximization_registration.MAX_ITER">MAX_ITER</span>, tolerance<span style="color: #666">=</span><span title="skeleton_refinement.expectation_maximization_registration.TOL">TOL</span>, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
               Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#object">object</a></code></p>
 
 
-        <p>Abstract base class for point cloud registration using Expectation-Maximization algorithm.</p>
+
+        <p>Abstract base class for point cloud registration using the Expectation-Maximization algorithm.</p>
 <p>This class implements the core functionality of the Coherent Point Drift (CPD)
 algorithm for point set registration based on Myronenko and Song's paper.
 It uses a probabilistic approach where the alignment of two point sets is
 treated as a Maximum Likelihood (ML) estimation problem with a Gaussian Mixture
 Model (GMM) as the likelihood function.</p>
 <p>The class serves as a base for various CPD registration methods (rigid, affine, etc.),
-providing common EM framework while requiring specific transformation models to be
+providing a common EM framework while requiring specific transformation models to be
 implemented in child classes.</p>
 
 
@@ -1394,10 +1427,7 @@ that source point <em>m</em> corresponds to target point <em>n</em>.</p>
 
 <details class="note" open>
   <summary>Notes</summary>
-  <p>This class implements the EM algorithm described in Myronenko &amp; Song (2010).
-arXiv <a href="https://arxiv.org/pdf/0905.2635">PDF</a>.</p>
-<p>It is a base class; concrete subclasses must implement <code>update_transform</code>, <code>transform_point_cloud</code>,
-<code>update_variance</code>, and <code>get_registration_parameters</code>.</p>
+  <p>This class implements the EM algorithm described in Myronenko &amp; Song (2010).</p>
 <p>This is an abstract base class. Child classes must implement:</p>
 <ul>
 <li><code>update_transform()</code>: Update transformation parameters</li>
@@ -1411,7 +1441,8 @@ arXiv <a href="https://arxiv.org/pdf/0905.2635">PDF</a>.</p>
   <summary>References</summary>
   <p>Myronenko A. and Song X. (2010) <strong>Point set registration: Coherent Point drift</strong>.
 <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>. 32 (2): 2262-2275.
-DOI: <a href="https://doi.org/10.1109/TPAMI.2010.46">10.1109/TPAMI.2010.46</a></p>
+DOI: <a href="https://doi.org/10.1109/TPAMI.2010.46">10.1109/TPAMI.2010.46</a>
+arXiv <a href="https://arxiv.org/pdf/0905.2635">PDF</a>.</p>
 </details>
 
 <details class="see-also" open>
@@ -1573,9 +1604,14 @@ state variables required for the EM iteration.</p>
 
 
 
-                  <details class="quote">
+                  <details class="mkdocstrings-source">
                     <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
+                    <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">120</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">121</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span>
@@ -1630,8 +1666,7 @@ state variables required for the EM iteration.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">176</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">177</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">178</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">180</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span>MAX_ITER, tolerance<span style="color: #666">=</span>TOL, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">179</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>, X, Y, sigma2<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>, max_iterations<span style="color: #666">=</span>MAX_ITER, tolerance<span style="color: #666">=</span>TOL, w<span style="color: #666">=0</span>, <span style="color: #666">*</span>args, <span style="color: #666">**</span>kwargs):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Initialize the Expectation-Maximization registration algorithm.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1672,28 +1707,32 @@ state variables required for the EM iteration.</p>
     <span style="color: #008000; font-weight: bold">if</span> X<span style="color: #666">.</span>shape[<span style="color: #666">1</span>] <span style="color: #666">!=</span> Y<span style="color: #666">.</span>shape[<span style="color: #666">1</span>]:
         <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">ValueError</span>(<span style="color: #BA2121">&quot;Both point clouds need to have the same number of dimensions.&quot;</span>)
 
-    <span style="color: #008000">self</span><span style="color: #666">.</span>X <span style="color: #666">=</span> X
-    <span style="color: #008000">self</span><span style="color: #666">.</span>Y <span style="color: #666">=</span> Y
-    <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> sigma2
-    (<span style="color: #008000">self</span><span style="color: #666">.</span>N, <span style="color: #008000">self</span><span style="color: #666">.</span>D) <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>X<span style="color: #666">.</span>shape
-    (<span style="color: #008000">self</span><span style="color: #666">.</span>M, _) <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>Y<span style="color: #666">.</span>shape
-    <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance <span style="color: #666">=</span> tolerance
-    <span style="color: #008000">self</span><span style="color: #666">.</span>w <span style="color: #666">=</span> w
-    <span style="color: #008000">self</span><span style="color: #666">.</span>max_iterations <span style="color: #666">=</span> max_iterations
-    <span style="color: #008000">self</span><span style="color: #666">.</span>iteration <span style="color: #666">=</span> <span style="color: #666">0</span>
-    <span style="color: #008000">self</span><span style="color: #666">.</span>err <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance <span style="color: #666">+</span> <span style="color: #666">1</span>
-    <span style="color: #008000">self</span><span style="color: #666">.</span>P <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>M, <span style="color: #008000">self</span><span style="color: #666">.</span>N))
-    <span style="color: #008000">self</span><span style="color: #666">.</span>Pt1 <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>N,))
-    <span style="color: #008000">self</span><span style="color: #666">.</span>P1 <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>M,))
-    <span style="color: #008000">self</span><span style="color: #666">.</span>Np <span style="color: #666">=</span> <span style="color: #666">0</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>X <span style="color: #666">=</span> X  <span style="color: #3D7B7B; font-style: italic"># Target (reference) point set, shape (N, D)</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>Y <span style="color: #666">=</span> Y  <span style="color: #3D7B7B; font-style: italic"># Source point set to be aligned, shape (M, D)</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>sigma2 <span style="color: #666">=</span> sigma2  <span style="color: #3D7B7B; font-style: italic"># Initial GMM variance (None -&gt; auto‑init later)</span>
 
-    <span style="color: #008000">self</span><span style="color: #666">.</span>TY <span style="color: #666">=</span> <span style="color: #008000; font-weight: bold">None</span>
+    (<span style="color: #008000">self</span><span style="color: #666">.</span>N, <span style="color: #008000">self</span><span style="color: #666">.</span>D) <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>X<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># N = nb. target points, D = dimensionality</span>
+    (<span style="color: #008000">self</span><span style="color: #666">.</span>M, _) <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>Y<span style="color: #666">.</span>shape  <span style="color: #3D7B7B; font-style: italic"># M = nb. source points</span>
+
+    <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance <span style="color: #666">=</span> tolerance  <span style="color: #3D7B7B; font-style: italic"># Convergence threshold for objective change</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>w <span style="color: #666">=</span> w  <span style="color: #3D7B7B; font-style: italic"># Outlier weight (0 ≤ w &lt; 1)</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>max_iterations <span style="color: #666">=</span> max_iterations  <span style="color: #3D7B7B; font-style: italic"># Upper bound on EM iterations</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>iteration <span style="color: #666">=</span> <span style="color: #666">0</span>  <span style="color: #3D7B7B; font-style: italic"># Current EM iteration counter</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>err <span style="color: #666">=</span> <span style="color: #008000">self</span><span style="color: #666">.</span>tolerance <span style="color: #666">+</span> <span style="color: #666">1</span>  <span style="color: #3D7B7B; font-style: italic"># Initial error (forces at least one iteration)</span>
+
+    <span style="color: #3D7B7B; font-style: italic"># Pre‑allocate EM matrices and scalars</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>P <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>M, <span style="color: #008000">self</span><span style="color: #666">.</span>N))  <span style="color: #3D7B7B; font-style: italic"># Responsibility matrix (M×N)</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>Pt1 <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>N,))  <span style="color: #3D7B7B; font-style: italic"># Column-wise sums of P</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>P1 <span style="color: #666">=</span> np<span style="color: #666">.</span>zeros((<span style="color: #008000">self</span><span style="color: #666">.</span>M,))  <span style="color: #3D7B7B; font-style: italic"># Row-wise sums of P</span>
+    <span style="color: #008000">self</span><span style="color: #666">.</span>Np <span style="color: #666">=</span> <span style="color: #666">0</span>  <span style="color: #3D7B7B; font-style: italic"># Effective number of correspondences</span>
+
+    <span style="color: #008000">self</span><span style="color: #666">.</span>TY <span style="color: #666">=</span> <span style="color: #008000; font-weight: bold">None</span>  <span style="color: #3D7B7B; font-style: italic"># Transformed source points (populated after first transform)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -1708,12 +1747,10 @@ state variables required for the EM iteration.</p>
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.expectation" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">expectation</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">expectation()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.expectation" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>expectation()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1737,9 +1774,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 </ul>
 </details>
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">308</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">307</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">308</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">309</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">310</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">311</span>
@@ -1793,8 +1831,7 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">359</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">360</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">361</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">362</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">363</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">expectation</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">362</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">expectation</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Compute the expectation (E‑step) of the EM algorithm.</span>
 
@@ -1860,12 +1897,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.get_registration_parameters" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">get_registration_parameters</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">get_registration_parameters()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.get_registration_parameters" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>get_registration_parameters()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1895,9 +1930,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">215</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">216</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">217</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
@@ -1905,8 +1941,7 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">221</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_registration_parameters</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Placeholder for child classes to return registration parameters.</span>
 
@@ -1926,12 +1961,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.iterate" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">iterate</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">iterate()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.iterate" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>iterate()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1944,9 +1977,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 <p>The iteration counter is incremented after each call.</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">293</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">292</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">293</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">294</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">295</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">296</span>
@@ -1958,8 +1992,7 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">302</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">303</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">304</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">305</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">306</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">iterate</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">305</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">iterate</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Perform one Expectation-Maximization iteration.</span>
 
@@ -1983,12 +2016,10 @@ points <code>TY</code> and variance <code>sigma2</code>:</p>
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.maximization" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">maximization</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">maximization()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.maximization" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>maximization()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2004,9 +2035,10 @@ from the GMM centered at the reference points.</p>
 and <code>update_variance</code> to obtain new transformation parameters and update <code>sigma2</code>.</p>
 </details>
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">365</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">364</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">365</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">366</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">367</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">368</span>
@@ -2020,8 +2052,7 @@ and <code>update_variance</code> to obtain new transformation parameters and upd
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">376</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">377</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">378</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">379</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">380</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">maximization</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">379</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">maximization</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Perform the maximization (M‑step) of the EM algorithm.</span>
 
@@ -2047,12 +2078,10 @@ and <code>update_variance</code> to obtain new transformation parameters and upd
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.register" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">register</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">register(callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>)</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.register" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>register(callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2158,9 +2187,10 @@ convergence or maximum iterations are reached.</p>
 of iterations is reached or the change in the objective function falls below <code>tolerance</code>.</p>
 </details>
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">226</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">227</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">228</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">229</span>
@@ -2224,8 +2254,7 @@ of iterations is reached or the change in the objective function falls below <co
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">287</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">288</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">289</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">290</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">291</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">290</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">register</span>(<span style="color: #008000">self</span>, callback<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">lambda</span> <span style="color: #666">**</span>kwargs: <span style="color: #008000; font-weight: bold">None</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Perform the EM registration.</span>
 
@@ -2258,7 +2287,7 @@ of iterations is reached or the change in the objective function falls below <co
 <span style="color: #BA2121; font-style: italic">    ``initialize_sigma2`` utility. The EM loop stops when either the maximum number</span>
 <span style="color: #BA2121; font-style: italic">    of iterations is reached or the change in the objective function falls below ``tolerance``.</span>
 <span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #3D7B7B; font-style: italic"># Initialize by transforming points according to current parameters</span>
+    <span style="color: #3D7B7B; font-style: italic"># Initialize `self.TY` by transforming points according to current parameters</span>
     <span style="color: #008000">self</span><span style="color: #666">.</span>transform_point_cloud()
 
     <span style="color: #3D7B7B; font-style: italic"># If variance is not provided, calculate initial variance based on point clouds</span>
@@ -2301,12 +2330,10 @@ of iterations is reached or the change in the objective function falls below <co
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.transform_point_cloud" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">transform_point_cloud</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">transform_point_cloud()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.transform_point_cloud" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>transform_point_cloud()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2336,9 +2363,10 @@ of iterations is reached or the change in the objective function falls below <co
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">193</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">194</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">195</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">196</span>
@@ -2346,8 +2374,7 @@ of iterations is reached or the change in the objective function falls below <co
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">198</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">199</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">200</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">202</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">201</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">transform_point_cloud</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Placeholder for child classes to implement point‑cloud transformation.</span>
 
@@ -2367,12 +2394,10 @@ of iterations is reached or the change in the objective function falls below <co
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.update_transform" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">update_transform</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">update_transform()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.update_transform" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>update_transform()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2402,9 +2427,10 @@ of iterations is reached or the change in the objective function falls below <co
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">182</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">183</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">184</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">185</span>
@@ -2412,8 +2438,7 @@ of iterations is reached or the change in the objective function falls below <co
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">188</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">189</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">191</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">190</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_transform</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Placeholder for child classes to implement the transformation update.</span>
 
@@ -2433,12 +2458,10 @@ of iterations is reached or the change in the objective function falls below <co
 
 
 <h3 id="skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.update_variance" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">update_variance</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python">update_variance()</code>
 
 <a href="#skeleton_refinement.expectation_maximization_registration.ExpectationMaximizationRegistration.update_variance" class="headerlink" title="Permanent link">Link</a></h3>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>update_variance()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2468,9 +2491,10 @@ of iterations is reached or the change in the objective function falls below <co
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/expectation_maximization_registration.py</code></summary>
-              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
+              <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">203</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">204</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">205</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">206</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">207</span>
@@ -2478,8 +2502,7 @@ of iterations is reached or the change in the objective function falls below <co
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">209</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">210</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">211</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">213</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">212</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">update_variance</span>(<span style="color: #008000">self</span>):
 <span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
 <span style="color: #BA2121; font-style: italic">    Placeholder for child classes to implement variance update.</span>
 

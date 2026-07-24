@@ -18,6 +18,8 @@
         <link rel="prev" href="../stochastic_registration/">
       
       
+        <link rel="next" href="../visu/">
+      
       
         
       
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skeleton_refinement.utilities" class="md-skip">
+        <a href="#skeleton_refinement.utilities--point-set-registration-utilities" class="md-skip">
           Skip to content
         </a>
       
@@ -562,6 +564,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../deformable_registration/" class="md-nav__link">
         
   
@@ -730,18 +760,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skeleton_refinement.utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;utilities
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities--point-set-registration-utilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -750,10 +768,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Point Set Registration Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities--key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -761,16 +778,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -860,6 +867,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    visu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -900,18 +935,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skeleton_refinement.utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;utilities
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities--point-set-registration-utilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -920,10 +943,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Point Set Registration Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#skeleton_refinement.utilities--key-features" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -931,16 +953,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1047,12 +1059,12 @@
 
 
 
-<a id="skeleton_refinement.utilities"></a>
+
     <div class="doc doc-contents first">
 
         <h3 id="skeleton_refinement.utilities--point-set-registration-utilities">Point Set Registration Utilities<a class="headerlink" href="#skeleton_refinement.utilities--point-set-registration-utilities" title="Permanent link">Link</a></h3>
 <p>This module provides efficient mathematical functions to support point set registration algorithms, particularly for the Coherent Point Drift (CPD) method used in 3D point cloud alignment and deformable registration tasks.</p>
-<h4 id="skeleton_refinement.utilities--key-features">Key Features<a class="headerlink" href="#skeleton_refinement.utilities--key-features" title="Permanent link">Link</a></h4>
+<h3 id="skeleton_refinement.utilities--key-features">Key Features<a class="headerlink" href="#skeleton_refinement.utilities--key-features" title="Permanent link">Link</a></h3>
 <ul>
 <li>Variance initialization for point sets using efficient vectorized operations</li>
 <li>Gaussian kernel matrix computation for smooth spatial transformations</li>
@@ -1069,7 +1081,7 @@
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -1084,12 +1096,10 @@
 
 
 <h2 id="skeleton_refinement.utilities.estimate_sigma2_memory" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">estimate_sigma2_memory</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">estimate_sigma2_memory(X, Y)</code>
 
 <a href="#skeleton_refinement.utilities.estimate_sigma2_memory" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>estimate_sigma2_memory(X, Y)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1186,7 +1196,7 @@ D is the number of dimensions.</p>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">20</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">21</span>
@@ -1279,12 +1289,10 @@ D is the number of dimensions.</p>
 
 
 <h2 id="skeleton_refinement.utilities.gaussian_kernel" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">gaussian_kernel</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">gaussian_kernel(Y, beta)</code>
 
 <a href="#skeleton_refinement.utilities.gaussian_kernel" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>gaussian_kernel(Y, beta)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1391,7 +1399,7 @@ compute all pairwise distances without explicit loops.</p>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">283</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">284</span>
@@ -1534,12 +1542,10 @@ compute all pairwise distances without explicit loops.</p>
 
 
 <h2 id="skeleton_refinement.utilities.get_available_memory" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">get_available_memory</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">get_available_memory()</code>
 
 <a href="#skeleton_refinement.utilities.get_available_memory" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>get_available_memory()
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1583,7 +1589,7 @@ for new or existing processes without causing pagefile swapping.</p>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
@@ -1644,12 +1650,10 @@ for new or existing processes without causing pagefile swapping.</p>
 
 
 <h2 id="skeleton_refinement.utilities.human_readable_size" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">human_readable_size</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">human_readable_size(bytes_value)</code>
 
 <a href="#skeleton_refinement.utilities.human_readable_size" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>human_readable_size(bytes_value)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1710,7 +1714,7 @@ for new or existing processes without causing pagefile swapping.</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 90</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;"> 91</span>
@@ -1783,12 +1787,10 @@ for new or existing processes without causing pagefile swapping.</p>
 
 
 <h2 id="skeleton_refinement.utilities.initialize_sigma2" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">initialize_sigma2</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">initialize_sigma2(X, Y, batch_size<span style="color: #666">=1000</span>)</code>
 
 <a href="#skeleton_refinement.utilities.initialize_sigma2" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2(X, Y, batch_size<span style="color: #666">=1000</span>)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -1887,7 +1889,7 @@ between all point pairs from <code>X</code> and <code>Y</code>.</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">251</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">252</span>
@@ -1958,12 +1960,10 @@ between all point pairs from <code>X</code> and <code>Y</code>.</p>
 
 
 <h2 id="skeleton_refinement.utilities.initialize_sigma2_fast" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">initialize_sigma2_fast</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">initialize_sigma2_fast(X, Y)</code>
 
 <a href="#skeleton_refinement.utilities.initialize_sigma2_fast" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2_fast(X, Y)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2065,7 +2065,7 @@ to efficiently calculate distances between all point pairs.</p>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span>
@@ -2198,12 +2198,10 @@ to efficiently calculate distances between all point pairs.</p>
 
 
 <h2 id="skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">initialize_sigma2_mem_efficient</span>
-
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">initialize_sigma2_mem_efficient(X, Y, batch_size<span style="color: #666">=1000</span>)</code>
 
 <a href="#skeleton_refinement.utilities.initialize_sigma2_mem_efficient" class="headerlink" title="Permanent link">Link</a></h2>
-<div class="language-python doc-signature highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>initialize_sigma2_mem_efficient(X, Y, batch_size<span style="color: #666">=1000</span>)
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
 
@@ -2319,7 +2317,7 @@ between all point pairs from <code>X</code> and <code>Y</code>.</p>
 </code></pre></div>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>skeleton_refinement/utilities.py</code></summary>
               <div class="language-python highlight" style="background: #f8f8f8"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">186</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">187</span>

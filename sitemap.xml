@@ -37,11 +37,19 @@
          <lastmod>2026-07-24</lastmod>
     </url>
     <url>
+         <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/visu/</loc>
+         <lastmod>2026-07-24</lastmod>
+    </url>
+    <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/cli/</loc>
          <lastmod>2026-07-24</lastmod>
     </url>
     <url>
          <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/cli/refine_skeleton/</loc>
+         <lastmod>2026-07-24</lastmod>
+    </url>
+    <url>
+         <loc>https://romi.github.io/skeleton_refinement/reference/skeleton_refinement/data/</loc>
          <lastmod>2026-07-24</lastmod>
     </url>
 </urlset>
