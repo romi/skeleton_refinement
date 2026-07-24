@@ -75,11 +75,11 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
         Width of the Gaussian kernel (variance of the smoothing kernel).
         Must be a positive value; larger values produce a broader influence region.
     W: numpy.ndarray, shape (M, D)
-        Deformable transformation matrix that maps the reference points to the
-        target space. Updated at each EM iteration.
+        Deformable transformation matrix that maps the reference points to the target space.
+        Updated at each EM iteration.
     G: numpy.ndarray, shape (M, M)
-        Pre‑computed Gaussian kernel matrix between all points in the reference set
-        ``self.Y``. Used to express the smoothness constraint.
+        Pre‑computed Gaussian kernel matrix between all points in the reference set ``self.Y``.
+        Used to express the smoothness constraint.
     """
 
     def __init__(self, alpha=ALPHA, beta=BETA, *args, **kwargs):
@@ -92,8 +92,7 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
             Trade‑off between the maximum‑likelihood fit and the regularization term.
             Must be positive. Defaults to ``2`` (the value of ``ALPHA``).
         beta: float, optional
-            Width of the Gaussian kernel. Must be positive. Defaults to ``2``
-            (the value of ``BETA``).
+            Width of the Gaussian kernel. Must be positive. Defaults to ``2`` (the value of ``BETA``).
         X: numpy.ndarray
             Reference point set of shape ``(N, D)`` where ``N`` is the number of points and ``D`` is the dimension.
         Y: numpy.ndarray
@@ -124,8 +123,8 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
         (20, 3)
         """
         super().__init__(*args, **kwargs)
-        self.alpha = ALPHA if alpha is None else alpha
-        self.beta = BETA if alpha is None else beta
+        self.alpha = alpha if alpha else ALPHA  # regularization weight controlling smoothness of deformation
+        self.beta = beta if beta else BETA  # Gaussian kernel width governing the kernel's influence radius
         self.W = np.zeros((self.M, self.D))
         self.G = gaussian_kernel(self.Y, self.beta)
 
@@ -171,14 +170,15 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
 
         # Solve for optimal deformation matrix W in CPD algorithm
         # A: Left side of linear equation system combining point correspondences and regularization
-        A = np.dot(np.diag(self.P1), self.G) + self.alpha * self.sigma2 * np.eye(self.M)  # P1-weighted kernel matrix + regularization term
+        # P1-weighted kernel matrix + regularization term
+        A = np.dot(np.diag(self.P1), self.G) + self.alpha * self.sigma2 * np.eye(self.M)
 
         # B: Right side of equation system representing the difference between points
-        B = np.dot(self.P, self.X) - np.dot(np.diag(self.P1), self.Y)  # P-weighted X points minus P1-weighted Y points
+        # P-weighted X points minus P1-weighted Y points
+        B = np.dot(self.P, self.X) - np.dot(np.diag(self.P1), self.Y)
 
         # Compute deformation matrix W by solving linear system AW = B
         self.W = np.linalg.solve(A, B)  # W determines how points in Y are transformed
-
 
     def transform_point_cloud(self, Y=None) -> None | np.ndarray:
         """
@@ -249,7 +249,10 @@ class DeformableRegistration(ExpectationMaximizationRegistration):
 
         References
         ----------
-        https://arxiv.org/pdf/0905.2635.pdf.
+        Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
+        _IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
+        DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
+        arXiv [PDF](https://arxiv.org/pdf/0905.2635).
         """
         qprev = self.sigma2
 

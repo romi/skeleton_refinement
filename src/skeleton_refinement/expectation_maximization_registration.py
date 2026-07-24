@@ -38,10 +38,9 @@ MAX_ITER = 100  # default maximum number of EM iterations
 TOL = 0.0001  # default tolerance for convergence (objective change)
 
 
-
 class ExpectationMaximizationRegistration(object):
     """
-    Abstract base class for point cloud registration using Expectation-Maximization algorithm.
+    Abstract base class for point cloud registration using the Expectation-Maximization algorithm.
 
     This class implements the core functionality of the Coherent Point Drift (CPD)
     algorithm for point set registration based on Myronenko and Song's paper.
@@ -50,7 +49,7 @@ class ExpectationMaximizationRegistration(object):
     Model (GMM) as the likelihood function.
 
     The class serves as a base for various CPD registration methods (rigid, affine, etc.),
-    providing common EM framework while requiring specific transformation models to be
+    providing a common EM framework while requiring specific transformation models to be
     implemented in child classes.
 
     Attributes
@@ -97,10 +96,6 @@ class ExpectationMaximizationRegistration(object):
     Notes
     -----
     This class implements the EM algorithm described in Myronenko & Song (2010).
-    arXiv [PDF](https://arxiv.org/pdf/0905.2635).
-
-    It is a base class; concrete subclasses must implement ``update_transform``, ``transform_point_cloud``,
-    ``update_variance``, and ``get_registration_parameters``.
 
     This is an abstract base class. Child classes must implement:
 
@@ -114,11 +109,11 @@ class ExpectationMaximizationRegistration(object):
     Myronenko A. and Song X. (2010) **Point set registration: Coherent Point drift**.
     _IEEE Transactions on Pattern Analysis and Machine Intelligence_. 32 (2): 2262-2275.
     DOI: [10.1109/TPAMI.2010.46](https://doi.org/10.1109/TPAMI.2010.46)
+    arXiv [PDF](https://arxiv.org/pdf/0905.2635).
 
     See Also
     --------
     skeleton_refinement.utilities.initialize_sigma2 : Function to initialize the variance parameter
-
     """
 
     def __init__(self, X, Y, sigma2=None, max_iterations=MAX_ITER, tolerance=TOL, w=0, *args, **kwargs):
@@ -162,22 +157,26 @@ class ExpectationMaximizationRegistration(object):
         if X.shape[1] != Y.shape[1]:
             raise ValueError("Both point clouds need to have the same number of dimensions.")
 
-        self.X = X
-        self.Y = Y
-        self.sigma2 = sigma2
-        (self.N, self.D) = self.X.shape
-        (self.M, _) = self.Y.shape
-        self.tolerance = tolerance
-        self.w = w
-        self.max_iterations = max_iterations
-        self.iteration = 0
-        self.err = self.tolerance + 1
-        self.P = np.zeros((self.M, self.N))
-        self.Pt1 = np.zeros((self.N,))
-        self.P1 = np.zeros((self.M,))
-        self.Np = 0
+        self.X = X  # Target (reference) point set, shape (N, D)
+        self.Y = Y  # Source point set to be aligned, shape (M, D)
+        self.sigma2 = sigma2  # Initial GMM variance (None -> auto‑init later)
 
-        self.TY = None
+        (self.N, self.D) = self.X.shape  # N = nb. target points, D = dimensionality
+        (self.M, _) = self.Y.shape  # M = nb. source points
+
+        self.tolerance = tolerance  # Convergence threshold for objective change
+        self.w = w  # Outlier weight (0 ≤ w < 1)
+        self.max_iterations = max_iterations  # Upper bound on EM iterations
+        self.iteration = 0  # Current EM iteration counter
+        self.err = self.tolerance + 1  # Initial error (forces at least one iteration)
+
+        # Pre‑allocate EM matrices and scalars
+        self.P = np.zeros((self.M, self.N))  # Responsibility matrix (M×N)
+        self.Pt1 = np.zeros((self.N,))  # Column-wise sums of P
+        self.P1 = np.zeros((self.M,))  # Row-wise sums of P
+        self.Np = 0  # Effective number of correspondences
+
+        self.TY = None  # Transformed source points (populated after first transform)
 
     def update_transform(self):
         """
@@ -256,7 +255,7 @@ class ExpectationMaximizationRegistration(object):
         ``initialize_sigma2`` utility. The EM loop stops when either the maximum number
         of iterations is reached or the change in the objective function falls below ``tolerance``.
         """
-        # Initialize by transforming points according to current parameters
+        # Initialize `self.TY` by transforming points according to current parameters
         self.transform_point_cloud()
 
         # If variance is not provided, calculate initial variance based on point clouds
