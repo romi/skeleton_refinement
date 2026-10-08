@@ -1003,16 +1003,16 @@ It simplifies the workflow for researchers and developers who need to inspect or
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
 <span style="color: #666">&gt;&gt;&gt;</span> pcd <span style="color: #666">=</span> pointcloud()
 <span style="color: #666">&gt;&gt;&gt;</span> skel <span style="color: #666">=</span> skeleton()
-<span style="color: #666">&gt;&gt;&gt;</span> ref_skel_pts <span style="color: #666">=</span> perform_registration(pcd, skel[<span style="color: #BA2121">&quot;points&quot;</span>], alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=10</span>)
-<span style="color: #666">&gt;&gt;&gt;</span> ref_skel <span style="color: #666">=</span> {<span style="color: #BA2121">&quot;points&quot;</span>: ref_skel_pts, <span style="color: #BA2121">&quot;lines&quot;</span>: skel[<span style="color: #BA2121">&quot;lines&quot;</span>]}
+<span style="color: #666">&gt;&gt;&gt;</span> ref_skel_pts <span style="color: #666">=</span> perform_registration(pcd, skel[<span style="color: #BA2121">"points"</span>], alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=10</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> ref_skel <span style="color: #666">=</span> {<span style="color: #BA2121">"points"</span>: ref_skel_pts, <span style="color: #BA2121">"lines"</span>: skel[<span style="color: #BA2121">"lines"</span>]}
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #3D7B7B; font-style: italic"># Create a PyVista rendering:</span>
 <span style="color: #666">&gt;&gt;&gt;</span> pcd_mesh <span style="color: #666">=</span> pointcloud_polydata(pcd)
 <span style="color: #666">&gt;&gt;&gt;</span> skel_mesh <span style="color: #666">=</span> skeleton_polydata(skel)
 <span style="color: #666">&gt;&gt;&gt;</span> ref_skel_mesh <span style="color: #666">=</span> skeleton_polydata(ref_skel)
 <span style="color: #666">&gt;&gt;&gt;</span> plotter <span style="color: #666">=</span> pv<span style="color: #666">.</span>Plotter()
-<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(pcd_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;darkgreen&#39;</span>, opacity<span style="color: #666">=0.3</span>)
-<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;red&#39;</span>, line_width<span style="color: #666">=3</span>)
-<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(ref_skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;blue&#39;</span>, line_width<span style="color: #666">=3</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(pcd_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">'darkgreen'</span>, opacity<span style="color: #666">=0.3</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">'red'</span>, line_width<span style="color: #666">=3</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_mesh(ref_skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">'blue'</span>, line_width<span style="color: #666">=3</span>)
 <span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>show_grid()
 <span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>add_floor()
 <span style="color: #666">&gt;&gt;&gt;</span> plotter<span style="color: #666">.</span>show()
@@ -1115,7 +1115,7 @@ It simplifies the workflow for researchers and developers who need to inspect or
 <span style="color: #717171">57890</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create a PyVista rendering:</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter <span style="color: #666">=</span> pv<span style="color: #666">.</span>Plotter(pointcloud())
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_mesh(pcd, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;darkgreen&#39;</span>, opacity<span style="color: #666">=0.7</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_mesh(pcd, color<span style="color: #666">=</span><span style="color: #BA2121">'darkgreen'</span>, opacity<span style="color: #666">=0.7</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>show_grid()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_floor()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>show()
@@ -1154,8 +1154,8 @@ It simplifies the workflow for researchers and developers who need to inspect or
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">74</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">75</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">76</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">pointcloud_polydata</span>(points) <span style="color: #666">-&gt;</span> <span style="color: #BA2121">&quot;pv.PolyData&quot;</span>:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">77</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">pointcloud_polydata</span>(points) <span style="color: #666">-&gt;</span> <span style="color: #BA2121">"pv.PolyData"</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Build a `pyvista.PolyData` mesh from the bundled point‑cloud.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1178,12 +1178,12 @@ It simplifies the workflow for researchers and developers who need to inspect or
 <span style="color: #BA2121; font-style: italic">    57890</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Create a PyVista rendering:</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter = pv.Plotter(pointcloud())</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_mesh(pcd, color=&#39;darkgreen&#39;, opacity=0.7)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_mesh(pcd, color='darkgreen', opacity=0.7)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.show_grid()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_floor()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.show()</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #3D7B7B; font-style: italic"># PyVista&#39;s PolyData constructor accepts an (N, 3) array of points.</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
+    <span style="color: #3D7B7B; font-style: italic"># PyVista's PolyData constructor accepts an (N, 3) array of points.</span>
     <span style="color: #008000; font-weight: bold">return</span> pv<span style="color: #666">.</span>PolyData(points)
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1222,7 +1222,7 @@ connecting the skeleton points.</p>
                 <code>skel</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1272,7 +1272,7 @@ taken from the <code>lines</code> array in the original JSON file.</p>
 <span style="color: #717171">947   # number of line segments (len(lines))</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Create a PyVista rendering:</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter <span style="color: #666">=</span> pv<span style="color: #666">.</span>Plotter()
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_mesh(skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;red&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_mesh(skel_mesh, color<span style="color: #666">=</span><span style="color: #BA2121">'red'</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>show_grid()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>add_floor()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>plotter<span style="color: #666">.</span>show()
@@ -1332,17 +1332,17 @@ taken from the <code>lines</code> array in the original JSON file.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">128</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">129</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">skeleton_polydata</span>(skel) <span style="color: #666">-&gt;</span> <span style="color: #BA2121">&quot;pv.PolyData&quot;</span>:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">skeleton_polydata</span>(skel) <span style="color: #666">-&gt;</span> <span style="color: #BA2121">"pv.PolyData"</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Build a `pyvista.PolyData` mesh that visualizes the skeleton as a set of line segments</span>
 <span style="color: #BA2121; font-style: italic">    connecting the skeleton points.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
 <span style="color: #BA2121; font-style: italic">    skel : dict</span>
-<span style="color: #BA2121; font-style: italic">        A dictionary with &quot;points&quot; and &quot;lines&quot;, representing the skeleton.</span>
-<span style="color: #BA2121; font-style: italic">        The &quot;points&quot; entry is an ``(M, 3)`` numpy array, representing the XYZ coordinates of the skeleton points.</span>
-<span style="color: #BA2121; font-style: italic">        The &quot;lines&quot; entry is a ``(L, 2)`` numpy array, representing the line segments connecting the skeleton points.</span>
+<span style="color: #BA2121; font-style: italic">        A dictionary with "points" and "lines", representing the skeleton.</span>
+<span style="color: #BA2121; font-style: italic">        The "points" entry is an ``(M, 3)`` numpy array, representing the XYZ coordinates of the skeleton points.</span>
+<span style="color: #BA2121; font-style: italic">        The "lines" entry is a ``(L, 2)`` numpy array, representing the line segments connecting the skeleton points.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
@@ -1360,13 +1360,13 @@ taken from the <code>lines</code> array in the original JSON file.</p>
 <span style="color: #BA2121; font-style: italic">    947   # number of line segments (len(lines))</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Create a PyVista rendering:</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter = pv.Plotter()</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_mesh(skel_mesh, color=&#39;red&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_mesh(skel_mesh, color='red')</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.show_grid()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.add_floor()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; plotter.show()</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    points: np<span style="color: #666">.</span>ndarray <span style="color: #666">=</span> np<span style="color: #666">.</span>asarray(skel[<span style="color: #BA2121">&quot;points&quot;</span>])  <span style="color: #3D7B7B; font-style: italic"># (M, 3)</span>
-    lines: np<span style="color: #666">.</span>ndarray <span style="color: #666">=</span> np<span style="color: #666">.</span>asarray(skel[<span style="color: #BA2121">&quot;lines&quot;</span>], dtype<span style="color: #666">=</span>np<span style="color: #666">.</span>int32)  <span style="color: #3D7B7B; font-style: italic"># (L, 2)</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
+    points: np<span style="color: #666">.</span>ndarray <span style="color: #666">=</span> np<span style="color: #666">.</span>asarray(skel[<span style="color: #BA2121">"points"</span>])  <span style="color: #3D7B7B; font-style: italic"># (M, 3)</span>
+    lines: np<span style="color: #666">.</span>ndarray <span style="color: #666">=</span> np<span style="color: #666">.</span>asarray(skel[<span style="color: #BA2121">"lines"</span>], dtype<span style="color: #666">=</span>np<span style="color: #666">.</span>int32)  <span style="color: #3D7B7B; font-style: italic"># (L, 2)</span>
 
     <span style="color: #3D7B7B; font-style: italic"># PyVista expects a *connectivity array* where each line is encoded as:</span>
     <span style="color: #3D7B7B; font-style: italic"># [n_vertices, idx0, idx1, ...]   (n_vertices == 2 for simple segments)</span>

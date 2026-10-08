@@ -1001,8 +1001,8 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 <div class="language-python highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration, knn_mst
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_ply, load_json
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #3D7B7B; font-style: italic"># Load point cloud and skeleton data</span>
-<span style="color: #666">&gt;&gt;&gt;</span> pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;path/to/pointcloud.ply&quot;</span>)
-<span style="color: #666">&gt;&gt;&gt;</span> skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;path/to/skeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">"path/to/pointcloud.ply"</span>)
+<span style="color: #666">&gt;&gt;&gt;</span> skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">"path/to/skeleton.json"</span>, <span style="color: #BA2121">"points"</span>)
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #3D7B7B; font-style: italic"># Perform registration to align skeleton with point cloud</span>
 <span style="color: #666">&gt;&gt;&gt;</span> refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel, alpha<span style="color: #666">=5</span>, beta<span style="color: #666">=5</span>)
 <span style="color: #666">&gt;&gt;&gt;</span> <span style="color: #3D7B7B; font-style: italic"># Generate skeleton graph structure</span>
@@ -1033,7 +1033,7 @@ It enables precise fitting of skeletal models to noisy or dense point cloud data
 
 
 <h2 id="skeleton_refinement.stochastic_registration.knn_mst" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">knn_mst(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>)</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">knn_mst(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">'kd_tree'</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">'kruskal'</span>)</code>
 
 <a href="#skeleton_refinement.stochastic_registration.knn_mst" class="headerlink" title="Permanent link">Link</a></h2>
 
@@ -1080,7 +1080,7 @@ Each row represents the 3D position of a skeleton point.</p>
                 <code>n_neighbors</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1195,13 +1195,13 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Compute skeleton tree structure using mst on knn-graph:</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel_tree <span style="color: #666">=</span> knn_mst(refined_skel)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># The output is a NetworkX Graph with nodes representing skeleton points</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of nodes: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_nodes()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f"Number of nodes: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_nodes()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">"</span>)
 <span style="color: #717171">Number of nodes: 948</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Number of edges: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_edges()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f"Number of edges: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>number_of_edges()<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">"</span>)
 <span style="color: #717171">Number of edges: 947</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Access node coordinates</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>sample_node <span style="color: #666">=</span> <span style="color: #008000">list</span>(skel_tree<span style="color: #666">.</span>nodes())[<span style="color: #666">0</span>]
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f&quot;Position of node </span><span style="color: #A45A77; font-weight: bold">{</span>sample_node<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>nodes[sample_node][<span style="color: #BA2121">&#39;position&#39;</span>]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&quot;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #BA2121">f"Position of node </span><span style="color: #A45A77; font-weight: bold">{</span>sample_node<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">: </span><span style="color: #A45A77; font-weight: bold">{</span>skel_tree<span style="color: #666">.</span>nodes[sample_node][<span style="color: #BA2121">'position'</span>]<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">"</span>)
 <span style="color: #717171">Position of node 0: [ 411.2186938   370.7403124  -164.25342772]</span>
 </code></pre></div>
 
@@ -1311,8 +1311,8 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">222</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">223</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">224</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kd_tree&#39;</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">&#39;kruskal&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">225</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">knn_mst</span>(skeleton_points, n_neighbors<span style="color: #666">=5</span>, knn_algorithm<span style="color: #666">=</span><span style="color: #BA2121">'kd_tree'</span>, mst_algorithm<span style="color: #666">=</span><span style="color: #BA2121">'kruskal'</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Create a minimum spanning tree from skeleton points using k-nearest neighbors graph.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function constructs a k-nearest neighbors graph from the input skeleton points</span>
@@ -1328,28 +1328,28 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">    n_neighbors : int, optional</span>
 <span style="color: #BA2121; font-style: italic">        The number of neighbors to consider for each point when building the</span>
 <span style="color: #BA2121; font-style: italic">        k-nearest neighbors graph. Default is ``5``.</span>
-<span style="color: #BA2121; font-style: italic">    knn_algorithm : {&#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39;, &#39;brute&#39;}, optional</span>
+<span style="color: #BA2121; font-style: italic">    knn_algorithm : {'auto', 'ball_tree', 'kd_tree', 'brute'}, optional</span>
 <span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the k-nearest neighbors.</span>
 
-<span style="color: #BA2121; font-style: italic">        - &#39;kd_tree&#39;: KD Tree algorithm, works well for low dimensions.</span>
-<span style="color: #BA2121; font-style: italic">        - &#39;ball_tree&#39;: Ball Tree algorithm, works well for high dimensions.</span>
-<span style="color: #BA2121; font-style: italic">        - &#39;brute&#39;: Brute force algorithm, always uses all data points.</span>
-<span style="color: #BA2121; font-style: italic">        - &#39;auto&#39;: Automatically chooses the most appropriate algorithm.</span>
-<span style="color: #BA2121; font-style: italic">        Default is `&#39;kd_tree&#39;`.</span>
-<span style="color: #BA2121; font-style: italic">    mst_algorithm : {&#39;kruskal&#39;, &#39;prim&#39;, &#39;boruvka&#39;}, optional</span>
+<span style="color: #BA2121; font-style: italic">        - 'kd_tree': KD Tree algorithm, works well for low dimensions.</span>
+<span style="color: #BA2121; font-style: italic">        - 'ball_tree': Ball Tree algorithm, works well for high dimensions.</span>
+<span style="color: #BA2121; font-style: italic">        - 'brute': Brute force algorithm, always uses all data points.</span>
+<span style="color: #BA2121; font-style: italic">        - 'auto': Automatically chooses the most appropriate algorithm.</span>
+<span style="color: #BA2121; font-style: italic">        Default is `'kd_tree'`.</span>
+<span style="color: #BA2121; font-style: italic">    mst_algorithm : {'kruskal', 'prim', 'boruvka'}, optional</span>
 <span style="color: #BA2121; font-style: italic">        The algorithm to use for computing the minimum spanning tree.</span>
 
-<span style="color: #BA2121; font-style: italic">        - &#39;kruskal&#39;: Kruskal&#39;s algorithm, efficient for sparse graphs.</span>
-<span style="color: #BA2121; font-style: italic">        - &#39;prim&#39;: Prim&#39;s algorithm, efficient for dense graphs.</span>
-<span style="color: #BA2121; font-style: italic">        - &#39;boruvka&#39;: Borůvka&#39;s algorithm, another MST algorithm.</span>
-<span style="color: #BA2121; font-style: italic">        Default is `&#39;kruskal&#39;`.</span>
+<span style="color: #BA2121; font-style: italic">        - 'kruskal': Kruskal's algorithm, efficient for sparse graphs.</span>
+<span style="color: #BA2121; font-style: italic">        - 'prim': Prim's algorithm, efficient for dense graphs.</span>
+<span style="color: #BA2121; font-style: italic">        - 'boruvka': Borůvka's algorithm, another MST algorithm.</span>
+<span style="color: #BA2121; font-style: italic">        Default is `'kruskal'`.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    networkx.Graph</span>
 <span style="color: #BA2121; font-style: italic">        A NetworkX Graph representing the skeleton structure as a minimum-spanning tree.</span>
 
-<span style="color: #BA2121; font-style: italic">        - Nodes correspond to skeleton points with their 3D coordinates stored as a &#39;position&#39; attribute</span>
+<span style="color: #BA2121; font-style: italic">        - Nodes correspond to skeleton points with their 3D coordinates stored as a 'position' attribute</span>
 <span style="color: #BA2121; font-style: italic">        - Edges connect points that are part of the minimum spanning tree</span>
 <span style="color: #BA2121; font-style: italic">        - Edge weights represent Euclidean distances between connected points</span>
 
@@ -1379,17 +1379,17 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Compute skeleton tree structure using mst on knn-graph:</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel_tree = knn_mst(refined_skel)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # The output is a NetworkX Graph with nodes representing skeleton points</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of nodes: {skel_tree.number_of_nodes()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f"Number of nodes: {skel_tree.number_of_nodes()}")</span>
 <span style="color: #BA2121; font-style: italic">    Number of nodes: 948</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Number of edges: {skel_tree.number_of_edges()}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f"Number of edges: {skel_tree.number_of_edges()}")</span>
 <span style="color: #BA2121; font-style: italic">    Number of edges: 947</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Access node coordinates</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; sample_node = list(skel_tree.nodes())[0]</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f&quot;Position of node {sample_node}: {skel_tree.nodes[sample_node][&#39;position&#39;]}&quot;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(f"Position of node {sample_node}: {skel_tree.nodes[sample_node]['position']}")</span>
 <span style="color: #BA2121; font-style: italic">    Position of node 0: [ 411.2186938   370.7403124  -164.25342772]</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #3D7B7B; font-style: italic"># Initialize nearest neighbors model with Euclidean distance (Minkowski p=2)</span>
-    nbrs <span style="color: #666">=</span> NearestNeighbors(n_neighbors<span style="color: #666">=</span>n_neighbors, algorithm<span style="color: #666">=</span>knn_algorithm, metric<span style="color: #666">=</span><span style="color: #BA2121">&quot;minkowski&quot;</span>, p<span style="color: #666">=2</span>)<span style="color: #666">.</span>fit(
+    nbrs <span style="color: #666">=</span> NearestNeighbors(n_neighbors<span style="color: #666">=</span>n_neighbors, algorithm<span style="color: #666">=</span>knn_algorithm, metric<span style="color: #666">=</span><span style="color: #BA2121">"minkowski"</span>, p<span style="color: #666">=2</span>)<span style="color: #666">.</span>fit(
         skeleton_points)
     <span style="color: #3D7B7B; font-style: italic"># Find k-nearest neighbors for each point - returns distances and indices matrices</span>
     distances, indices <span style="color: #666">=</span> nbrs<span style="color: #666">.</span>kneighbors(skeleton_points)
@@ -1402,13 +1402,13 @@ networkx.minimum_spanning_tree : For computing minimum spanning trees</p>
         nodes_idx <span style="color: #666">=</span> <span style="color: #008000">list</span>(<span style="color: #008000">map</span>(<span style="color: #008000">int</span>, nodes_idx))
         node_idx, nei_idx <span style="color: #666">=</span> nodes_idx[<span style="color: #666">0</span>], nodes_idx[<span style="color: #666">1</span>:]  <span style="color: #3D7B7B; font-style: italic"># First index is the point itself</span>
         <span style="color: #3D7B7B; font-style: italic"># Add edges with Euclidean distances as weights</span>
-        <span style="color: #3D7B7B; font-style: italic"># Skip first neighbor (index 0) as it&#39;s the point itself</span>
-        [G<span style="color: #666">.</span>add_edges_from([(node_idx, n_idx, {<span style="color: #BA2121">&quot;weight&quot;</span>: distances[row, col <span style="color: #666">+</span> <span style="color: #666">1</span>]})]) <span style="color: #008000; font-weight: bold">for</span> col, n_idx <span style="color: #A2F; font-weight: bold">in</span>
+        <span style="color: #3D7B7B; font-style: italic"># Skip first neighbor (index 0) as it's the point itself</span>
+        [G<span style="color: #666">.</span>add_edges_from([(node_idx, n_idx, {<span style="color: #BA2121">"weight"</span>: distances[row, col <span style="color: #666">+</span> <span style="color: #666">1</span>]})]) <span style="color: #008000; font-weight: bold">for</span> col, n_idx <span style="color: #A2F; font-weight: bold">in</span>
          <span style="color: #008000">enumerate</span>(nei_idx)]
 
     <span style="color: #3D7B7B; font-style: italic"># Store original 3D coordinates as node attributes</span>
     <span style="color: #008000; font-weight: bold">for</span> node_id <span style="color: #A2F; font-weight: bold">in</span> G<span style="color: #666">.</span>nodes:
-        G<span style="color: #666">.</span>nodes[node_id][<span style="color: #BA2121">&#39;position&#39;</span>] <span style="color: #666">=</span> skeleton_points[node_id]
+        G<span style="color: #666">.</span>nodes[node_id][<span style="color: #BA2121">'position'</span>] <span style="color: #666">=</span> skeleton_points[node_id]
 
     <span style="color: #3D7B7B; font-style: italic"># Compute minimum spanning tree from the KNN graph</span>
     <span style="color: #3D7B7B; font-style: italic"># This creates optimal connected structure with minimal total edge length</span>
@@ -1500,7 +1500,7 @@ This represents the moving point set that will be transformed.</p>
           <tr class="doc-section-item">
             <td><code>alpha</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1512,7 +1512,7 @@ Higher values result in smoother, more rigid transformations.</p>
           <tr class="doc-section-item">
             <td><code>beta</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1524,7 +1524,7 @@ Controls the influence range of each point in the deformation.</p>
           <tr class="doc-section-item">
             <td><code>sigma2</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> or <a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#float">float</a> or <a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1537,7 +1537,7 @@ Defaults to <code>None</code>.</p>
           <tr class="doc-section-item">
             <td><code>max_iterations</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#int">int</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1549,7 +1549,7 @@ Defaults to <code>100</code>.</p>
           <tr class="doc-section-item">
             <td><code>tolerance</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1561,7 +1561,7 @@ Defaults to <code>0.001</code>.</p>
           <tr class="doc-section-item">
             <td><code>w</code></td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/functions.html#float">float</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1713,12 +1713,12 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">117</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">118</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">119</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">perform_registration</span>(X, Y, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Performs stochastic deformation registration to align a skeleton to a point cloud.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function uses the Coherent Point Drift (CPD) algorithm to perform non-rigid</span>
 <span style="color: #BA2121; font-style: italic">    registration between a reference point cloud and a skeleton. The algorithm optimizes</span>
-<span style="color: #BA2121; font-style: italic">    the skeleton&#39;s position to better align with the underlying point cloud structure.</span>
+<span style="color: #BA2121; font-style: italic">    the skeleton's position to better align with the underlying point cloud structure.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
 <span style="color: #BA2121; font-style: italic">    ----------</span>
@@ -1786,7 +1786,7 @@ skeleton_refinement.expectation_maximization_registration.ExpectationMaximizatio
 <span style="color: #BA2121; font-style: italic">    (948, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(refined_skel.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (948, 3)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #3D7B7B; font-style: italic"># Initialize the Coherent Point Drift registration object</span>
     reg <span style="color: #666">=</span> DeformableRegistration(X<span style="color: #666">=</span>X, Y<span style="color: #666">=</span>Y, <span style="color: #666">**</span>kwargs)
     <span style="color: #3D7B7B; font-style: italic"># Perform registration</span>

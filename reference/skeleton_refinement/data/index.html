@@ -1164,7 +1164,7 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">103</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">104</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">105</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">pointcloud</span>() <span style="color: #666">-&gt;</span> np<span style="color: #666">.</span>ndarray:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load the bundled point‑cloud data as a NumPy array.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
@@ -1178,7 +1178,7 @@
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd = pointcloud()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(pcd.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (57890, 3)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">return</span> load_ply(pointcloud_path())
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1252,7 +1252,7 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">63</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">64</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">65</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">pointcloud_path</span>() <span style="color: #666">-&gt;</span> Path:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Get the absolute path to the bundled point‑cloud PLY file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
@@ -1266,10 +1266,10 @@
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; pcd_path = pointcloud_path()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(pcd_path)  # doctest: +ELLIPSIS</span>
 <span style="color: #BA2121; font-style: italic">    /.../skeleton_refinement/data/real_plant/PointCloud.ply</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #3D7B7B; font-style: italic"># Get the directory path to the package data files</span>
-    data_dir <span style="color: #666">=</span> resources<span style="color: #666">.</span>files(<span style="color: #BA2121">&#39;skeleton_refinement.data.real_plant&#39;</span>)
-    <span style="color: #008000; font-weight: bold">return</span> Path(data_dir<span style="color: #666">.</span>joinpath(<span style="color: #BA2121">&quot;PointCloud.ply&quot;</span>))
+    data_dir <span style="color: #666">=</span> resources<span style="color: #666">.</span>files(<span style="color: #BA2121">'skeleton_refinement.data.real_plant'</span>)
+    <span style="color: #008000; font-weight: bold">return</span> Path(data_dir<span style="color: #666">.</span>joinpath(<span style="color: #BA2121">"PointCloud.ply"</span>))
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1301,7 +1301,7 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#dict">dict</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1321,7 +1321,7 @@
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> skeleton
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>skel <span style="color: #666">=</span> skeleton()
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(<span style="color: #008000">list</span>(skel<span style="color: #666">.</span>keys()))
-<span style="color: #717171">[&#39;points&#39;, &#39;lines&#39;]</span>
+<span style="color: #717171">['points', 'lines']</span>
 </code></pre></div>
 
 
@@ -1348,26 +1348,26 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">145</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">146</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">147</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">skeleton</span>() <span style="color: #666">-&gt;</span> <span style="color: #008000">dict</span>[<span style="color: #008000">str</span>, np<span style="color: #666">.</span>ndarray]:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load the skeleton point coordinates and lines from the bundled JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
 <span style="color: #BA2121; font-style: italic">    dict</span>
-<span style="color: #BA2121; font-style: italic">        The whole skeleton dictionary with &quot;points&quot; and &quot;lines&quot;.</span>
+<span style="color: #BA2121; font-style: italic">        The whole skeleton dictionary with "points" and "lines".</span>
 
-<span style="color: #BA2121; font-style: italic">        - &quot;points&quot; with an array of shape ``(M, 3)`` containing the XYZ coordinates of the skeleton points.</span>
-<span style="color: #BA2121; font-style: italic">        - &quot;lines&quot; with an array of shape ``(M, 2)`` containing the pais of point indexes joining them.</span>
+<span style="color: #BA2121; font-style: italic">        - "points" with an array of shape ``(M, 3)`` containing the XYZ coordinates of the skeleton points.</span>
+<span style="color: #BA2121; font-style: italic">        - "lines" with an array of shape ``(M, 2)`` containing the pais of point indexes joining them.</span>
 
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import skeleton</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = skeleton()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(list(skel.keys()))</span>
-<span style="color: #BA2121; font-style: italic">    [&#39;points&#39;, &#39;lines&#39;]</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    ['points', 'lines']</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     skel_data <span style="color: #666">=</span> load_json(skeleton_path())
-    <span style="color: #008000; font-weight: bold">return</span> {<span style="color: #BA2121">&quot;points&quot;</span>: np<span style="color: #666">.</span>asarray(skel_data[<span style="color: #BA2121">&quot;points&quot;</span>]), <span style="color: #BA2121">&quot;lines&quot;</span>: np<span style="color: #666">.</span>asarray(skel_data[<span style="color: #BA2121">&quot;lines&quot;</span>])}
+    <span style="color: #008000; font-weight: bold">return</span> {<span style="color: #BA2121">"points"</span>: np<span style="color: #666">.</span>asarray(skel_data[<span style="color: #BA2121">"points"</span>]), <span style="color: #BA2121">"lines"</span>: np<span style="color: #666">.</span>asarray(skel_data[<span style="color: #BA2121">"lines"</span>])}
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1440,7 +1440,7 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">84</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">85</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">86</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">skeleton_path</span>() <span style="color: #666">-&gt;</span> Path:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Get the absolute path to the bundled skeleton JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
@@ -1454,10 +1454,10 @@
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel_path = skeleton_path()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(skel_path)  # doctest: +ELLIPSIS</span>
 <span style="color: #BA2121; font-style: italic">    /.../skeleton_refinement/data/real_plant/CurveSkeleton.json</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #3D7B7B; font-style: italic"># Get the directory path to the package data files</span>
-    data_dir <span style="color: #666">=</span> resources<span style="color: #666">.</span>files(<span style="color: #BA2121">&#39;skeleton_refinement.data.real_plant&#39;</span>)
-    <span style="color: #008000; font-weight: bold">return</span> Path(data_dir<span style="color: #666">.</span>joinpath(<span style="color: #BA2121">&quot;CurveSkeleton.json&quot;</span>))
+    data_dir <span style="color: #666">=</span> resources<span style="color: #666">.</span>files(<span style="color: #BA2121">'skeleton_refinement.data.real_plant'</span>)
+    <span style="color: #008000; font-weight: bold">return</span> Path(data_dir<span style="color: #666">.</span>joinpath(<span style="color: #BA2121">"CurveSkeleton.json"</span>))
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1528,7 +1528,7 @@
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">122</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">123</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">124</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">skeleton_points</span>() <span style="color: #666">-&gt;</span> np<span style="color: #666">.</span>ndarray:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load the skeleton point coordinates from the bundled JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
@@ -1542,8 +1542,8 @@
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; skel = skeleton_points()</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(skel.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (948, 3)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #008000; font-weight: bold">return</span> load_json(skeleton_path(), key<span style="color: #666">=</span><span style="color: #BA2121">&quot;points&quot;</span>)
+<span style="color: #BA2121; font-style: italic">    """</span>
+    <span style="color: #008000; font-weight: bold">return</span> load_json(skeleton_path(), key<span style="color: #666">=</span><span style="color: #BA2121">"points"</span>)
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

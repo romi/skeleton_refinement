@@ -1107,7 +1107,7 @@ Again, we strongly advise creating a <code>conda</code> environment.</p>
 <p>All this can be done as follows:
 <div class="language-shell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #BBB"> </span>clone<span style="color: #BBB"> </span>https://github.com/romi/skeleton_refinement.git
 <span style="color: #008000">cd</span><span style="color: #BBB"> </span>skeleton_refinement
-conda<span style="color: #BBB"> </span>create<span style="color: #BBB"> </span>-n<span style="color: #BBB"> </span>skeleton_refinement<span style="color: #BBB"> </span><span style="color: #BA2121">&#39;python =3.10&#39;</span>
+conda<span style="color: #BBB"> </span>create<span style="color: #BBB"> </span>-n<span style="color: #BBB"> </span>skeleton_refinement<span style="color: #BBB"> </span><span style="color: #BA2121">'python =3.10'</span>
 conda<span style="color: #BBB"> </span>activate<span style="color: #BBB"> </span>skeleton_refinement<span style="color: #BBB">  </span><span style="color: #3D7B7B; font-style: italic"># do not forget to activate your environment!</span>
 python<span style="color: #BBB"> </span>-m<span style="color: #BBB"> </span>pip<span style="color: #BBB"> </span>install<span style="color: #BBB"> </span>-e<span style="color: #BBB"> </span>.<span style="color: #BBB">  </span><span style="color: #3D7B7B; font-style: italic"># install the sources</span>
 </code></pre></div></p>
@@ -1135,19 +1135,19 @@ refine_skeleton<span style="color: #BBB"> </span><span style="color: #AA5D1F; fo
 <div class="language-python highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.stochastic_registration</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> perform_registration
 <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_json, load_ply
 
-pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">&quot;real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply&quot;</span>)
-skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">&quot;real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json&quot;</span>, <span style="color: #BA2121">&quot;points&quot;</span>)
+pcd <span style="color: #666">=</span> load_ply(<span style="color: #BA2121">"real_plant_analyzed/PointCloud_1_0_1_0_10_0_7ee836e5a9/PointCloud.ply"</span>)
+skel <span style="color: #666">=</span> load_json(<span style="color: #BA2121">"real_plant_analyzed/CurveSkeleton__TriangleMesh_0393cb5708/CurveSkeleton.json"</span>, <span style="color: #BA2121">"points"</span>)
 <span style="color: #3D7B7B; font-style: italic"># Perform stochastic optimization</span>
 refined_skel <span style="color: #666">=</span> perform_registration(pcd, skel)
 
 <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">matplotlib.pyplot</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">as</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">plt</span>
 
 fig <span style="color: #666">=</span> plt<span style="color: #666">.</span>figure()
-ax <span style="color: #666">=</span> fig<span style="color: #666">.</span>add_subplot(projection<span style="color: #666">=</span><span style="color: #BA2121">&#39;3d&#39;</span>)
-ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>pcd<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">&#39;.&#39;</span>, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;black&#39;</span>)
-ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>skel<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">&#39;o&#39;</span>, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;r&#39;</span>)
-ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>refined_skel<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">&#39;o&#39;</span>, color<span style="color: #666">=</span><span style="color: #BA2121">&#39;b&#39;</span>)
-ax<span style="color: #666">.</span>set_aspect(<span style="color: #BA2121">&#39;equal&#39;</span>)
+ax <span style="color: #666">=</span> fig<span style="color: #666">.</span>add_subplot(projection<span style="color: #666">=</span><span style="color: #BA2121">'3d'</span>)
+ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>pcd<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">'.'</span>, color<span style="color: #666">=</span><span style="color: #BA2121">'black'</span>)
+ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>skel<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">'o'</span>, color<span style="color: #666">=</span><span style="color: #BA2121">'r'</span>)
+ax<span style="color: #666">.</span>scatter(<span style="color: #666">*</span>refined_skel<span style="color: #666">.</span>T, marker<span style="color: #666">=</span><span style="color: #BA2121">'o'</span>, color<span style="color: #666">=</span><span style="color: #BA2121">'b'</span>)
+ax<span style="color: #666">.</span>set_aspect(<span style="color: #BA2121">'equal'</span>)
 plt<span style="color: #666">.</span>show()
 </code></pre></div>
 

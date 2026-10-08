@@ -1087,17 +1087,17 @@ This tool helps improve the quality of plant representation by pushing skeleton 
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">125</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">126</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">127</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_loader</span>(fname):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Load point cloud or skeleton from a file.&quot;&quot;&quot;</span>
-    <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""Load point cloud or skeleton from a file."""</span>
+    <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">".xyz"</span>, <span style="color: #BA2121">".txt"</span>]:
         xyz <span style="color: #666">=</span> load_xyz(fname)
-    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">&quot;.json&quot;</span>:
-        xyz <span style="color: #666">=</span> load_json(fname, <span style="color: #BA2121">&quot;points&quot;</span>)
-    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">&quot;.ply&quot;</span>:
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">".json"</span>:
+        xyz <span style="color: #666">=</span> load_json(fname, <span style="color: #BA2121">"points"</span>)
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">".ply"</span>:
         xyz <span style="color: #666">=</span> load_ply(fname)
-    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">&quot;.p&quot;</span>:
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">".p"</span>:
         xyz <span style="color: #666">=</span> load_nx(fname)
     <span style="color: #008000; font-weight: bold">else</span>:
-        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f&quot;Unknown input file format &#39;</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&#39; for file &#39;</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&#39;! Choose from </span><span style="color: #A45A77; font-weight: bold">{</span>IN_FMT<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">.&quot;</span>)
+        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f"Unknown input file format '</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">' for file '</span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">'! Choose from </span><span style="color: #A45A77; font-weight: bold">{</span>IN_FMT<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">."</span>)
     <span style="color: #008000; font-weight: bold">return</span> xyz
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1132,15 +1132,15 @@ This tool helps improve the quality of plant representation by pushing skeleton 
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">138</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">139</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">140</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">file_writer</span>(fname, skel):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Write skeleton to a file.&quot;&quot;&quot;</span>
-    <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">&quot;.xyz&quot;</span>, <span style="color: #BA2121">&quot;.txt&quot;</span>]:
-        np<span style="color: #666">.</span>savetxt(fname, skel, delimiter<span style="color: #666">=</span><span style="color: #BA2121">&#39; &#39;</span>)
-    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">&quot;.json&quot;</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""Write skeleton to a file."""</span>
+    <span style="color: #008000; font-weight: bold">if</span> fname<span style="color: #666">.</span>suffix <span style="color: #A2F; font-weight: bold">in</span> [<span style="color: #BA2121">".xyz"</span>, <span style="color: #BA2121">".txt"</span>]:
+        np<span style="color: #666">.</span>savetxt(fname, skel, delimiter<span style="color: #666">=</span><span style="color: #BA2121">' '</span>)
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">".json"</span>:
         save_json(fname, skel)
-    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">&quot;.p&quot;</span>:
+    <span style="color: #008000; font-weight: bold">elif</span> fname<span style="color: #666">.</span>suffix <span style="color: #666">==</span> <span style="color: #BA2121">".p"</span>:
         save_nx(fname, skel)
     <span style="color: #008000; font-weight: bold">else</span>:
-        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f&quot;Unknown output file format </span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">!&quot;</span>)
+        <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">IOError</span>(<span style="color: #BA2121">f"Unknown output file format </span><span style="color: #A45A77; font-weight: bold">{</span>fname<span style="color: #666">.</span>suffix<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">!"</span>)
     <span style="color: #008000; font-weight: bold">return</span>
 </code></pre></div></td></tr></table></div>
             </details>

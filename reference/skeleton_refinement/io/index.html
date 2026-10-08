@@ -1100,7 +1100,7 @@
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1116,7 +1116,7 @@
                 <code>key</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1159,8 +1159,8 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_json
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.data</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> skeleton_path
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># JSON file with structure: {&quot;points&quot;: [[x1,y1,z1], [x2,y2,z2], ...]}</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_json(skeleton_path(), key<span style="color: #666">=</span><span style="color: #BA2121">&#39;points&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># JSON file with structure: {"points": [[x1,y1,z1], [x2,y2,z2], ...]}</span>
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_json(skeleton_path(), key<span style="color: #666">=</span><span style="color: #BA2121">'points'</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
 <span style="color: #717171">(1000, 3)</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_json(skeleton_path())
@@ -1211,7 +1211,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">130</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">131</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">132</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_json</span>(filename, key<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">None</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load a point cloud or skeleton file from a JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1232,21 +1232,21 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_json</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.data import skeleton_path</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # JSON file with structure: {&quot;points&quot;: [[x1,y1,z1], [x2,y2,z2], ...]}</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_json(skeleton_path(), key=&#39;points&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # JSON file with structure: {"points": [[x1,y1,z1], [x2,y2,z2], ...]}</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_json(skeleton_path(), key='points')</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_json(skeleton_path())</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">json</span>
-    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">&#39;r&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
+    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">'r'</span>) <span style="color: #008000; font-weight: bold">as</span> f:
         X <span style="color: #666">=</span> json<span style="color: #666">.</span>load(f)
 
     <span style="color: #008000; font-weight: bold">if</span> key:
         <span style="color: #008000; font-weight: bold">if</span> key <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> X:
-            <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">KeyError</span>(<span style="color: #BA2121">f&quot;Missing key &#39;</span><span style="color: #A45A77; font-weight: bold">{</span>key<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">&#39; in JSON file.&quot;</span>)
+            <span style="color: #008000; font-weight: bold">raise</span> <span style="color: #CB3F38; font-weight: bold">KeyError</span>(<span style="color: #BA2121">f"Missing key '</span><span style="color: #A45A77; font-weight: bold">{</span>key<span style="color: #A45A77; font-weight: bold">}</span><span style="color: #BA2121">' in JSON file."</span>)
         <span style="color: #008000; font-weight: bold">return</span> np<span style="color: #666">.</span>asarray(X[key])
     <span style="color: #008000; font-weight: bold">else</span>:
         <span style="color: #008000; font-weight: bold">return</span> X
@@ -1260,7 +1260,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 
 
 <h2 id="skeleton_refinement.io.load_nx" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">load_nx(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>)</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python">load_nx(filename, key<span style="color: #666">=</span><span style="color: #BA2121">'position'</span>)</code>
 
 <a href="#skeleton_refinement.io.load_nx" class="headerlink" title="Permanent link">Link</a></h2>
 
@@ -1286,7 +1286,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1302,7 +1302,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
                 <code>key</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1349,11 +1349,11 @@ where n is the number of nodes.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_nx
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>positions <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>positions <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">'graph.pkl'</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(positions<span style="color: #666">.</span>shape)
 <span style="color: #717171">(50, 3)</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># Load custom attribute</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>attributes <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;custom_attribute&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>attributes <span style="color: #666">=</span> load_nx(<span style="color: #BA2121">'graph.pkl'</span>, key<span style="color: #666">=</span><span style="color: #BA2121">'custom_attribute'</span>)
 </code></pre></div>
 
 
@@ -1398,8 +1398,8 @@ where n is the number of nodes.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">170</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">171</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">172</span>
-<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">&#39;position&#39;</span>):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">173</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_nx</span>(filename, key<span style="color: #666">=</span><span style="color: #BA2121">'position'</span>):
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load a tree graph from a pickled NetworkX file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1408,7 +1408,7 @@ where n is the number of nodes.</p>
 <span style="color: #BA2121; font-style: italic">        The path to the pickled NetworkX graph file to parse.</span>
 <span style="color: #BA2121; font-style: italic">    key : str, optional</span>
 <span style="color: #BA2121; font-style: italic">        The node attribute key containing the position data.</span>
-<span style="color: #BA2121; font-style: italic">        Default is &#39;position&#39;.</span>
+<span style="color: #BA2121; font-style: italic">        Default is 'position'.</span>
 
 <span style="color: #BA2121; font-style: italic">    Returns</span>
 <span style="color: #BA2121; font-style: italic">    -------</span>
@@ -1423,14 +1423,14 @@ where n is the number of nodes.</p>
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_nx</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; positions = load_nx(&#39;graph.pkl&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; positions = load_nx('graph.pkl')</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(positions.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (50, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # Load custom attribute</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; attributes = load_nx(&#39;graph.pkl&#39;, key=&#39;custom_attribute&#39;)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; attributes = load_nx('graph.pkl', key='custom_attribute')</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">pickle</span>
-    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">&#39;rb&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
+    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, mode<span style="color: #666">=</span><span style="color: #BA2121">'rb'</span>) <span style="color: #008000; font-weight: bold">as</span> f:
         G <span style="color: #666">=</span> pickle<span style="color: #666">.</span>load(f)
 
     X <span style="color: #666">=</span> []
@@ -1474,7 +1474,7 @@ where n is the number of nodes.</p>
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1555,7 +1555,7 @@ where n is the number of nodes.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">88</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">89</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">90</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_ply</span>(filename: <span style="color: #008000">str</span> <span style="color: #666">|</span> Path) <span style="color: #666">-&gt;</span> np<span style="color: #666">.</span>ndarray:
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load point cloud coordinates from a PLY file.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1578,10 +1578,10 @@ where n is the number of nodes.</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points[:2])</span>
 <span style="color: #BA2121; font-style: italic">    [[349.75394719 360.28330448  70.08627054]</span>
 <span style="color: #BA2121; font-style: italic">     [349.75394924 360.2833028   70.41372997]]</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">plyfile</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> PlyData
     plydata <span style="color: #666">=</span> PlyData<span style="color: #666">.</span>read(filename)
-    X <span style="color: #666">=</span> np<span style="color: #666">.</span>array([plydata[<span style="color: #BA2121">&#39;vertex&#39;</span>][<span style="color: #BA2121">&#39;x&#39;</span>], plydata[<span style="color: #BA2121">&#39;vertex&#39;</span>][<span style="color: #BA2121">&#39;y&#39;</span>], plydata[<span style="color: #BA2121">&#39;vertex&#39;</span>][<span style="color: #BA2121">&#39;z&#39;</span>]])<span style="color: #666">.</span>T
+    X <span style="color: #666">=</span> np<span style="color: #666">.</span>array([plydata[<span style="color: #BA2121">'vertex'</span>][<span style="color: #BA2121">'x'</span>], plydata[<span style="color: #BA2121">'vertex'</span>][<span style="color: #BA2121">'y'</span>], plydata[<span style="color: #BA2121">'vertex'</span>][<span style="color: #BA2121">'z'</span>]])<span style="color: #666">.</span>T
     <span style="color: #008000; font-weight: bold">return</span> X
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1619,7 +1619,7 @@ where n is the number of nodes.</p>
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1660,7 +1660,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000; font-weight: bold">from</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">skeleton_refinement.io</span><span style="color: #BBB"> </span><span style="color: #008000; font-weight: bold">import</span> load_xyz
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_xyz(<span style="color: #BA2121">&#39;point_cloud.xyz&#39;</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>points <span style="color: #666">=</span> load_xyz(<span style="color: #BA2121">'point_cloud.xyz'</span>)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points<span style="color: #666">.</span>shape)
 <span style="color: #717171">(1000, 3)</span>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #008000">print</span>(points[:<span style="color: #666">2</span>])
@@ -1708,7 +1708,7 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">57</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">58</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">59</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">load_xyz</span>(filename):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Load a point cloud or skeleton file saved as a series of space-separated XYZ coordinates.</span>
 
 <span style="color: #BA2121; font-style: italic">    Parameters</span>
@@ -1725,22 +1725,22 @@ with shape <code>(n, 3)</code>, where <code>n</code> is the number of points.</p
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; from skeleton_refinement.io import load_xyz</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_xyz(&#39;point_cloud.xyz&#39;)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; points = load_xyz('point_cloud.xyz')</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points.shape)</span>
 <span style="color: #BA2121; font-style: italic">    (1000, 3)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; print(points[:2])</span>
 <span style="color: #BA2121; font-style: italic">    [[ 1.2  3.4  5.6]</span>
 <span style="color: #BA2121; font-style: italic">     [-0.1  0.2  0.3]]</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    f <span style="color: #666">=</span> <span style="color: #008000">open</span>(filename, <span style="color: #BA2121">&quot;r&quot;</span>)
+<span style="color: #BA2121; font-style: italic">    """</span>
+    f <span style="color: #666">=</span> <span style="color: #008000">open</span>(filename, <span style="color: #BA2121">"r"</span>)
     lines <span style="color: #666">=</span> f<span style="color: #666">.</span>readlines()
     org_x <span style="color: #666">=</span> []
     org_y <span style="color: #666">=</span> []
     org_z <span style="color: #666">=</span> []
     <span style="color: #008000; font-weight: bold">for</span> l <span style="color: #A2F; font-weight: bold">in</span> lines:
-        org_x<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">&#39; &#39;</span>)[<span style="color: #666">0</span>]))
-        org_y<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">&#39; &#39;</span>)[<span style="color: #666">1</span>]))
-        org_z<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">&#39; &#39;</span>)[<span style="color: #666">2</span>]))
+        org_x<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">' '</span>)[<span style="color: #666">0</span>]))
+        org_y<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">' '</span>)[<span style="color: #666">1</span>]))
+        org_z<span style="color: #666">.</span>append(<span style="color: #008000">float</span>(l<span style="color: #666">.</span>split(<span style="color: #BA2121">' '</span>)[<span style="color: #666">2</span>]))
     f<span style="color: #666">.</span>close()
     X <span style="color: #666">=</span> np<span style="color: #666">.</span>column_stack((org_x, org_y, org_z))
     <span style="color: #008000; font-weight: bold">return</span> X
@@ -1782,7 +1782,7 @@ storing both node positions and edge connections.</p>
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1843,9 +1843,9 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">0</span>, position<span style="color: #666">=</span>[<span style="color: #666">0</span>,<span style="color: #666">0</span>,<span style="color: #666">0</span>])
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">1</span>, position<span style="color: #666">=</span>[<span style="color: #666">1</span>,<span style="color: #666">1</span>,<span style="color: #666">1</span>])
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_edge(<span style="color: #666">0</span>, <span style="color: #666">1</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">&#39;graph.json&#39;</span>, G)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">'graph.json'</span>, G)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># With custom JSON formatting</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">&#39;pretty_graph.json&#39;</span>, G, indent<span style="color: #666">=4</span>, sort_keys<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_json(<span style="color: #BA2121">'pretty_graph.json'</span>, G, indent<span style="color: #666">=4</span>, sort_keys<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>)
 </code></pre></div>
 
 
@@ -1896,7 +1896,7 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">218</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">219</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">220</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_json</span>(filename, G, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Save a tree graph to a JSON file.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function exports a NetworkX graph to a JSON file format,</span>
@@ -1907,16 +1907,16 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: #BA2121; font-style: italic">    filename : str or pathlib.Path</span>
 <span style="color: #BA2121; font-style: italic">        The path to the JSON file to write.</span>
 <span style="color: #BA2121; font-style: italic">    G : networkx.Graph</span>
-<span style="color: #BA2121; font-style: italic">        The graph to write. Nodes must have a &#39;position&#39; attribute.</span>
+<span style="color: #BA2121; font-style: italic">        The graph to write. Nodes must have a 'position' attribute.</span>
 <span style="color: #BA2121; font-style: italic">    **kwargs</span>
 <span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to ``json.dumps()``.</span>
-<span style="color: #BA2121; font-style: italic">        If &#39;indent&#39; is not provided, it defaults to ``2``.</span>
+<span style="color: #BA2121; font-style: italic">        If 'indent' is not provided, it defaults to ``2``.</span>
 
 <span style="color: #BA2121; font-style: italic">    Notes</span>
 <span style="color: #BA2121; font-style: italic">    -----</span>
 <span style="color: #BA2121; font-style: italic">    The output JSON structure will contain:</span>
-<span style="color: #BA2121; font-style: italic">    - &#39;points&#39;: list of node positions</span>
-<span style="color: #BA2121; font-style: italic">    - &#39;lines&#39;: list of edges</span>
+<span style="color: #BA2121; font-style: italic">    - 'points': list of node positions</span>
+<span style="color: #BA2121; font-style: italic">    - 'lines': list of edges</span>
 
 <span style="color: #BA2121; font-style: italic">    Examples</span>
 <span style="color: #BA2121; font-style: italic">    --------</span>
@@ -1926,18 +1926,18 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(0, position=[0,0,0])</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(1, position=[1,1,1])</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_edge(0, 1)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json(&#39;graph.json&#39;, G)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json('graph.json', G)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # With custom JSON formatting</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json(&#39;pretty_graph.json&#39;, G, indent=4, sort_keys=True)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_json('pretty_graph.json', G, indent=4, sort_keys=True)</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">json</span>
     data <span style="color: #666">=</span> {
-        <span style="color: #BA2121">&quot;points&quot;</span>: [G<span style="color: #666">.</span>nodes[node][<span style="color: #BA2121">&#39;position&#39;</span>] <span style="color: #008000; font-weight: bold">for</span> node <span style="color: #A2F; font-weight: bold">in</span> G<span style="color: #666">.</span>nodes],
-        <span style="color: #BA2121">&quot;lines&quot;</span>: <span style="color: #008000">list</span>(G<span style="color: #666">.</span>edges),
+        <span style="color: #BA2121">"points"</span>: [G<span style="color: #666">.</span>nodes[node][<span style="color: #BA2121">'position'</span>] <span style="color: #008000; font-weight: bold">for</span> node <span style="color: #A2F; font-weight: bold">in</span> G<span style="color: #666">.</span>nodes],
+        <span style="color: #BA2121">"lines"</span>: <span style="color: #008000">list</span>(G<span style="color: #666">.</span>edges),
     }
-    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;indent&#39;</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> kwargs:
-        kwargs<span style="color: #666">.</span>update({<span style="color: #BA2121">&#39;indent&#39;</span>: <span style="color: #666">2</span>})
-    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, <span style="color: #BA2121">&#39;w&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">'indent'</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> kwargs:
+        kwargs<span style="color: #666">.</span>update({<span style="color: #BA2121">'indent'</span>: <span style="color: #666">2</span>})
+    <span style="color: #008000; font-weight: bold">with</span> <span style="color: #008000">open</span>(filename, <span style="color: #BA2121">'w'</span>) <span style="color: #008000; font-weight: bold">as</span> f:
         f<span style="color: #666">.</span>writelines(json<span style="color: #666">.</span>dumps(data, <span style="color: #666">**</span>kwargs))
     <span style="color: #008000; font-weight: bold">return</span>
 </code></pre></div></td></tr></table></div>
@@ -1977,7 +1977,7 @@ If 'indent' is not provided, it defaults to <code>2</code>.</p>
                 <code>filename</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/builtins/stdtypes.html#str">str</a> or <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2037,9 +2037,9 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">0</span>, position<span style="color: #666">=</span>[<span style="color: #666">0</span>,<span style="color: #666">0</span>,<span style="color: #666">0</span>])
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_node(<span style="color: #666">1</span>, position<span style="color: #666">=</span>[<span style="color: #666">1</span>,<span style="color: #666">1</span>,<span style="color: #666">1</span>])
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>G<span style="color: #666">.</span>add_edge(<span style="color: #666">0</span>, <span style="color: #666">1</span>)
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">&#39;graph.pkl&#39;</span>, G)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">'graph.pkl'</span>, G)
 <span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span><span style="color: #3D7B7B; font-style: italic"># With specific protocol</span>
-<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">&#39;graph_v2.pkl&#39;</span>, G, protocol<span style="color: #666">=2</span>)
+<span style="color: #000080; font-weight: bold">&gt;&gt;&gt; </span>save_nx(<span style="color: #BA2121">'graph_v2.pkl'</span>, G, protocol<span style="color: #666">=2</span>)
 </code></pre></div>
 
 
@@ -2086,7 +2086,7 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">261</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">262</span>
 <span style="color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px;">263</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">save_nx</span>(filename, G, <span style="color: #666">**</span>kwargs):
-<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">"""</span>
 <span style="color: #BA2121; font-style: italic">    Save a tree graph to a pickle file.</span>
 
 <span style="color: #BA2121; font-style: italic">    This function saves a NetworkX graph to a pickle file for later retrieval.</span>
@@ -2099,7 +2099,7 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 <span style="color: #BA2121; font-style: italic">        The graph to write.</span>
 <span style="color: #BA2121; font-style: italic">    **kwargs</span>
 <span style="color: #BA2121; font-style: italic">        Additional keyword arguments to pass to pickle.dump().</span>
-<span style="color: #BA2121; font-style: italic">        If &#39;protocol&#39; is not provided, it defaults to pickle.HIGHEST_PROTOCOL.</span>
+<span style="color: #BA2121; font-style: italic">        If 'protocol' is not provided, it defaults to pickle.HIGHEST_PROTOCOL.</span>
 
 <span style="color: #BA2121; font-style: italic">    Notes</span>
 <span style="color: #BA2121; font-style: italic">    -----</span>
@@ -2114,16 +2114,16 @@ Never unpickle data received from untrusted or unauthenticated sources.</p>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(0, position=[0,0,0])</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_node(1, position=[1,1,1])</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; G.add_edge(0, 1)</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx(&#39;graph.pkl&#39;, G)</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx('graph.pkl', G)</span>
 <span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; # With specific protocol</span>
-<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx(&#39;graph_v2.pkl&#39;, G, protocol=2)</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; save_nx('graph_v2.pkl', G, protocol=2)</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
     <span style="color: #008000; font-weight: bold">import</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">pickle</span>
-    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">&#39;protocol&#39;</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> kwargs:
-        kwargs[<span style="color: #BA2121">&#39;protocol&#39;</span>] <span style="color: #666">=</span> pickle<span style="color: #666">.</span>HIGHEST_PROTOCOL
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #BA2121">'protocol'</span> <span style="color: #A2F; font-weight: bold">not</span> <span style="color: #A2F; font-weight: bold">in</span> kwargs:
+        kwargs[<span style="color: #BA2121">'protocol'</span>] <span style="color: #666">=</span> pickle<span style="color: #666">.</span>HIGHEST_PROTOCOL
     <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">isinstance</span>(filename, <span style="color: #008000">str</span>):
         filename <span style="color: #666">=</span> Path(filename)
-    <span style="color: #008000; font-weight: bold">with</span> filename<span style="color: #666">.</span>open(mode<span style="color: #666">=</span><span style="color: #BA2121">&#39;wb&#39;</span>) <span style="color: #008000; font-weight: bold">as</span> f:
+    <span style="color: #008000; font-weight: bold">with</span> filename<span style="color: #666">.</span>open(mode<span style="color: #666">=</span><span style="color: #BA2121">'wb'</span>) <span style="color: #008000; font-weight: bold">as</span> f:
         pickle<span style="color: #666">.</span>dump(G, f, <span style="color: #666">**</span>kwargs)
     <span style="color: #008000; font-weight: bold">return</span>
 </code></pre></div></td></tr></table></div>
